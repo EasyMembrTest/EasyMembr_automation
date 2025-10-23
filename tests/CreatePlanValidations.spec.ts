@@ -269,7 +269,7 @@ test('DeleteSlot', async ({  }) => {
 });
 
 test('CreatePlan_ImportSheet', async ({  }) => {
-  const filePath = 'D:/EasyMembr_TestData/Sample_Plan_Data.xlsx';
+  const filePath = 'V:/EasyMembr_TestData/Sample_Plan_Data.xlsx';
   const planName = testdata.ImportPlanName;
   // 1. Import flow
   await planPage.dashboardTab().click();

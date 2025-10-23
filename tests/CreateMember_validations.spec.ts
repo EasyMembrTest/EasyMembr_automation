@@ -9,7 +9,7 @@ import * as path from 'path';
 import * as XLSX from 'xlsx';
 
 const tempFile = path.join(__dirname, 'temp.json');
-const File = 'D:/EasyMembr_TestData/03.png';
+const File = 'V:/EasyMembr_TestData/03.png';
 
 
 
@@ -289,7 +289,7 @@ test('DownloadExportSheet_TrainerSummary', async ({  context }) => {
      await membersTab.reportsTab().click();
      await membersTab.trainerSummaryTab().click();
      await page.waitForTimeout(4000);
-  const downloadDir = 'D:/EasyMembr_Downloads';
+  const downloadDir = 'V:/EasyMembr_Downloads';
   const expectedFileName = 'Trainer Summary.xlsx';
   const [download] = await Promise.all([
     page.waitForEvent('download'),
@@ -320,7 +320,7 @@ test('DownloadExportSheet_CheckINSummary', async ({  context }) => {
      await membersTab.reportsTab().click();
      await membersTab.CheckINSummaryTab().click();
      await page.waitForTimeout(4000);
-     const downloadDir = 'D:/EasyMembr_Downloads';
+     const downloadDir = 'V:/EasyMembr_Downloads';
      const expectedFileName = 'checkInReportsData.xlsx';
      const [download] = await Promise.all([
     page.waitForEvent('download'),
@@ -351,7 +351,7 @@ test('DownloadExportSheet_PaymentSummary', async ({  context }) => {
      await membersTab.reportsTab().click();
      await membersTab.paymentSummaryTab().click();
      await page.waitForTimeout(4000);
-     const downloadDir = 'D:/EasyMembr_Downloads';
+     const downloadDir = 'V:/EasyMembr_Downloads';
      const expectedFileName = 'TransactionSummary.xlsx';
      const [download] = await Promise.all([
     page.waitForEvent('download'),
@@ -382,7 +382,7 @@ test('DownloadExportSheet_PlanSummary', async ({  context }) => {
      await membersTab.reportsTab().click();
      await membersTab.planSummaryTab().click();
      await page.waitForTimeout(4000);
-     const downloadDir = 'D:/EasyMembr_Downloads';
+     const downloadDir = 'V:/EasyMembr_Downloads';
      const expectedFileName = 'planSummary.xlsx';
      const [download] = await Promise.all([
     page.waitForEvent('download'),
@@ -612,7 +612,7 @@ test('DownloadExportSheet_Session', async ({  context }) => {
      await membersTab.reportsTab().click();
      await membersTab.sessionTab().click();
      await page.waitForTimeout(4000);
-     const downloadDir = 'D:/EasyMembr_Downloads';
+     const downloadDir = 'V:/EasyMembr_Downloads';
      const expectedFileName = 'sessionReportsData.xlsx';
      const [download] = await Promise.all([
     page.waitForEvent('download'),
@@ -646,7 +646,7 @@ test('DownloadExportSheet_SessionSummary', async ({  context }) => {
      await membersTab.reportsTab().click();
      await membersTab.sessionSummaryTab().click();
      await page.waitForTimeout(4000);
-     const downloadDir = 'D:/EasyMembr_Downloads';
+     const downloadDir = 'V:/EasyMembr_Downloads';
      const expectedFileName = 'sessionSummary.xlsx';
      const [download] = await Promise.all([
     page.waitForEvent('download'),
@@ -725,7 +725,7 @@ test('DownloadExportSheet_WhatsappCampaignHistory', async ({  context }) => {
      await membersTab.reportsTab().click();
     await membersTab.whatsappCampaignHistoryTab().click();
      await page.waitForTimeout(4000);
-     const downloadDir = 'D:/EasyMembr_Downloads';
+     const downloadDir = 'V:/EasyMembr_Downloads';
      const expectedFileName = 'whatsApp_Campaign_Reports.xlsx';
      const [download] = await Promise.all([
     page.waitForEvent('download'),

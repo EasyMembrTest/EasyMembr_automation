@@ -97,4 +97,8 @@ export class SlotsPage {
         await expect(this.page.getByText('Slot deleted successfully')).toBeVisible();
     }
   }
+
+    
+
+  
 }

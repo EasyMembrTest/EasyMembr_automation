@@ -80,7 +80,7 @@ test.describe('CreateSlotValidations', () => {
   });
 
   test('CreateSlot_ImportSheet_VerifyInCreatePlanPage', async () => {
-    const filePath = 'D:/EasyMembr_TestData/Sample_Slots.xlsx';
+    const filePath = 'V:/EasyMembr_TestData/Sample_Slots.xlsx';
     // 1. Plans, Slots & Addons
     await slotsPage.plansSlotsAddonsLink().click();
     // 2. Delete existing slot if present
@@ -136,6 +136,7 @@ test.describe('CreateSlotValidations', () => {
     await slotsPage.slotDropSelect2().selectOption('00');
     // 7. Save
     await slotsPage.saveSlotButton().click();
+    await expect(slotsPage.slotSavedAlert()).toBeVisible();
     // 8. Dashboard
     await slotsPage.dashboardTab().click();
     // 9. Plans, Slots & Addons > Slots tab > search old slot

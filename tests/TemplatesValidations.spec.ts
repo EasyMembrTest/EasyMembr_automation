@@ -312,6 +312,7 @@ test.describe('TemplatesValidations', () => {
     await templatesPage.smsDeleteIcon(testdata.EditedSMS_Gateway, testdata.EditedSMS_APIKey, testdata.EditedSMS_SenderID).click();
     await expect(templatesPage.smsDeleteConfirmText()).toBeVisible();
     await templatesPage.smsDeleteButton().click();
+    await loginPage.SuccessAlert(`SmsGateway settings Deleted sucessfully `);
     await expect(templatesPage.smsGatewayRowInvisibility(testdata.EditedSMS_Gateway, testdata.EditedSMS_APIKey, testdata.EditedSMS_SenderID)).not.toBeVisible();
     // Disable and re-enable
     await templatesPage.smsDisableIcon().click();

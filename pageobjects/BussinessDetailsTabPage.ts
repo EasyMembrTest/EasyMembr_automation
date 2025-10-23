@@ -262,7 +262,7 @@ export class BussinessDetailsTabPage {
   }
 
   copyLinkButton(): Locator {
-    return this.page.getByText('Copy Link');
+    return this.page.locator("//button[text()='Copy Link']")
   }
 
   copyLinkAlert(): Locator {

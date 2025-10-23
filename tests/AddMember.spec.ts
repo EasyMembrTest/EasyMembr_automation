@@ -63,6 +63,7 @@ test('Login and Add Member', async ({ page }) => {
   await loginPage.addressInput().fill(testdata.address);
   await loginPage.referralSelect().selectOption({ label: testdata.referral });
   await loginPage.addButton(testdata.addButtonSelector).click();
+  await loginPage.SuccessAlert(`Member Created Successfully (${randomFirstName} ${testdata.lastName})`);
   await loginPage.memberSearchInput(testdata.memberSearchPlaceholder).click();
   await loginPage.memberSearchInput(testdata.memberSearchPlaceholder).fill(randomFirstName);
   await loginPage.applyButton(testdata.applyButtonSelector).click();
@@ -139,12 +140,13 @@ test('CheckIN_CheckOUT_Member', async ({ page }) => {
   await page.click('text=Check-In/Check-out');
   await loginPage.checkInOutSearchInput().click();
   await loginPage.checkInOutSearchInput().fill(data.randomFirstName);
+  await page.waitForTimeout(2000);
   await expect(loginPage.searchedPlanResult(data.randomFirstName)).toBeVisible();
   await loginPage.checkInButton(data.randomFirstName).click();
  await loginPage.trainerSelect().selectOption({ label: 'shiva shiva' });
  const checkinTimeInput = await page.locator("//input[@class='form-control active timepicker-input']");
  checkinTime = (await checkinTimeInput.getAttribute('value')) ?? '';
-   console.log('checkinTime (raw):', checkinTime);
+  console.log('checkinTime (raw):', checkinTime);
   await loginPage.checkInConfirmButton().click();
   await expect(loginPage.checkOutButton(data.randomFirstName)).toBeVisible();
   await loginPage.dashboardText('Dashboard').click();
@@ -156,7 +158,9 @@ test('CheckIN_CheckOUT_Member', async ({ page }) => {
   await loginPage.checkInOutButton().click();
   await loginPage.checkInOutSearchInput().click();
   await loginPage.checkInOutSearchInput().fill(data.randomFirstName);
-  await expect(loginPage.searchedPlanResult(data.randomFirstName)).toBeVisible();
+  await page.waitForTimeout(2000);
+  //await expect(loginPage.searchedPlanResult(data.randomFirstName)).toBeVisible();
+  await expect(page.locator(`//span[@class='checkIn-Head'][contains(text(),'${data.randomFirstName}')]`)).toBeVisible();
   await loginPage.checkOutButton(data.randomFirstName).click();
   await loginPage.checkOutConfirmButton().click();
   await expect(loginPage.checkInButtonAfterOut(data.randomFirstName)).toBeVisible();
@@ -314,6 +318,7 @@ test('CreateStaff_CheckInStaff_VerifyCountInDashboards', async ({ page }) => {
   await loginPage.staffRoleSelect().selectOption({ label: 'Staff' });
   // 14. Click Add button
   await loginPage.staffAddButton().click();
+  await loginPage.SuccessAlert(`Staff Created Successfully (${data.StaffFirstName} User)`);
   // 15. Search staff by email
    await loginPage.staffSearchInput().click();
   await loginPage.staffSearchInput().fill(`${data.StaffFirstName}@mailinator.com`);
@@ -506,6 +511,7 @@ test('DeleteMember_Staff',async ({ page }) => {
   await dialog.accept();
   });
   await page.click("//span[@class='ml20']/img[@alt='Delete']");
+  await loginPage.SuccessAlert(`Member deleted successfully`);
   await page.waitForTimeout(2000);
  // 6. Click on Dashboard
   await loginPage.dashboardTab().click();
@@ -530,6 +536,7 @@ test('DeleteMember_Staff',async ({ page }) => {
   await dialog.accept();
  });
   await page.click("//button[@class='button-link ml20']/img[@alt='Delete']");
+  await loginPage.SuccessAlert(`Staff Deleted Successfully!`);
   await page.waitForTimeout(2000);
   // 14. Handle Windows Alert OK
   // 15. Click on Dashboard

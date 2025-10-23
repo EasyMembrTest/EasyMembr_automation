@@ -24,7 +24,7 @@ function getTimestamp() {
 }
 
 const timestamp = getTimestamp();
-const reportDir = path.join('D:/Reports', timestamp);
+const reportDir = path.join('V:/Reports', timestamp);
 
 export default defineConfig({
   testDir: './tests',

@@ -3,16 +3,29 @@ import { BussinessDetailsTabPage } from '../pageobjects/BussinessDetailsTabPage'
 import testdata from '../testdata.json';
 import { LoginPage } from '../pageobjects/LoginPage';
 import { ManageAccount } from '../pageobjects/ManageAccount';
+import { captureAndAttachScreenshot } from '../utils/screenshotHelper';
 
 let businessName: string;
 let giftCards: string;
+
 
 test.beforeAll(() => {
        businessName =`${testdata.businessName}${Array.from({length: 6}, () => String.fromCharCode(97 + Math.floor(Math.random() * 26))).join('')}`;
        giftCards= `${testdata.giftCards}${Array.from({length: 6}, () => String.fromCharCode(97 + Math.floor(Math.random() * 26))).join('')}`;
     });
 
-   
+test.afterEach(async ({page}, testInfo) =>{
+    // Wait 1 second to ensure screenshots are captured before next test or browser close
+    await page.waitForTimeout(1000);
+    if (testInfo.status === 'failed') {
+      await captureAndAttachScreenshot(page, testInfo, `${testInfo.title}-failed`);
+    } else if (testInfo.status === 'passed') {
+      await captureAndAttachScreenshot(page, testInfo, `${testInfo.title}-passed`);
+    }
+  });
+
+
+ 
 test('EditBussinessDetails', async ({ page }) => {
   const businessPage = new BussinessDetailsTabPage(page);
     const loginPage = new LoginPage(page);
@@ -74,6 +87,7 @@ test('EditBussinessDetails', async ({ page }) => {
   await businessPage.numberInput().fill(testdata.number);
   // 15. Click Save
   await businessPage.saveButton().click();
+  await loginPage.SuccessAlert(`Business Info (EasyMember) updated successfully`)
   //await expect(businessPage.profileSavedAlert()).toBeVisible();
   // 16. Click Dashboard
   await businessPage.dashboardTab().click();
@@ -155,7 +169,7 @@ test.afterAll(async ({ browser }) => {
     await page.close();
 });
 
-/*
+
 test('EditPaymentDetails', async ({ page }) => {
   const businessPage = new BussinessDetailsTabPage(page);
    const loginPage = new LoginPage(page);
@@ -307,6 +321,7 @@ test('EditDigitalWaiver', async ({ page }) => {
   await businessPage.mandatoryRadioButton().click();
   // 8. Click Save button
   await businessPage.saveButtonDigitalWaiver().click();
+  await loginPage.SuccessAlert(`waiver settings updated sucessfully `);
   //await expect(businessPage.profileSavedAlert()).toBeVisible();
   // 9. Click Dashboard
   await businessPage.dashboardTab().click();
@@ -325,19 +340,25 @@ test('EditDigitalWaiver', async ({ page }) => {
   await businessPage.showQRCodeButton().click();
   await expect(businessPage.qrCodeTitle(testdata.DigitalWaiver)).toBeVisible();
   await expect(businessPage.qrCodeSVG()).toBeVisible();
+  await page.waitForLoadState('networkidle');
   // 18. Copy Link and verify alert
-  await expect(businessPage.copyLinkButton()).toBeVisible();
-  await businessPage.copyLinkButton().click();
+  console.log(`waiting time: ${new Date().toLocaleTimeString()}`);
+  await page.waitForTimeout(10000)
+  console.log(`waiting time: ${new Date().toLocaleTimeString()}`);
+  await businessPage.showQRCodeButton().click();
+  await expect(businessPage.copyLinkButton()).toBeVisible({ timeout: 20000 });
+  await businessPage.copyLinkButton().scrollIntoViewIfNeeded();
+  await businessPage.copyLinkButton().click({force: true});
   await expect(businessPage.copyLinkAlert()).toBeVisible();
   // 19. Regenerate Link and verify
-  await expect(businessPage.regenerateLinkButton()).toBeVisible();
-  await businessPage.regenerateLinkButton().click();
-  await expect(businessPage.regeneratingStrong()).toBeVisible();
+  await expect(businessPage.regenerateLinkButton()).toBeVisible({ timeout: 20000 });
+  await businessPage.regenerateLinkButton().click({force: true});
+  await expect(businessPage.regeneratingStrong()).toBeVisible({timeout: 20000});
   // 20. Click second Regenerate Link button
-  await page.locator('(//button[text()="Regenerate Link"])[2]').click();
+  await page.locator('(//button[text()="Regenerate Link"])[2]').click({force: true});
   // 21. Click Close button
   await page.waitForTimeout(3000);
-  await businessPage.closeButton().click();
+  await businessPage.closeButton().click({force: true});
   //Edit to original
   await businessPage.businessDetailsTab().click();
   await businessPage.digitalWaiverEditIcon().click();
@@ -438,4 +459,3 @@ test('EditBussinessHours', async ({ page }) => {
   await expect(businessPage.mondayLabel()).toBeVisible();
 });
 
-*/

@@ -5,7 +5,7 @@ import { captureAndAttachScreenshot } from '../utils/screenshotHelper';
 import { MembersManagementTabPage } from '../pageobjects/MembersManagementTabPage';
 import { LoginPage } from '../pageobjects/LoginPage';
 
-const filePath = 'D:/EasyMembr_TestData/CreateMemberForAddOnSetup.xlsx';
+const filePath = 'V:/EasyMembr_TestData/CreateMemberForAddOnSetup.xlsx';
 
 test.describe('CreateADDONSValidations', () => {
       let browser: Browser;
@@ -177,7 +177,7 @@ test('CreateAddONS_VerifyInPOS_AddMemberToAddONSByMultiplePayments_DiscountValid
 });
 
 test('CreateAddONSWithDisabled_ImportSheet_VerifyInvisibilityINPOS', async ({  }) => {
-  const filePath = 'D:/EasyMembr_TestData/Sample_Addon_Data.xlsx';
+  const filePath = 'V:/EasyMembr_TestData/Sample_Addon_Data.xlsx';
   // 1. Dashboard
   await addOnsPage.clickDashboard();
   // 2. Plans, Slots & Addons
@@ -328,7 +328,7 @@ test('DeleteAddONS', async ({  }) => {
 });
 
 test('DownloadExportSheet_Transactions', async ({}) => {
-  const downloadDir = 'D:/EasyMembr_Downloads';
+  const downloadDir = 'V:/EasyMembr_Downloads';
   const expectedFileName = 'Transactions_Data.xlsx';
   const expectedFilePath = `${downloadDir}/${expectedFileName}`;
   const fs = require('fs');

@@ -70,12 +70,12 @@ export class TransactionsPage {
     await expect(await rows.count()).toBeGreaterThan(count);
   }
 
-  async expectTransactionRowVisible(name: string, amount: string, plan:string, date: string) {
-    await expect(this.page.locator(`//div[@class='TransactionsTable sno']//tbody/tr/td[text()='${name}']/../td[11][text()='${amount}']/../td/div[text()='${plan}']/../../td/span[contains(text(),'${date}')]/../../td[20]/i[@class='fas fa-trash']`)).toBeVisible();
+   expectTransactionRowVisible(name: string, amount: string, plan:string, date: string) {
+    return this.page.locator(`//div[@class='TransactionsTable sno']//tbody/tr/td[text()='${name}']/../td[11][text()='${amount}']/../td/div[text()='${plan}']/../../td/span[contains(text(),'${date}')]/../../td[23]/i[@class='fas fa-trash']`);
   }
 
-  async expectTotalAmount(amount: string) {
-    await expect(this.page.locator(`//div[text()='Total Amount Received: ']/..//b[text()='${amount}']`)).toBeVisible();
+   expectTotalAmount(amount: string) {
+    return this.page.locator(`//div[text()='Total Amount Received: ']/..//b[text()='${amount}']`)
   }
 
   async clickClearButton() {
@@ -83,9 +83,9 @@ export class TransactionsPage {
     await this.page.waitForTimeout(2000);
   }
 
-  async deleteTransaction(name: string, amount: string, plan:string, date: string) {
-    await this.page.click(`//div[@class='TransactionsTable sno']//tbody/tr/td[text()='${name}']/../td[11][text()='${amount}']/../td/div[text()='${plan}']/../../td/span[contains(text(),'${date}')]/../../td[20]/i[@class='fas fa-trash']`);
-    await this.page.click('//button[text()="Delete"]');
+   deleteTransaction(name: string, amount: string, plan:string, date: string) {
+    return this.page.locator(`//div[@class='TransactionsTable sno']//tbody/tr/td[text()='${name}']/../td[11][text()='${amount}']/../td/div[text()='${plan}']/../../td/span[contains(text(),'${date}')]/../../td[23]/i[@class='fas fa-trash']`);
+    
   }
 
   async expectNoDataFoundTransaction() {
@@ -108,7 +108,11 @@ export class TransactionsPage {
     await this.page.click("//a[text()=' Dashboard']");
   }
 
-  async expectMemberRowVisible(name:String, mobile:String, Plan:String, date:String) {
-    await expect(this.page.locator(`//div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='${name}']/../td[text()='${mobile}']/../td[text()='${Plan}']/../td/div[text()='Active']/../../td[text()='${date}']`)).toBeVisible();
+   expectMemberRowVisible(name:String, mobile:String, Plan:String, date:String) {
+    return this.page.locator(`//div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='${name}']/../td[text()='${mobile}']/../td[text()='${Plan}']/../td/div[text()='Inactive']/../../td[text()='${date}']`);
+  }
+
+    async expectTransactionImportSuccess() {
+    await expect(this.page.locator('text=Transaction(s) Imported successfully!')).toBeVisible();
   }
 }

@@ -96,7 +96,7 @@ async goToMonth(monthText: string, direction: 'Previous' | 'Next', untilYear: st
   }
 
   async verifyFilteredMemberRow() {
-    await expect(this.page.locator("//div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Vamsi Automation']/../td[text()='09/17/2025']/../td[text()='automation']")).toBeVisible();
+    await expect(this.page.locator("//div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Vamsi Automation']/../td[text()='17/09/2025']/../td[text()='automation']")).toBeVisible();
   }
 
    async openThirdDatePicker() {

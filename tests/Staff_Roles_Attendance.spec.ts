@@ -12,7 +12,7 @@ let AccountantStaffFirstName: string;
 let EditAdminStaffFirstName: string;
 
 
-const filePath = 'D:/EasyMembr_TestData/Sample_Staff_Data.xlsx';
+const filePath = 'V:/EasyMembr_TestData/Sample_Staff_Data.xlsx';
 
 const tempFile = path.join(__dirname, 'temp.json');
 
@@ -69,6 +69,7 @@ test('CreateStaffAsAdmin_VerifyCreatedStaff_WhileCheckIN_TrainerDropDown', async
   await loginPage.staffEmailInput().fill(`${AdminStaffFirstName}@mailinator.com`);
   await loginPage.staffRoleSelect().selectOption({ label: 'Admin' });
   await loginPage.staffAddButton().click();
+  await loginPage.SuccessAlert(`Staff Created Successfully (${AdminStaffFirstName} User)`)
   // 15. Search staff by email
   await loginPage.staffSearchInput().click();
   await loginPage.staffSearchInput().fill(`${AdminStaffFirstName}@mailinator.com`);
@@ -123,6 +124,7 @@ test('CreateStaffAsAccountant_VerifyCreatedStaff_WhileCheckIN_TrainerDropDown', 
   await loginPage.staffEmailInput().fill(`${data.AccountantStaffFirstName}@mailinator.com`);
   await loginPage.staffRoleSelect().selectOption({ label: 'Accountant' });
   await loginPage.staffAddButton().click();
+  await loginPage.SuccessAlert(`Staff Created Successfully (${data.AccountantStaffFirstName} User)`)
   // 15. Search staff by email
   await loginPage.staffSearchInput().click();
   await loginPage.staffSearchInput().fill(`${data.AccountantStaffFirstName}@mailinator.com`);
@@ -191,6 +193,7 @@ test('EditStaffInfo__VerifyEditedStaff_WhileCheckIN_TrainerDropDown', async ({ p
   await loginPage.staffEmailInput().fill(`${data.EditAdminStaffFirstName}@mailinator.com`);
   await loginPage.staffRoleSelect().selectOption({ label: 'Accountant' });
   await loginPage.saveButton().click();
+  await loginPage.SuccessAlert(`Staff Updated Successfull (${data.EditAdminStaffFirstName} User)`)
   // 15. Search edited staff by email
   await loginPage.staffSearchInput().click();
   await loginPage.staffSearchInput().fill(`${data.EditAdminStaffFirstName}@mailinator.com`);
@@ -304,6 +307,7 @@ test('DeleteStaff', async ({ page }) => {
     await dialog.accept();
   });
   await staffTab.staffDeleteIcon(`${data.EditAdminStaffFirstName} User`).click();
+  await loginPage.SuccessAlert(`Staff Deleted Successfully!`)
   await page.waitForTimeout(2000);
   await loginPage.dashboardTab().click();
   await loginPage.staffRolesAttendanceTab().click();
@@ -321,6 +325,7 @@ test('DeleteStaff', async ({ page }) => {
     await dialog.accept();
   });
   await staffTab.staffDeleteIcon(`${data.AccountantStaffFirstName} User`).click();
+  await loginPage.SuccessAlert(`Staff Deleted Successfully!`)
   await page.waitForTimeout(2000);
 
   await loginPage.dashboardTab().click();
@@ -339,6 +344,7 @@ test('DeleteStaff', async ({ page }) => {
     await dialog.accept();
   });
   await staffTab.staffDeleteIcon(testdata.ImportStaffEmail).click();
+  await loginPage.SuccessAlert(`Staff Deleted Successfully!`)
   await page.waitForTimeout(2000);
   await loginPage.dashboardTab().click();
   await loginPage.staffRolesAttendanceTab().click();

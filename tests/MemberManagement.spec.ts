@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as XLSX from 'xlsx';
 
-const filePath = 'D:/EasyMembr_TestData/CreateMember.xlsx';
+const filePath = 'V:/EasyMembr_TestData/CreateMember.xlsx';
 
 
 
@@ -106,6 +106,7 @@ test('EditMember_MembersManagement', async ({ page }) => {
   await membersPage.addressTextarea().fill(testdata.EditedMemberAddress);
   // 19. Click Save button
   await membersPage.saveButton().click();
+  await loginPage.SuccessAlert(`Member Updated Successfully (${testdata.EditedMemberFirstName} ${testdata.EditedMemberLastName})`);
   // 20. Click DND label
   await expect(membersPage.dndLabel()).toBeVisible();
   await membersPage.dndLabel().click();
@@ -146,7 +147,7 @@ test('DownloadExportSheet_MembersManagement', async ({ page, context }) => {
   await loginPage.passwordInput().fill(testdata.password);
   await loginPage.loginButton().click();
   await expect(loginPage.dashboardText(testdata.dashboardText)).toBeVisible();
-  const downloadDir = 'D:/EasyMembr_Downloads';
+  const downloadDir = 'V:/EasyMembr_Downloads';
   const expectedFileName = 'MemberTableData.xlsx';
 
   // 1. Click on Members Management tab
@@ -396,7 +397,7 @@ test('DownloadExportSheet_RefundHistory', async ({ page, context }) => {
   await membersPage.refundTab().click();
   await page.waitForTimeout(2000);
   // 2. Click Export button and handle download
-  const downloadDir = 'D:/EasyMembr_Downloads';
+  const downloadDir = 'V:/EasyMembr_Downloads';
   const expectedFileName = 'Refund_data.xlsx';
   const [download] = await Promise.all([
     page.waitForEvent('download'),
@@ -525,6 +526,7 @@ test('DeleteMember_MembersManagement',async ({ page }) => {
   await dialog.accept();
   });
   await page.click("//span[@class='ml20']/img[@alt='Delete']");
+  await loginPage.SuccessAlert(`Member deleted successfully`);
   await page.waitForTimeout(2000);
   await loginPage.dashboardTab().click();
   await loginPage.membersManagementTab().click();

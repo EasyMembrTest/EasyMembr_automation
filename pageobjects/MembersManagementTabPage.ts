@@ -710,7 +710,7 @@ export class MembersManagementTabPage {
   }
 
   async DownloadFileValidation(fileName: string, expectedText: string) {
-    const downloadDir = 'D:/EasyMembr_Downloads';
+    const downloadDir = 'V:/EasyMembr_Downloads';
     const filePath = path.join(downloadDir, fileName);
 
     // Delete the file if it exists before starting
