@@ -197,6 +197,7 @@ test.describe('ClassValidations', () => {
     await expect(page.locator("//div[text()='--']")).toBeVisible();
     await expect(classesPage.comedyText()).toBeVisible();
     await expect(classesPage.IntermediateBadge()).toBeVisible();
+    await page.setViewportSize({ width: 1920, height: 1080 });
     await classesPage.schedulesTab().click();
     await page.waitForTimeout(3000);
     await classesPage.addNewScheduleButton().click();
