@@ -81,6 +81,7 @@ test.describe('ClassValidations', () => {
     await classesPage.descriptionEditor().click();
     await classesPage.descriptionEditor().fill(testdata.ClassDescription);
     await classesPage.saveClassButton().click();
+    await loginPage.SuccessAlert(`class created sucessfully (${className})`);
     await classesPage.searchClassInput().click();
     await classesPage.searchClassInput().fill(className);
     await classesPage.beginnerSelect().selectOption({ label: testdata.ClassLevel });
@@ -129,6 +130,7 @@ test.describe('ClassValidations', () => {
     await classesPage.descriptionEditor().click();
     await classesPage.descriptionEditor().fill(testdata.ClassDescription);
     await classesPage.saveClassButton().click();
+    await loginPage.SuccessAlert(`class created sucessfully (${className2})`);
     await classesPage.searchClassInput().click();
     await classesPage.searchClassInput().fill(className2);
     await classesPage.beginnerSelect().selectOption({ label: testdata.ClassLevel });
@@ -181,6 +183,7 @@ test.describe('ClassValidations', () => {
      await classesPage.descriptionEditor().fill(' ');
     await classesPage.descriptionEditor().fill(testdata.EditClassDescription);
     await classesPage.updateButton().click();
+    await loginPage.SuccessAlert(`class updated sucessfully (${EditClassName} )`);
     await classesPage.searchClassInput().click();
     await classesPage.searchClassInput().fill(EditClassName);
     await classesPage.beginnerSelect().selectOption({ label: testdata.EditClassLevel });
@@ -203,6 +206,8 @@ test.describe('ClassValidations', () => {
     await classesPage.addNewScheduleButton().click();
     await expect(classesPage.scheduleClassOption(EditClassName)).toBeVisible();
     await classesPage.closeButton().click();
+    await classesPage.calendarViewTab().click();
+    await page.waitForTimeout(2000);
     await classesPage.filterclass().click();
     await classesPage.filterSearch().click();
     await classesPage.filterSearch().fill(EditClassName);
@@ -218,6 +223,7 @@ test.describe('ClassValidations', () => {
     await classesPage.classDeleteButton(data.className2).click();
     await expect(classesPage.deleteClassCategoryHeader()).toBeVisible();
     await classesPage.Modal_DeleteButton().click();
+    await loginPage.SuccessAlert(`Class deleted successfully (${data.className2})`);
     await classesPage.searchClassInput().click();
     await classesPage.searchClassInput().fill(data.className2);
     await classesPage.applyButton().click();

@@ -132,6 +132,7 @@ test.describe('ManageAccountValidations', () => {
     await manageaccountpage.gotoDashboard();
     await manageaccountpage.gotoManageAccount();
     await manageaccountpage.clickEditProfileSettings();
+    await manageaccountpage.fillFirstName(' ')
     await manageaccountpage.fillFirstName(testdata.OriginalProfileSettingsFirstName);
     await manageaccountpage.fillLastName(testdata.OriginalProfileSettingsLastName);
     await manageaccountpage.fillAge(testdata.OriginalProfileSettingsAge);

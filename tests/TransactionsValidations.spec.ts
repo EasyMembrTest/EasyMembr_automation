@@ -54,7 +54,7 @@ test.describe('TransactionsValidations', () => {
     //await transactionsPage.closeAlertIfVisible();
     // 13-17: Search transaction and verify
     await transactionsPage.searchTransaction(testdata.TransactionMemberName);
-    await page.locator("//select[@id='shr']").selectOption({ label: 'All' });
+    await page.locator("(//select[@id='shr'])[1]").selectOption({ label: 'All' });
     await page.waitForTimeout(2000);
     await transactionsPage.clickApplyButton();
     await transactionsPage.expectTransactionRowCount(1);
@@ -73,7 +73,7 @@ test.describe('TransactionsValidations', () => {
     // 24-27: Go to Transactions, search, delete transaction
     await transactionsPage.gotoTransactions();
     await transactionsPage.searchTransaction(testdata.TransactionMemberName);
-    await page.locator("//select[@id='shr']").selectOption({ label: 'All' });
+    await page.locator("(//select[@id='shr'])[1]").selectOption({ label: 'All' });
     await page.waitForTimeout(2000);
     await transactionsPage.clickApplyButton();
     await transactionsPage.deleteTransaction(testdata.TransactionMemberName, testdata.TransactionAmount_1, testdata.planNameSetup, testdata.TransactionDate).click();

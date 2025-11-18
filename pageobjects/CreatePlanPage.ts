@@ -10,7 +10,7 @@ export class CreatePlanPage {
   }
 
   async gotoLogin() {
-    await this.page.goto('https://zencruz.com/login');
+    await this.page.goto('https://portal.zencruz.com/login');
   }
 
   emailInput() {
@@ -275,6 +275,7 @@ export class CreatePlanPage {
     await this.plansSlotsAddonsNoSpaceLink().click();
     await this.searchInput().click();
     await this.searchInput().fill(DeleteplanName);
+    await page.waitForTimeout(3000);
     await expect(this.noMatchingResultsCell()).toBeVisible();
   }
 
@@ -309,6 +310,63 @@ export class CreatePlanPage {
   return result;
 }
 
+   reportsTab(): Locator {
+    return this.page.locator("//a[text()=' Reports']");
+  }
+
+   planSummaryTab(): Locator {
+    return this.page.locator("//a[text()='Plan Summary']");
+  }
+
+   PlansAddonsSelect(): Locator {
+    return this.page.locator("//span[text()='All Plans/Addons']");
+  }
+
+    groupsTab(index: number): Locator {
+      return this.page.locator(`(//button[text()='Group'])[${index}]`);
+    }
+
+    groupNameInput(): Locator {
+      return this.page.locator("//label[text()='Enter Group Name']/../input");
+    }
+
+    saveGroupButton(): Locator {
+      return this.page.locator("(//button[text()='Save'])[1]");
+    }
+
+
+    ApplyButton(): Locator {
+      return this.page.locator("//button[text()='Apply']");
+    }
+
+
+    async PlanbreakdownFilter(randomGroupName: string, page: Page) {
+       await this.reportsTab().click();
+       await this.planSummaryTab().click();
+       await page.locator("//label[text()=' Plan breakdown: ']/..//select").selectOption({ label: 'Group Plans' });
+       await this.PlansAddonsSelect().click();
+       await page.locator(`//label[text()='${randomGroupName}']/../input[@class='form-check-input']`).click();
+       await this.ApplyButton().click();
+    }
+
+    async removePlansFromGroup(randomGroupName: string, page: Page,planName: string,planName1: string) {
+        await this.groupsTab(1).click();
+        await expect(page.locator(`//h5[text()='Grouping']`)).toBeVisible();
+        await expect(page.locator(`//label[text()='${randomGroupName}']`)).toBeVisible();
+        await page.locator(`//label[text()='${randomGroupName}']`).click();
+        await page.locator(`//div[@class='card-body p-0 GroupingCardHeight']/div[text()='${planName}']/descendant::i`).click();
+        await page.waitForTimeout(2000);
+        await page.locator(`//div[@class='card-body p-0 GroupingCardHeight']/div[text()='${planName1}']/descendant::i`).click();
+        await page.waitForTimeout(2000);
+        await expect(page.locator(`//label[text()='${randomGroupName}']`)).not.toBeVisible();
+        await this.saveGroupButton().click();
+        await this.pointOfSaleButton().click();
+        await this.reportsTab().click();
+        await this.planSummaryTab().click();
+        await page.locator("//label[text()=' Plan breakdown: ']/..//select").selectOption({ label: 'Group Plans' });
+        await this.PlansAddonsSelect().click();
+        await expect(page.locator(`//label[text()='${randomGroupName}']/../input[@class='form-check-input']`)).not.toBeVisible();
+    }
   
   
 }

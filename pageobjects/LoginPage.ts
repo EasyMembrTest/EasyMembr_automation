@@ -8,7 +8,7 @@ export class LoginPage {
   }
 
   async gotoLogin() {
-    await this.page.goto('https://zencruz.com/login');
+    await this.page.goto('https://portal.zencruz.com/login');
   }
 
   emailInput(): Locator {
@@ -513,7 +513,7 @@ export class LoginPage {
    }
 
     async gotoClassLogin() {
-    await this.page.goto('https://zencruz.com/classlogin');
+    await this.page.goto('https://portal.zencruz.com/classlogin');
   }
 
     classmemberEmailInput(): Locator {
@@ -528,5 +528,73 @@ export class LoginPage {
     await expect(this.page.getByText(AlertText)).toBeVisible();
   }
 
+  async ContainsSuccessAlert(AlertText:string) {
+    await expect(this.page.getByText(new RegExp(AlertText, 'i'))).toBeVisible();
+  
+
+  }
+
+   async AddMember(randomFirstName: string) {
+     await this.membersManagement(testdata.membersManagementText).click();
+     await expect(this.addMemberButton(testdata.addMemberText)).toBeVisible();
+     await this.addMemberButton(testdata.addMemberText).click();
+     await this.firstNameInput().click();
+     await this.firstNameInput().fill(randomFirstName);
+     await this.lastNameInput().click();
+     await this.lastNameInput().fill(testdata.lastName);
+     await this.addButton(testdata.addButtonSelector).click();
+     await this.SuccessAlert(`Member Created Successfully (${randomFirstName} ${testdata.lastName})`);
+     console.log(`Member Created Successfully: ${randomFirstName} ${testdata.lastName}`);
+
+
+   }
+
+     variationSelectOptionInPOS(planName: string): Locator {
+    return this.page.locator(`//select[@class='form-select form-select-sm w-25']/option[text()='${planName}']/..`);
+  }
+
+  async AddMember_Plan(randomFirstName: string,planName: string,updatedplanName:string,page: Page,updatedplanName1:string) {
+  await this.pointOfSaleButton(testdata.pointOfSaleText).click();
+  await this.planSearchInput(testdata.planSearchPlaceholder).fill(planName);
+  await this.searchedPlanResult(planName).click();
+  await expect(this.variationSelectOptionInPOS(updatedplanName1)).toBeVisible();
+  await this.addSvgButton().click();
+  await this.memberSearchInputPOS().click();
+  await this.memberSearchInputPOS().fill(randomFirstName);
+  await this.searchedPlanResult(randomFirstName).click();
+  await this.doneButton(testdata.doneButtonText).click();
+  await expect(this.memberDetailsText()).toContainText(randomFirstName);
+  await this.continueButton().click();
+  await this.cashPaymentButton(testdata.cashPaymentText).click();
+  await expect(this.transactionSuccessText(testdata.transactionSuccessText)).toBeVisible();
+  await expect(this.paymentSuccessText(testdata.paymentSuccessText)).toBeVisible();
+  await this.dismissButton().click();
+  await page.waitForTimeout(2000);
+  await this.membersManagement(testdata.membersManagementText).click();
+  await this.memberSearchInputTable().click();
+  await this.memberSearchInputTable().fill(randomFirstName);
+  await this.applyButtonTable().click();
+  await page.waitForTimeout(2000);
+  const rows = await this.memberTableRows().count();
+  expect(rows).toBe(1);
+  await expect(this.memberTableCell(2)).toHaveText(randomFirstName + ' ' + testdata.lastName);
+  await expect(this.memberTableCell(6)).toHaveText(updatedplanName);
+  console.log(`Member Plan Assigned Successfully: ${randomFirstName} - ${updatedplanName}`);
+   }
+
+
+   async DeleteMember(page: Page,FirstName:string,LastName:string) {
+       await this.membersManagementTab().click();
+       await this.membersSearchInput().fill(`${FirstName} ${LastName}`);
+       await this.membersApplyButton().click();
+       await page.waitForTimeout(3000);
+       page.once('dialog', async dialog => {
+       expect(dialog.message()).toBe("Are you sure want to delete this Member?");
+       await dialog.accept();
+       });
+       await page.click("//span[@class='ml20']/img[@alt='Delete']");
+       await this.SuccessAlert(`Member deleted successfully`);
+       console.log(`Member Deleted Successfully: ${FirstName} ${LastName}`);
+   }
   
 }

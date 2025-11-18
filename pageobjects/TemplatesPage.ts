@@ -64,7 +64,7 @@ export class TemplatesPage {
     return this.page.locator(`//div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='${name}']/../td[text()='${apiKey}']/../td[text()='${senderId}']/../td[text()='Enable']`);
   }
   smsDisableIcon(): Locator {
-    return this.page.locator("//div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='Disable']/../td[7]/div/i[1]");
+    return this.page.locator("//div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='Leonas']/..//td[text()='Disable']/../td[7]/div/i[1]");
   }
   smsEnableIcon(): Locator {
     return this.page.locator("//div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='Enable']/../td[7]/div/i[1]");
@@ -212,8 +212,8 @@ export class TemplatesPage {
       smsGatewayNameInput(): Locator {
         return this.page.locator("//input[@placeholder='Name']");
       }
-      smsSenderIdInput(): Locator {
-        return this.page.locator("//input[@placeholder='Sender ID']");
+      smsSenderIdInput(index: number): Locator {
+        return this.page.locator(`(//input[@placeholder='Sender ID'])[${index}]`);
       }
       smsApiKeyTextarea(): Locator {
         return this.page.locator("//textarea[@id='textAreaExample']");
@@ -221,8 +221,8 @@ export class TemplatesPage {
       smsGatewayAddedAlert(): Locator {
         return this.page.locator("//div[contains(@class,'alert') and contains(.,'Gateway added successfully')]");
       }
-      smsGatewayRow(name: string, apiKey: string, senderId: string, status: string): Locator {
-        return this.page.locator(`//div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='${name}']/../td[text()='${apiKey}']/../td[text()='${senderId}']/../td[text()='${status}']/../td[7]/div/i[1]`);
+      smsGatewayRow(name: string, apiKey: string, senderId: string, status: string, username: string): Locator {
+        return this.page.locator(`//div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='${name}']/../td[text()='${apiKey}']/../td[text()='${senderId}']/../td[text()='${status}']/../td[text()='${username}']/../td[7]/div/i[1]`);
       }
   // --- WhatsApp Template Methods (with duplicates as requested) ---
   whatsappTemplateSlider(): Locator {
@@ -277,4 +277,13 @@ export class TemplatesPage {
   whatsappAddGatewayHeader(): Locator {
     return this.page.locator("//h5[text()=' Add WhatsApp Gateway']");
   }
+
+
+   whatsappResetAlert(): Locator {
+    return this.page.locator("//div[contains(@class,'alert') and contains(.,'Form reset to original values')]");
+  }
+
+     smsUsernameInput(): Locator {
+        return this.page.locator("(//input[@placeholder='Sender ID'])[2]");
+      }
 }

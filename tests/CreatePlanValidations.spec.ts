@@ -4,6 +4,7 @@ import { CreatePlanPage } from '../pageobjects/CreatePlanPage';
 import { captureAndAttachScreenshot } from '../utils/screenshotHelper';
 import * as fs from 'fs';
 import * as path from 'path';
+import { LoginPage } from '../pageobjects/LoginPage';
 
 
 const tempFile = path.join(__dirname, 'temp.json');
@@ -14,6 +15,7 @@ let page: Page;
 let planPage: CreatePlanPage;
 let randomPlanName_OneTime=testdata.randomPlanName_OneTime;
 let randomPlanName_Recurring=testdata.randomPlanName_Recurring;
+let loginPage: LoginPage;
 
 function updateTempJson(newData: Record<string, any>) {
   let existing = {};
@@ -28,6 +30,7 @@ test.beforeAll(async ({ playwright }) => {
   browser = await playwright.chromium.launch({ headless: false });
   page = await browser.newPage();
   planPage = new CreatePlanPage(page);
+  loginPage = new LoginPage(page);
   await planPage.gotoLogin();
   await planPage.emailInput().fill(testdata.email);
   await planPage.passwordInput().fill(testdata.password);
@@ -161,9 +164,9 @@ test('CreatePlan_WithSessionLimit_TypeAsRecurring_DisablePlan_CreateAllowedSlot'
   await planPage.descriptionTextarea().click();
   await planPage.descriptionTextarea().fill('ThisPlan is Recurring');
   await planPage.saveButton().click();
-  //await expect(planPage.planSavedAlert()).toBeVisible();
+  await expect(planPage.planSavedAlert()).toBeVisible();
   // 17. Slot saved alert
-  await expect(planPage.slotSavedAlert()).toBeVisible();
+  //await expect(planPage.slotSavedAlert()).toBeVisible();
   // 18. Search and verify plan row
   await planPage.searchInput().click();
   await planPage.searchInput().fill(randomPlanName_Recurring);
@@ -185,6 +188,14 @@ test('CreatePlan_WithSessionLimit_TypeAsRecurring_DisablePlan_CreateAllowedSlot'
   await expect(planPage.planRowEnableCell(randomPlanName_Recurring)).toHaveText('Disabled');
   // 21. Force Trainer assertion
   await expect(planPage.planRowForceTrainerCell(randomPlanName_Recurring)).toHaveText('Enabled');
+
+  //  Click edit button
+  await planPage.planEditButton(randomPlanName_Recurring).click();
+  //  Verify plan name and Description
+  await expect(planPage.planNameInputWithValue(randomPlanName_Recurring)).toBeVisible();
+  await expect(page.locator(`//textarea[@name='description'][text()='ThisPlan is Recurring']`)).toBeVisible();
+  await page.locator('//button[text()="Cancel"]').click();
+
   // POS flow
   await planPage.pointOfSaleButton().click();
   await planPage.searchPlan_POSInput().click();
@@ -299,6 +310,12 @@ test('CreatePlan_ImportSheet', async ({  }) => {
   await expect(planPage.planRowEnableCell(planName)).toHaveText('Enabled');
   await expect(planPage.planRowForceTrainerCell(planName)).toHaveText('Disabled');
   await expect(planPage.includedCell(planName)).toHaveText('Included');
+  // 2. Click edit button
+  await planPage.planEditButton(planName).click();
+  // 3. Verify plan name
+  await expect(planPage.planNameInputWithValue(planName)).toBeVisible();
+  await expect(page.locator(`//textarea[@name='description'][text()='Plan For Morning Slots']`)).toBeVisible();
+  await page.locator('//button[text()="Cancel"]').click();
   // POS flow
   await planPage.pointOfSaleButton().click();
   await planPage.searchPlan_POSInput().click();
@@ -455,12 +472,60 @@ test('CreateVariationPlan_VerifyinPOS', async () => {
   await expect(planPage.variationSelectOptionInPOS(`${randomVariationPlanName}-${randomVariationPlanName1}`)).toBeVisible();
 });
 
+
+test('AddMember_VariationPlan_Reports_PlansSummary_Groups', async () => {
+  const randomGroupName = planPage.generateRandomName();
+  const Member_PlanSetup = `${testdata.firstNamePrefix}${Math.floor(Math.random() * 10000)}`;
+  updateTempJson({ randomGroupName });
+  updateTempJson({ Member_PlanSetup });
+  console.log('Saved randomGroupName to temp.json:', randomGroupName);
+  console.log('Saved Member_PlanSetup to temp.json:', Member_PlanSetup);
+  const tempFile = path.join(__dirname, 'temp.json');
+  const data = JSON.parse(fs.readFileSync(tempFile, 'utf-8'));
+  await planPage.reportsTab().click();
+  await planPage.planSummaryTab().click();
+  await planPage.PlansAddonsSelect().click();
+  await page.locator(`//span[@class='base-plan-text ms-2'][text()='${data.randomVariationPlanName}']`).scrollIntoViewIfNeeded();
+  await page.waitForTimeout(2000);
+  await page.locator(`//span[@class='base-plan-text ms-2'][text()='${data.randomVariationPlanName}']/../../span[text()='Variations']`).click();
+  await expect(page.locator(`//label[text()='${data.randomVariationPlanName} - ${data.randomVariationPlanName1} (Plan)']`)).toBeVisible();
+  await planPage.groupsTab(1).click();
+  await expect(page.locator(`//h5[text()='Grouping']`)).toBeVisible();
+  await expect(page.locator(`//label[text()='${data.randomVariationPlanName}']/../../..//span[text()='Variations']`)).toBeVisible();
+  await page.locator(`//label[text()='${data.randomVariationPlanName}']/../../..//span[text()='Variations']`).click();
+  await expect(page.locator(`//label[text()='${data.randomVariationPlanName}']/../../../../..//label[text()='${data.randomVariationPlanName1}']`)).toBeVisible(); 
+  await page.locator(`//label[text()='${data.randomVariationPlanName}']/../../../../..//input[@class='form-check-input me-2 ']`).click();
+  await expect(page.locator(`//div[@class='card-body p-0 GroupingCardHeight']/div[text()='${data.randomVariationPlanName} - ${data.randomVariationPlanName1}']`)).toBeVisible();
+  await page.locator(`//label[text()='${testdata.Grouping_SetUpPlan}']/../input[@class='form-check-input']`).click();
+  await expect(page.locator(`//div[@class='card-body p-0 GroupingCardHeight']/div[text()='${testdata.Grouping_SetUpPlan}']`)).toBeVisible();
+  await planPage.groupsTab(2).click();
+  await planPage.groupNameInput().click();
+  await planPage.groupNameInput().fill(data.randomGroupName);
+  await planPage.saveGroupButton().click();
+  await expect(page.locator(`//label[text()='${data.randomGroupName}']`)).toBeVisible();
+  await page.waitForTimeout(2000);
+  await planPage.saveGroupButton().click();
+  await page.locator("//label[text()=' Plan breakdown: ']/..//select").selectOption({ label: 'Group Plans' });
+  await planPage.PlansAddonsSelect().click();
+  await page.locator(`//label[text()='${data.randomGroupName}']/../input[@class='form-check-input']`).click();
+  await planPage.ApplyButton().click();
+  await expect(page.locator(`//td[text()='No matching results found']`)).toBeVisible();
+  await loginPage.AddMember(Member_PlanSetup);
+  await loginPage.AddMember_Plan(Member_PlanSetup,data.randomVariationPlanName,`${data.randomVariationPlanName} - ${data.randomVariationPlanName1}`, page,`${data.randomVariationPlanName}-${data.randomVariationPlanName1}`);
+  await planPage.PlanbreakdownFilter(data.randomGroupName, page);
+  await expect(page.locator(`//th[text()='${data.randomGroupName}']`)).toBeVisible();
+  await planPage.removePlansFromGroup(data.randomGroupName, page,`${data.randomVariationPlanName} - ${data.randomVariationPlanName1}`,testdata.Grouping_SetUpPlan);
+
+})
+
+
 test('DeletePlan_AfterSetup', async ({  }) => {
    const tempFile = path.join(__dirname, 'temp.json');
    const data = JSON.parse(fs.readFileSync(tempFile, 'utf-8'));
    await planPage.DeletePlanByName(randomPlanName_Recurring, page);
    await planPage.DeletePlanByName(randomPlanName_OneTime, page);
    await planPage.DeletePlanByName(`${data.randomVariationPlanName}-${data.randomVariationPlanName1}`, page);
+   await loginPage.DeleteMember(page, data.Member_PlanSetup,testdata.lastName);
 });
 
 

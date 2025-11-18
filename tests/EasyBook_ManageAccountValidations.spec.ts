@@ -64,7 +64,11 @@ test.describe('EasyBook_ManageAccountValidations', () => {
     await classesPage.dashboardTab().click();
     await manageaccountpage.gotoManageAccount_1();
     await manageaccountpage.clickEditProfileSettings();
-    await manageaccountpage.fillFirstName(testdata.OriginalProfileSettingsFirstName);
+    //await manageaccountpage.fillFirstName(testdata.OriginalProfileSettingsFirstName);
+    await page.waitForTimeout(1000);
+    await page.locator('#firs_name').click();
+    await page.locator('#firs_name').fill(' ');
+    await page.locator('#firs_name').fill(testdata.OriginalProfileSettingsFirstName);
     await manageaccountpage.fillLastName(testdata.OriginalProfileSettingsLastName);
     await manageaccountpage.fillAge(testdata.OriginalProfileSettingsAge);
     await manageaccountpage.fillMobileNumber(testdata.OriginalProfileSettingsMobile);
@@ -83,7 +87,7 @@ test.describe('EasyBook_ManageAccountValidations', () => {
   });
 
     test('ViewSubscriptionHistory_DownloadHistory', async () => {
-    const downloadDir = 'D:/EasyMembr_Downloads';
+    const downloadDir = 'V:/EasyMembr_Downloads';
     const expectedFileName = 'subscriptionPlans.xlsx';
     const expectedFilePath = `${downloadDir}/${expectedFileName}`;
     await manageaccountpage.gotoManageAccount_1();

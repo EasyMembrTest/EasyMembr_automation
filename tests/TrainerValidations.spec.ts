@@ -37,6 +37,7 @@ test.describe('TrainerValidations', () => {
       });
 
   test('CreateTrainer_VerifyINCreateSchedule', async () => {
+    let trainerName = testdata.TrainerFirstName+testdata.TrainerLastName
     await classesPage.trainersTab().click();
     await classesPage.searchUsersInput().fill(testdata.TrainerFirstName+testdata.TrainerLastName);
     await page.waitForTimeout(2000);
@@ -77,6 +78,12 @@ test.describe('TrainerValidations', () => {
     await classesPage.trainerPhoneInput().fill(testdata.TrainerNumber);
     await classesPage.trainerRoleSelect().selectOption({ label: 'Staff' });
     await classesPage.addTrainerSubmitButton().click();
+    const alertLocator =  page.locator("//div[@class='alert fade alert-fixed alert-top-center alert-success show']");
+    const text = await alertLocator.innerText();
+    console.log("ALERT TEXT =>", text);
+    await expect(
+    page.locator("//div[@class='alert fade alert-fixed alert-top-center alert-success show']")
+    ).toContainText("Staff (harithaautomation) was created by");
     await classesPage.dashboardTab().click();
     await classesPage.trainersTab().click();
     await classesPage.searchUsersInput().fill(testdata.TrainerFirstName+testdata.TrainerLastName);
@@ -116,6 +123,9 @@ test.describe('TrainerValidations', () => {
         await classesPage.trainerPhoneInput().fill(testdata.EditTrainerNumber);
         await classesPage.trainerRoleSelect().selectOption({ label: 'Accountant' });
         await classesPage.updateButton().click();
+        await expect(
+        page.locator("//div[@class='alert fade alert-fixed alert-top-center alert-success show']")
+        ).toContainText("Staff (luckyuser) was updated by");
         await classesPage.dashboardTab().click();
         await classesPage.trainersTab().click();
         await classesPage.searchUsersInput().fill(testdata.EditTrainerFirstName+testdata.EditTrainerLastName);
@@ -137,6 +147,7 @@ test.describe('TrainerValidations', () => {
       await page.waitForTimeout(2000);
       await classesPage.trainerDeleteIcon(testdata.EditTrainerFirstName+" "+testdata.EditTrainerLastName).click();
       await classesPage.deleteButton().click();
+      await loginPage.SuccessAlert(`Staff (${testdata.EditTrainerFirstName} ${testdata.EditTrainerLastName}) deleted successfully`);
       await classesPage.dashboardTab().click();
       await classesPage.trainersTab().click();
       await classesPage.searchUsersInput().fill(testdata.EditTrainerFirstName+testdata.EditTrainerLastName);
@@ -148,4 +159,5 @@ test.describe('TrainerValidations', () => {
       await classesPage.closeButton().click();
 
      })
+      
 });

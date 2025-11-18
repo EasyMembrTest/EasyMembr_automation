@@ -5,12 +5,12 @@ const { execSync } = require("child_process");
 // Define your test order here (using actual existing spec names)
 const orderedTests = [
   "tests/BussinessInfoValidations.spec.ts",
-  "tests/ClassValidations.spec.ts",
+   "tests/ClassValidations.spec.ts",
   "tests/ClassCategoryValidations.spec.ts",
   "tests/CancellationPolicyValidations.spec.ts",
-  "tests/ScheduleValidations.spec.ts",
-  "tests/EasyBook_ManageAccountValidations.spec.ts",
-  "tests/TrainerValidations.spec.ts",
+   "tests/ScheduleValidations.spec.ts",
+   "tests/EasyBook_ManageAccountValidations.spec.ts",
+ "tests/TrainerValidations.spec.ts",
   
 ];
 

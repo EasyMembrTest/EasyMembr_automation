@@ -37,10 +37,10 @@ export class ClassesPage {
     return this.page.locator("//p[text()='No available sessions found']");
   }
   planNameHeader(planName: string): Locator {
-    return this.page.locator(`//h4[@class='plan-name'][text()='${planName}']`);
+    return this.page.locator(`//table[@class='table newtable-view m-0']//tr/td[text()='${planName}']`);
   }
   addToCartButton(planName: string): Locator {
-    return this.page.locator(`//h4[@class='plan-name'][text()='${planName}']/../..//span[text()='  Add to Cart']`);
+    return this.page.locator(`//table[@class='table newtable-view m-0']//tr/td[text()='${planName}']/..//span[@title='Add to cart']`);
   }
   addedToCartSpan(): Locator {
     return this.page.locator("//span[text()='Added to Cart']");
@@ -142,8 +142,8 @@ export class ClassesPage {
   infoCardBookNow(sessionName: string): Locator {
     return this.page.locator(`//div[@class='info-card dashboard-upcoming-card']//h5[text()='${sessionName}']/../..//span[text()=' Book Now']`);
   }
-  bookClassHeader(): Locator {
-    return this.page.locator("//h5[text()='Book a Class']");
+  bookClassHeader(schedule: string): Locator {
+    return this.page.locator(`//span[text()='${schedule}']`);
   }
   bookedClassInfo(first: string, last: string, phone: string): Locator {
     return this.page.locator(`//div[text()='${first} ${last}, +91${phone}']`);
@@ -179,7 +179,7 @@ export class ClassesPage {
     return this.page.locator("//span[text()='Transactions']");
   }
   sessionsTransactionsTab(): Locator {
-    return this.page.locator("//span[text()=' Sessions Transactions']");
+    return this.page.locator("//span[text()=' Booking History']");
   }
   sessionTransactionRow(sessionName: string): Locator {
     return this.page.locator(`//tbody[@class='datatable-body']/tr/td[text()='${sessionName}']`);
@@ -665,5 +665,72 @@ export class ClassesPage {
     return this.page.locator("(//h2[@class='clr-main'])[3]");
   }
 
+  calendarViewTab(): Locator {
+    return this.page.locator("//button[text()='Calendar View']");
+  }
+
+  async selectClassInFilter(className: string,page:Page) {
+     await this.filterclass().click();
+     await page.waitForTimeout(1000);
+     await page.locator("//input[@placeholder='Search...']").click();
+     await page.locator("//input[@placeholder='Search...']").fill(className);
+     await page.locator(`//span[@class='select-option-text'][text()='${className}']`).click();
+     await page.locator("//h5[text()='Schedules']").click();   
+
+  }
+
+  listViewTab(): Locator {
+    return this.page.locator("//button[text()='List View']");
+  }
+
+  async listviewSearchInput(scheduleName: string,time:string,trainerName:string,page:Page) {
+     await page.locator("//input[@class='form-control searchinput']").click();
+     await page.locator("//input[@class='form-control searchinput']").fill(scheduleName);
+     await expect(page.locator(`//h5[@class='mb-0 me-3 book-titel-text'][text()='${scheduleName}']`)).toBeVisible();
+     await page.locator(`//h5[@class='mb-0 me-3 book-titel-text'][text()='${scheduleName}']`).click();
+     await expect(page.locator(`//span[text()='${time}']`)).toBeVisible();
+     await expect(page.locator(`//span[text()='${time}']/../../p[text()='${trainerName}']`)).toBeVisible();
+
+  }
+
+   classes_EventsTab(): Locator {
+    return this.page.locator("//span[text()='Classes & Events']");
+  }
+
+  eventViewTab(): Locator {
+    return this.page.locator("//button[text()='Event View']");
+  }
+
+  plans_renewalTab(): Locator {
+    return this.page.locator("//span[text()='Plans & Renewals']");
+  }
+
+  emptyCartText(): Locator {
+    return this.page.locator("//h4[text()='Your cart is empty']");
+  }
+
+  async listviewFilters(page:Page, scheduleName:string,time:string) {
+    await page.locator("//input[@class='form-control searchinput']").click();
+    await page.locator("//input[@class='form-control searchinput']").fill(scheduleName);
+    await page.locator("(//select[@class='form-select'])[1]").selectOption({ label: 'automation' });
+    await page.locator("(//select[@class='form-select'])[2]").selectOption({ label: 'Intermediate' });
+    await expect(page.locator(`//p[text()='No classes found matching your criteria']`)).toBeVisible();
+    await page.locator("//a[text()='Dashboard']").click();
+    await page.locator("//a[text()='Schedules']").click();
+    await page.waitForTimeout(2000);
+    await page.locator("//input[@class='form-control searchinput']").click();
+    await page.locator("//input[@class='form-control searchinput']").fill(scheduleName);
+    await page.locator("(//select[@class='form-select'])[1]").selectOption({ label: 'automation' });
+    await page.locator("(//select[@class='form-select'])[2]").selectOption({ label: 'Beginner' });
+    await expect(page.locator(`//h5[@class='mb-0 me-3 book-titel-text'][text()='${scheduleName}']`)).toBeVisible();
+    await page.locator(`//h5[@class='mb-0 me-3 book-titel-text'][text()='${scheduleName}']`).click();
+    await page.locator(`//span[text()='${time}']`).click();
+    await expect(page.locator(`//h6[text()='${scheduleName}']`)).toBeVisible();
+    await page.locator("//i[@title='Trash']").click();
+  }
+
+  datepickerNextNextDay(): Locator {
+    return this.page.locator("((//div[@aria-current='date']/following::div)[1]/div)[1]");
+  }
   
 }

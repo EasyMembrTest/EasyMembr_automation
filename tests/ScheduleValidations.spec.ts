@@ -71,7 +71,8 @@ test.describe('ScheduleValidations', () => {
     await classesPage.descriptionEditor().click();
     await classesPage.descriptionEditor().fill(testdata.ClassDescription);
     await classesPage.saveClassButton().click();
-    await page.setViewportSize({ width: 1920, height: 1080 });
+    //await page.setViewportSize({ width: 1920, height: 1080 });
+    await page.setViewportSize({ width: 1600, height: 900 });
     await classesPage.dashboardTab().click();
     await page.waitForTimeout(3000);
     const initialCountText = await classesPage.dashboardScheduleCount().innerText();
@@ -82,12 +83,21 @@ test.describe('ScheduleValidations', () => {
     await classesPage.scheduleTrainerSelect().selectOption({ label: testdata.trainer });
     await classesPage.datepickerInputContainer().click();
     await page.waitForTimeout(2000);
+    if(await page.locator("//div[@aria-current='date'][contains(@class,'--weekend')]").isVisible()){
+      await classesPage.datepickerNextNextDay().click();
+    } else {
     await classesPage.datepickerNextDay().click();
+    }
     await classesPage.scheduleTimeInput().fill('06:30 AM');
     await classesPage.scheduleLocationInput().fill('Hyderabad');
     await classesPage.cancellationPolicySelect().selectOption({ index: 1 });
     await classesPage.visibleDaysBeforeInput().fill('2');
     await classesPage.saveClassButton().click();
+    await loginPage.ContainsSuccessAlert(`Schedule Created Successfully`);
+    await page.waitForTimeout(2000);
+    await classesPage.calendarViewTab().click();
+    await page.waitForTimeout(2000);
+    await classesPage.selectClassInFilter(ScheduleClassNameSetup,page);
     await expect(classesPage.scheduleFutureCell(ScheduleClassNameSetup, '06:30 AM')).toBeVisible();
     await classesPage.dashboardTab().click();
     await page.waitForTimeout(3000);
@@ -97,14 +107,15 @@ test.describe('ScheduleValidations', () => {
     console.log("FinalTotalScheduleCount: " + FinalTotalScheduleCount);
     expect(FinalTotalScheduleCount).toBe(InitialTotalScheduleCount + 1);
     await classesPage.schedulesTab().click();
-    await classesPage.cardTab().click();
-    await classesPage.cardSearchInput().fill(ScheduleClassNameSetup);
-    await classesPage.cardStatusSelect().selectOption({ label: 'Active' });
-    await classesPage.applyButton().click();
-    await page.waitForTimeout(2000);
-    await expect(classesPage.cardClassHeader(ScheduleClassNameSetup)).toBeVisible();
-    await expect(classesPage.cardClassTime('06:30 AM')).toBeVisible();
-    await expect(classesPage.cardClassLocation('Hyderabad')).toBeVisible();
+    // await classesPage.cardTab().click();
+    // await classesPage.cardSearchInput().fill(ScheduleClassNameSetup);
+    // await classesPage.cardStatusSelect().selectOption({ label: 'Active' });
+    // await classesPage.applyButton().click();
+    // await page.waitForTimeout(2000);
+    // await expect(classesPage.cardClassHeader(ScheduleClassNameSetup)).toBeVisible();
+    // await expect(classesPage.cardClassTime('06:30 AM')).toBeVisible();
+    // await expect(classesPage.cardClassLocation('Hyderabad')).toBeVisible();
+    await classesPage.listviewSearchInput(ScheduleClassNameSetup,'06:30 AM',testdata.trainer,page);
   });
 
   test('CopytheSessionFromCalendar_LoginMemberBoard_BookSession_VerifyMemberBoardTransactions_VerifyEasyBookClassTransaction_CreateAnnouncement_VerifyMemberBoard_CheckFiltersAvailableSessions_VerifyAddToCartInMembershipPlans_MemberBoard', async () => {
@@ -134,11 +145,14 @@ test.describe('ScheduleValidations', () => {
     // 1. Open schedules and click session
     await classesPage.dashboardTab().click();
     await classesPage.schedulesTab().click();
+    await classesPage.calendarViewTab().click();
+    await page.waitForTimeout(2000);
+    await classesPage.selectClassInFilter(data.ScheduleClassNameSetup,page);
     await classesPage.scheduleFutureCell(data.ScheduleClassNameSetup, '06:30 AM').click();
     await expect(classesPage.scheduleSessionHeader(data.ScheduleClassNameSetup)).toBeVisible();
     await expect(classesPage.sessionTypeCell('Pubilc')).toBeVisible();
     await expect(classesPage.noMembershipDiscountsText()).toBeVisible();
-    await expect(classesPage.sessionDanceText()).toBeVisible();
+    await expect(page.locator(`//table[@class='table table-striped table-bordered compressed-table mb-0']//p[text()='${testdata.ClassDescription}']`)).toBeVisible();
     await expect(classesPage.sessionCountCell('0', '2')).toBeVisible();
     await classesPage.copyLinkIcon().click();
     await expect(classesPage.linkCopiedAlert()).toBeVisible();
@@ -169,12 +183,13 @@ test.describe('ScheduleValidations', () => {
     await canvasNew.click({ position: { x: 50, y: 50 } });
     await canvasNew.hover();
     await expect(newClassesPage.clearButton()).toBeVisible();
+    await newPage.waitForTimeout(4000);
     await newClassesPage.submitButton().click();
     await expect(newClassesPage.memberNameSpan('vamsi', 'reddy')).toBeVisible();
     await expect(newClassesPage.infoCardSessionHeader(data.ScheduleClassNameSetup)).toBeVisible();
     await newClassesPage.infoCardBookNow(data.ScheduleClassNameSetup).click();
     await newPage.waitForTimeout(2000);
-    await expect(newClassesPage.bookClassHeader()).toBeVisible();
+    await expect(newClassesPage.bookClassHeader(data.ScheduleClassNameSetup)).toBeVisible();
     await expect(newClassesPage.bookedClassInfo('vamsi', 'reddy', '9874562138')).toBeVisible();
     await newClassesPage.bookedClassInfo('vamsi', 'reddy', '9874562138').click();
     await newClassesPage.confirmButton().click();
@@ -204,8 +219,11 @@ test.describe('ScheduleValidations', () => {
     await expect(newClassesPage.announcementHeader(announcement)).toBeVisible();
 
      // Go to Available Sessions tab
-    await newClassesPage.availableSessionsTab().click();
-    await expect(newClassesPage.availableSessionsTab()).toBeVisible();
+    // await newClassesPage.availableSessionsTab().click();
+    // await expect(newClassesPage.availableSessionsTab()).toBeVisible();
+    await newClassesPage.classes_EventsTab().click();
+    await newClassesPage.eventViewTab().click();
+    await page.waitForTimeout(2000);
     await newClassesPage.classTypeSelect().selectOption({ label: data.ScheduleClassNameSetup });
     await newClassesPage.trainerSelect().selectOption({ label: testdata.trainer });
     await newClassesPage.timeSelect().selectOption({ label: 'AM' });
@@ -214,20 +232,26 @@ test.describe('ScheduleValidations', () => {
     await page.waitForTimeout(2000);
     await expect(newClassesPage.sessionCardHeader(data.ScheduleClassNameSetup)).toBeVisible();
     await newClassesPage.clearButton().click();
-    await newClassesPage.membershipPlansTab().click();
-    await newClassesPage.availableSessionsTab().click();
+    //await newClassesPage.membershipPlansTab().click();
+    await newClassesPage.plans_renewalTab().click();
+    await newClassesPage.classes_EventsTab().click();
+    await newClassesPage.eventViewTab().click();
+    await page.waitForTimeout(2000);
     await newClassesPage.classTypeSelect().selectOption({ label: data.ScheduleClassNameSetup });
     await newClassesPage.timeSelect().selectOption({ label: 'PM' });
     await newClassesPage.applyButton().click();
     await page.waitForTimeout(2000);
     await expect(newClassesPage.noAvailableSessionsText()).toBeVisible();
-    await newClassesPage.membershipPlansTab().click();
+    //await newClassesPage.membershipPlansTab().click();
+    await newClassesPage.plans_renewalTab().click();
     await expect(newClassesPage.planNameHeader(testdata.planNameSetup)).toBeVisible();
     await expect(newClassesPage.planNameHeader(testdata.planNameSetup1)).not.toBeVisible();
+    await newClassesPage.addToCartButton(testdata.planNameSetup).scrollIntoViewIfNeeded();
     await newClassesPage.addToCartButton(testdata.planNameSetup).click();
-    await expect(newClassesPage.addedToCartSpan()).toBeVisible();
+    //await expect(newClassesPage.addedToCartSpan()).toBeVisible();
     await newClassesPage.cartIcon().click();
     await newClassesPage.removeFromCartButton(testdata.planNameSetup).click();
+    await expect(newClassesPage.emptyCartText()).toBeVisible();
 
     await newClassesPage.logoutTab().click();
 
@@ -240,6 +264,9 @@ test.describe('ScheduleValidations', () => {
     await classesPage.applyButton().click();
     await expect(classesPage.transactionMemberDiv('vamsi', 'reddy', data.ScheduleClassNameSetup)).toBeVisible();
     await classesPage.schedulesTab().click();
+    await classesPage.calendarViewTab().click();
+    await page.waitForTimeout(2000);
+    await classesPage.selectClassInFilter(data.ScheduleClassNameSetup,page);
     await classesPage.scheduleFutureCell(data.ScheduleClassNameSetup, '06:30 AM').click();
     await expect(classesPage.scheduleSessionHeader(data.ScheduleClassNameSetup)).toBeVisible();
     await expect(classesPage.sessionCountCell('1', '2')).toBeVisible();
@@ -291,30 +318,46 @@ test.describe('ScheduleValidations', () => {
   test('DeleteSchedule', async () => {
     const tempFile = path.join(__dirname, 'temp.json');
     const data = JSON.parse(fs.readFileSync(tempFile, 'utf-8'));
-    await page.setViewportSize({ width: 1920, height: 1080 });
+    //await page.setViewportSize({ width: 1920, height: 1080 });
+    await page.setViewportSize({ width: 1600, height: 900 });
     await classesPage.dashboardTab().click();
     await classesPage.schedulesTab().click();
+    await classesPage.calendarViewTab().click()
+    await page.waitForTimeout(2000);
+    await classesPage.selectClassInFilter(data.ScheduleClassNameSetup,page);
     await classesPage.scheduleFutureCell(data.ScheduleClassNameSetup, '06:30 AM').click();
     await expect(classesPage.scheduleSessionHeader(data.ScheduleClassNameSetup)).toBeVisible();
     await classesPage.scheduleTrashIcon(data.ScheduleClassNameSetup).click();
     await classesPage.deleteOnlyThisEventButton().click();
+    await loginPage.ContainsSuccessAlert(`Schedule deleted successfully`);
     await classesPage.dashboardTab().click();
     await classesPage.schedulesTab().click();
+    await classesPage.calendarViewTab().click()
+    await page.waitForTimeout(2000);
+    await classesPage.selectClassInFilter(data.ScheduleClassNameSetup,page);
     await expect(classesPage.scheduleFutureCell(data.ScheduleClassNameSetup, '06:30 AM')).not.toBeVisible();
   });
 
   test('CreateScheduleRecurrence', async () => {
     const tempFile = path.join(__dirname, 'temp.json');
     const data = JSON.parse(fs.readFileSync(tempFile, 'utf-8'));
-    await page.setViewportSize({ width: 1920, height: 1080 });
+    await page.setViewportSize({ width: 1600, height: 900 });
+    await classesPage.dashboardTab().click();
     await classesPage.schedulesTab().click();
+    await classesPage.calendarViewTab().click();
+    await page.waitForTimeout(2000);
+    await classesPage.selectClassInFilter(data.ScheduleClassNameSetup,page);
     await expect(classesPage.scheduledStrong(data.ScheduleClassNameSetup)).not.toBeVisible();
     await classesPage.addNewScheduleButton().click();
     await classesPage.scheduleClassSelect().selectOption({ label: data.ScheduleClassNameSetup });
     await classesPage.scheduleTrainerSelect().selectOption({ label: testdata.trainer });
     await classesPage.datepickerInputContainer().click();
     await page.waitForTimeout(2000);
+    if(await page.locator("//div[@aria-current='date'][contains(@class,'--weekend')]").isVisible()){
+      await classesPage.datepickerNextNextDay().click();
+    } else {
     await classesPage.datepickerNextDay().click();
+    }
     await classesPage.scheduleTimeInput().fill('06:30 AM');
     await classesPage.scheduleLocationInput().fill('Hyderabad');
     await classesPage.cancellationPolicySelect().selectOption({ index: 1 });
@@ -323,6 +366,7 @@ test.describe('ScheduleValidations', () => {
     await classesPage.recurrenceSelect().selectOption({ label: 'Weekly' });
     await classesPage.recurrenceDay('Mon').click();
     await classesPage.saveClassButton().click();
+    await loginPage.ContainsSuccessAlert(`Schedule Created Successfully`);
     await page.waitForTimeout(2000);
     const occurrences = await page.locator(`//strong[text()='${data.ScheduleClassNameSetup}']`).count();
     expect(occurrences).toBeGreaterThan(1);
@@ -332,13 +376,21 @@ test.describe('ScheduleValidations', () => {
   test('DeleteRecurrenceSchedule', async () => {
     const tempFile = path.join(__dirname, 'temp.json');
     const data = JSON.parse(fs.readFileSync(tempFile, 'utf-8'));
-    await page.setViewportSize({ width: 1920, height: 1080 });
+    await page.setViewportSize({ width: 1600, height: 900 });
+    await classesPage.dashboardTab().click();
     await classesPage.schedulesTab().click();
+    await classesPage.calendarViewTab().click();
+    await page.waitForTimeout(2000);
+    await classesPage.selectClassInFilter(data.ScheduleClassNameSetup,page);
     await page.locator(`(//strong[text()='${data.ScheduleClassNameSetup}'])[1]`).click();
     await classesPage.scheduleTrashIcon(data.ScheduleClassNameSetup).click();
     await page.locator("//button[text()='Delete All Recurring Events']").click();
+    await loginPage.ContainsSuccessAlert(`Schedule deleted successfully`);
     await classesPage.dashboardTab().click();
     await classesPage.schedulesTab().click();
+    await classesPage.calendarViewTab().click();
+    await page.waitForTimeout(2000);
+    await classesPage.selectClassInFilter(data.ScheduleClassNameSetup,page);
     await expect(page.locator(`//strong[text()='${data.ScheduleClassNameSetup}']`)).not.toBeVisible();
 
   })
@@ -348,18 +400,28 @@ test.describe('ScheduleValidations', () => {
     const data = JSON.parse(fs.readFileSync(tempFile, 'utf-8'));
     const ScheduleClassNameSetup = data.ScheduleClassNameSetup;
     // 1. Create a one-time schedule
+    await page.setViewportSize({ width: 1600, height: 900 });
+    await classesPage.dashboardTab().click();
     await classesPage.schedulesTab().click();
     await classesPage.addNewScheduleButton().click();
     await classesPage.scheduleClassSelect().selectOption({ label: ScheduleClassNameSetup });
     await classesPage.scheduleTrainerSelect().selectOption({ label: testdata.trainer });
     await classesPage.datepickerInputContainer().click();
     await page.waitForTimeout(2000);
+    if(await page.locator("//div[@aria-current='date'][contains(@class,'--weekend')]").isVisible()){
+      await classesPage.datepickerNextNextDay().click();
+    } else {
     await classesPage.datepickerNextDay().click();
+    }
     await classesPage.scheduleTimeInput().fill('06:30 AM');
     await classesPage.scheduleLocationInput().fill('Hyderabad');
     await classesPage.cancellationPolicySelect().selectOption({ index: 1 });
     await classesPage.visibleDaysBeforeInput().fill('2');
     await classesPage.saveClassButton().click();
+    await loginPage.ContainsSuccessAlert(`Schedule Created Successfully`);
+    await classesPage.calendarViewTab().click();
+    await page.waitForTimeout(2000);
+    await classesPage.selectClassInFilter(ScheduleClassNameSetup,page);
     await expect(classesPage.scheduleFutureCell(ScheduleClassNameSetup, '06:30 AM')).toBeVisible();
 
     // 2. Open and edit the created schedule
@@ -380,9 +442,14 @@ test.describe('ScheduleValidations', () => {
     await classesPage.isPrivateToggleSpan().click();
     // click Update
     await classesPage.updateButton().click();
+    await loginPage.ContainsSuccessAlert(`Schedule Updated Successfully`);
     await page.waitForTimeout(2000);
     // close any modal
     await page.locator("//button[@class='ripple ripple-surface btn btn-secondary']").click();
+
+    await classesPage.calendarViewTab().click();
+    await page.waitForTimeout(2000);
+    //await classesPage.selectClassInFilter(ScheduleClassNameSetup,page);
 
     // 7. original time should not be visible
     await expect(classesPage.scheduleFutureCell(ScheduleClassNameSetup, '06:30 AM')).not.toBeVisible();
@@ -407,14 +474,15 @@ test.describe('ScheduleValidations', () => {
 
     // 13. Verify card view
     await classesPage.schedulesTab().click();
-    await classesPage.cardTab().click();
-    await classesPage.cardSearchInput().fill(ScheduleClassNameSetup);
-    await classesPage.cardStatusSelect().selectOption({ label: 'Active' });
-    await classesPage.applyButton().click();
-    await page.waitForTimeout(2000);
-    await expect(classesPage.cardClassHeader(ScheduleClassNameSetup)).toBeVisible();
-    await expect(classesPage.cardClassTime('07:30 AM')).toBeVisible();
-    await expect(classesPage.cardClassLocation('Palakol')).toBeVisible();
+    // await classesPage.cardTab().click();
+    // await classesPage.cardSearchInput().fill(ScheduleClassNameSetup);
+    // await classesPage.cardStatusSelect().selectOption({ label: 'Active' });
+    // await classesPage.applyButton().click();
+    // await page.waitForTimeout(2000);
+    // await expect(classesPage.cardClassHeader(ScheduleClassNameSetup)).toBeVisible();
+    // await expect(classesPage.cardClassTime('07:30 AM')).toBeVisible();
+    // await expect(classesPage.cardClassLocation('Palakol')).toBeVisible();
+    await classesPage.listviewSearchInput(ScheduleClassNameSetup,'07:30 AM','manikamta manikamta',page);
   });
 
    test('Delete_ScheduleOneTime', async () => {
@@ -422,19 +490,24 @@ test.describe('ScheduleValidations', () => {
      const data = JSON.parse(fs.readFileSync(tempFile, 'utf-8'));
      await classesPage.dashboardTab().click();
      await classesPage.schedulesTab().click();
-     await classesPage.cardTab().click();
-     await classesPage.cardSearchInput().fill(data.ScheduleClassNameSetup);
-     await classesPage.cardStatusSelect().selectOption({ label: 'Active' });
-     await classesPage.applyButton().click();
-     await page.waitForTimeout(2000);
-     await expect(classesPage.cardClassHeader(data.ScheduleClassNameSetup)).toBeVisible();
-     await expect(classesPage.cardClassTime('07:30 AM')).toBeVisible();
-     await expect(classesPage.cardClassLocation('Palakol')).toBeVisible();
-     await expect(classesPage.cardClassLocation('manikamta manikamta')).toBeVisible();
-     await page.locator(`//h5[text()='${data.ScheduleClassNameSetup}']/../../..//button[text()='Delete']`).click();
+    //  await classesPage.cardTab().click();
+    //  await classesPage.cardSearchInput().fill(data.ScheduleClassNameSetup);
+    //  await classesPage.cardStatusSelect().selectOption({ label: 'Active' });
+    //  await classesPage.applyButton().click();
+    //  await page.waitForTimeout(2000);
+    //  await expect(classesPage.cardClassHeader(data.ScheduleClassNameSetup)).toBeVisible();
+    //  await expect(classesPage.cardClassTime('07:30 AM')).toBeVisible();
+    //  await expect(classesPage.cardClassLocation('Palakol')).toBeVisible();
+    //  await expect(classesPage.cardClassLocation('manikamta manikamta')).toBeVisible();
+    //  await page.locator(`//h5[text()='${data.ScheduleClassNameSetup}']/../../..//button[text()='Delete']`).click();
+     await classesPage.listviewFilters(page,data.ScheduleClassNameSetup,'07:30 AM');
      await classesPage.deleteOnlyThisEventButton().click();
+     await loginPage.ContainsSuccessAlert(`Schedule deleted successfully`);
      await classesPage.dashboardTab().click();
      await classesPage.schedulesTab().click();
+     await classesPage.calendarViewTab().click();
+     await page.waitForTimeout(2000);
+     await classesPage.selectClassInFilter(data.ScheduleClassNameSetup,page);
      await expect(classesPage.scheduleFutureCellNth(data.ScheduleClassNameSetup, '07:30 AM')).not.toBeVisible();
    });
 

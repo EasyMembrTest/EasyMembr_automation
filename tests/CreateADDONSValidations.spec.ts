@@ -339,7 +339,10 @@ test('DownloadExportSheet_Transactions', async ({}) => {
   // 1. Click Transactions
   await addOnsPage.clickTransactions();
   // 2. Select Today in dropdown and wait 2 seconds
-  await addOnsPage.selectTodayInDropdownAndWait();
+  //await addOnsPage.selectTodayInDropdownAndWait();
+    await page.locator("(//select[@id='shr'])[1]").selectOption({ label: 'Today' });
+    await page.locator("(//button[text()='Apply'])[1]").click();
+    await page.waitForTimeout(2000);
   // 3. Set up download listener and click Export
   const [download] = await Promise.all([
     page.waitForEvent('download'),

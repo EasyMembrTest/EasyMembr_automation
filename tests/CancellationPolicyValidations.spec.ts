@@ -67,6 +67,7 @@ test.describe('CancellationPolicyValidations', () => {
     await classesPage.policyCheckbox(2).click();
     await classesPage.descriptionInput().fill(testdata.CancellationPolicyDescription);
     await classesPage.savePolicyButton().click();
+    await loginPage.SuccessAlert(`Cancellation policy created successfully (${policyname})`);
     await classesPage.policySearchInput().fill(policyname);
     const rowCount = await classesPage.policyTableRows().count();
     expect(rowCount).toBe(1);
@@ -100,6 +101,7 @@ test.describe('CancellationPolicyValidations', () => {
     await classesPage.descriptionInput().fill(' ');
     await classesPage.descriptionInput().fill(testdata.EditCancellationPolicyDescription);
     await classesPage.savePolicyButton().click();
+    await loginPage.SuccessAlert(`Cancellation policy updated successfully (${Editpolicyname})`);
     await classesPage.dashboardTab().click();
     await classesPage.cancellationPolicyTab().click();
     await classesPage.policySearchInput().fill(Editpolicyname);
@@ -126,6 +128,7 @@ test.describe('CancellationPolicyValidations', () => {
     await classesPage.policyDeleteButton(data.Editpolicyname,testdata.EditCancellationPolicyDescription).click();
     await expect(classesPage.deleteConfirmationText()).toBeVisible();
     await classesPage.deleteButton().click(); 
+    await loginPage.SuccessAlert(`Cancellation policy deleted sucessfully(${data.Editpolicyname})`);
     await classesPage.dashboardTab().click();
     await classesPage.cancellationPolicyTab().click();
     await classesPage.policySearchInput().fill(data.Editpolicyname);

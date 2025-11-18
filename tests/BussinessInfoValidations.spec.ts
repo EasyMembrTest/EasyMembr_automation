@@ -52,6 +52,7 @@ test.describe('BussinessInfoValidations', () => {
     await bussinessInfoPage.policyEditor().fill('');
     await bussinessInfoPage.policyEditor().fill(privacyBody);
     await bussinessInfoPage.saveButton().click();
+    await loginPage.ContainsSuccessAlert(`Privacy Policy updated successfully`);
     await expect(bussinessInfoPage.policyTitleLabel(privacyTitle)).toBeVisible();
     await expect(bussinessInfoPage.policyParagraph(privacyBody)).toBeVisible();
   });
@@ -64,6 +65,7 @@ test.describe('BussinessInfoValidations', () => {
    await bussinessInfoPage.TermsTitleInput().fill('');
    await bussinessInfoPage.TermsTitleInput().fill(TermsTitle);
    await bussinessInfoPage.saveButton().click();
+   await loginPage.ContainsSuccessAlert(`Terms and Conditions successfully updated`);
    await expect(bussinessInfoPage.policyTitleLabel(TermsTitle)).toBeVisible();
      
   })
@@ -81,12 +83,14 @@ test.describe('BussinessInfoValidations', () => {
       await bussinessInfoPage.classBusinessSettingsEditIcon().click();
       await bussinessInfoPage.sliderRound().click();
       await bussinessInfoPage.saveButton().click();
+      await loginPage.ContainsSuccessAlert(`Class Business Settings updated successfully.`);
       await expect(bussinessInfoPage.waiverFormCheckIcon()).toBeVisible();
     } else {
       // If not visible, toggle on
       await bussinessInfoPage.classBusinessSettingsEditIcon().click();
       await bussinessInfoPage.sliderRound().click();
       await bussinessInfoPage.saveButton().click();
+      await loginPage.ContainsSuccessAlert(`Class Business Settings updated successfully.`);
       await expect(bussinessInfoPage.waiverFormCheckIcon()).toBeVisible();
     }
   });

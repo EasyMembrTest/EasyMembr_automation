@@ -479,7 +479,9 @@ test('PayHalfAmountOfPlan_VerifyDueAmountInTranscationSectionandDashboard_Verify
   await loginPage.transactionsSearchInput().click();
   await loginPage.transactionsSearchInput().fill(data.randomFirstName);
   // 26. Click Apply button
-  await loginPage.transactionsApplyButton().click();
+  //await loginPage.transactionsApplyButton().click();
+   await page.locator("(//button[text()='Apply'])[1]").click();
+  await page.waitForTimeout(2000);
   // 27. Verify transaction table row for randomFirstName
   await expect(loginPage.transactionsTableRow(data.randomFirstName)).toBeVisible();
   // 28. Assert transaction table columns for randomFirstName

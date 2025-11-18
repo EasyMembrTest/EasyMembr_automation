@@ -134,7 +134,7 @@
     "OriginalProfileSettingsMobile":"9874563310",
     "TransactionMemberName":"Shiva Test",
     "TransactionAmount":"1,000",
-    "TransactionDate":"17/09/2025",
+    "TransactionDate":"09/17/2025",
     "TransactionMemberMobileNo":"+917896541235",
     "TransactionAmount_1":"₹1000",
     "SearchReferralMemberName":"vamsi automation",
@@ -161,13 +161,13 @@
     "WavierMemberReferralPhoneNumber":"9876543211",
     "Recurring_PlanSetup":"automation_recurring",
     "SMS_Gateway":"test",
-    "SMS_APIKey":"NzM0NjUwNTAzMDUwNzI0ZTc1NTU1NDU0NjI1MTYxNTE=",
+    "SMS_APIKey":"5e79e55482b49fddb950",
     "SMS_SenderID":"GYM",
     "EditedSMS_Gateway":"automation",
-    "EditedSMS_APIKey":"BzM0NjUwNTAzMDUwNzI0ZTc1NTU1NDU0NjI1MTYxNTE=",
+    "EditedSMS_APIKey":"5e79e55482b49fddb951",
     "EditedSMS_SenderID":"Trainer",
     "WhatsAPP_Gateway":"test",
-    "WhatsAPP_APIKey":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0ZGNjMWVkNi01MjYyLTRmN2MtYTdkMy05M2VjNjQ2MTliNzAiLCJ1bmlxdWVfbmFtZSI6InJhbmdhQHIteW91LmluIiwibmFtZWlkIjoicmFuZ2FAci15b3UuaW4iLCJlbWFpbCI6InJhbmdhQHIteW91LmluIiwiYXV0aF90aW1lIjoiMDcvMjMvMjAyNCAxMzowOTo1NyIsImRiX25hbWUiOiJtdC1wcm9kLVRlbmFudHMiLCJ0ZW5hbnRfaWQiOiIxMDQ0NzAiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBVE9SIiwiZXhwIjoyNTM0MDIzMDA4MDAsImlzcyI6IkNsYXJlX0FJIiwiYXVkIjoiQ2xhcmVfQUkifQ.GvqsjFs2VdEE3PkCJ6DEsUHNOSNybW_VvtD-vT6N_6s",
+    "WhatsAPP_APIKey":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkNjg3YzU1Mi1lOWIzLTRiZWItYTIzNC1jYjFjNDI2YTk2YWYiLCJ1bmlxdWVfbmFtZSI6InZhbXNoaWRoYXJAZ3ltYWRtaW4ub25saW5lIiwibmFtZWlkIjoidmFtc2hpZGhhckBneW1hZG1pbi5vbmxpbmUiLCJlbWFpbCI6InZhbXNoaWRoYXJAZ3ltYWRtaW4ub25saW5lIiwiYXV0aF90aW1lIjoiMDUvMjAvMjAyNSAwNTowOTo0MSIsInRlbmFudF9pZCI6IjEwNDQ3MCIsImRiX25hbWUiOiJtdC1wcm9kLVRlbmFudHMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQlJPQURDQVNUX01BTkFHRVIiLCJURU1QTEFURV9NQU5BR0VSIiwiQ09OVEFDVF9NQU5BR0VSIiwiREVWRUxPUEVSIiwiREFTSEJPQVJEX1ZJRVdFUiIsIkFVVE9NQVRJT05fTUFOQUdFUiJdLCJleHAiOjI1MzQwMjMwMDgwMCwiaXNzIjoiQ2xhcmVfQUkiLCJhdWQiOiJDbGFyZV9BSSJ9.7jr-DKWFDrXOs6vGEfhenF5p9EX30t5IVewbG3mZdRE",
     "WhatsAPP_SenderID":"https://live-mt-server.wati.io/104470",
     "Edited_WhatsAPP_Gateway":"testtwo",
     "Edited_WhatsAPP_APIKey":"Bearer hbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0ZGNjMWVkNi01MjYyLTRmN2MtYTdkMy05M2VjNjQ2MTliNzAiLCJ1bmlxdWVfbmFtZSI6InJhbmdhQHIteW91LmluIiwibmFtZWlkIjoicmFuZ2FAci15b3UuaW4iLCJlbWFpbCI6InJhbmdhQHIteW91LmluIiwiYXV0aF90aW1lIjoiMDcvMjMvMjAyNCAxMzowOTo1NyIsImRiX25hbWUiOiJtdC1wcm9kLVRlbmFudHMiLCJ0ZW5hbnRfaWQiOiIxMDQ0NzAiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBVE9SIiwiZXhwIjoyNTM0MDIzMDA4MDAsImlzcyI6IkNsYXJlX0FJIiwiYXVkIjoiQ2xhcmVfQUkifQ.GvqsjFs2VdEE3PkCJ6DEsUHNOSNybW_VvtD-vT6N_6s",
@@ -199,5 +199,10 @@
   "sessionTrainer": "shiva shiva",
   "sessionTime": "06:30 AM",
   "sessionDuration": "30",
-  "sessionName": "Morning Yoga"
+  "sessionName": "Morning Yoga",
+  "SMS_Username":"Shiva",
+  "EditedSMS_Username":"Automation",
+  "Grouping_SetUpPlan":"automationgroup"
+  
+
 }

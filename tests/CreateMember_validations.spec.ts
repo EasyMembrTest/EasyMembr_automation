@@ -836,7 +836,7 @@ test('CreateMember_WavierForm', async () => {
   // 29. Verify Submitted status in table
   await expect(membersTab.waiverSubmittedStatusCell(`${WavierMemberFirstName} ${testdata.WavierMemberLastName}`)).toBeVisible();
   membersTab.waiverSubmittedStatusCell(`${WavierMemberFirstName} ${testdata.WavierMemberLastName}`).click();
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(6000);
   await expect(page.locator("//button[text()='Change Your Photo']")).toBeVisible();
   membersTab.cancelButton().click();
 });

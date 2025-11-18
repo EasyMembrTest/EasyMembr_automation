@@ -274,35 +274,38 @@ test.describe('TemplatesValidations', () => {
     await templatesPage.smsSettingsTab().click();
     await templatesPage.smsAddButton(1).click();
     await templatesPage.smsGatewayNameInput().fill(testdata.SMS_Gateway);
-    await templatesPage.smsSenderIdInput().fill(testdata.SMS_SenderID);
+    await templatesPage.smsSenderIdInput(1).fill(testdata.SMS_SenderID);
+    await templatesPage.smsUsernameInput().fill(testdata.SMS_Username);
     await templatesPage.smsApiKeyTextarea().fill(testdata.SMS_APIKey);
     await templatesPage.smsAddButton(2).click();
     await expect(templatesPage.smsGatewayAddedAlert()).toBeVisible();
-    await expect(templatesPage.smsGatewayRow(testdata.SMS_Gateway, testdata.SMS_APIKey, testdata.SMS_SenderID, 'Disable')).toBeVisible();
+    await expect(templatesPage.smsGatewayRow(testdata.SMS_Gateway, testdata.SMS_APIKey, testdata.SMS_SenderID, 'Disable',testdata.SMS_Username)).toBeVisible();
   });
   
   test('EditSMSGateWay_SMSSettings', async () => {
     await templatesPage.templatesAndRemindersTab().click();
     await templatesPage.smsSettingsTab().click();
-    await templatesPage.smsGatewayRow(testdata.SMS_Gateway, testdata.SMS_APIKey, testdata.SMS_SenderID, 'Disable').click();
+    await templatesPage.smsGatewayRow(testdata.SMS_Gateway, testdata.SMS_APIKey, testdata.SMS_SenderID, 'Disable',testdata.SMS_Username).click();
     await expect(templatesPage.smsEditGatewayHeader()).toBeVisible();
     await templatesPage.smsGatewayNameInput().fill('');
     await templatesPage.smsGatewayNameInput().fill(testdata.EditedSMS_Gateway);
-    await templatesPage.smsSenderIdInput().fill('');
-    await templatesPage.smsSenderIdInput().fill(testdata.EditedSMS_SenderID);
+    await templatesPage.smsSenderIdInput(1).fill('');
+    await templatesPage.smsSenderIdInput(1).fill(testdata.EditedSMS_SenderID);
+     await templatesPage.smsUsernameInput().fill('');
+    await templatesPage.smsUsernameInput().fill(testdata.EditedSMS_Username);
     await templatesPage.smsApiKeyTextarea().fill('');
     await templatesPage.smsApiKeyTextarea().fill(testdata.EditedSMS_APIKey);
     await templatesPage.smsPrimarySlider().click();
     await templatesPage.smsSaveButton().click();
     await expect(templatesPage.smsGatewayAddedAlert()).toBeVisible();
-    await expect(templatesPage.smsGatewayRow(testdata.EditedSMS_Gateway, testdata.EditedSMS_APIKey, testdata.EditedSMS_SenderID, 'Enable')).toBeVisible();
+    await expect(templatesPage.smsGatewayRow(testdata.EditedSMS_Gateway, testdata.EditedSMS_APIKey, testdata.EditedSMS_SenderID, 'Enable',testdata.EditedSMS_Username)).toBeVisible();
   });
 
   test('DeleteSMSGateWay_SMSSettings', async () => {
     await templatesPage.templatesAndRemindersTab().click();
     await templatesPage.smsSettingsTab().click();
     // Click the row for the enabled gateway
-    await templatesPage.smsGatewayRow(testdata.EditedSMS_Gateway, testdata.EditedSMS_APIKey, testdata.EditedSMS_SenderID, 'Enable').click();
+    await templatesPage.smsGatewayRow(testdata.EditedSMS_Gateway, testdata.EditedSMS_APIKey, testdata.EditedSMS_SenderID, 'Enable',testdata.EditedSMS_Username).click();
     await templatesPage.smsResetButton().click();
     await expect(templatesPage.smsResetAlert()).toBeVisible();
     await expect(templatesPage.smsApiKeyTextareaByValue(testdata.SMS_APIKey)).toBeVisible();
@@ -368,7 +371,7 @@ test.describe('TemplatesValidations', () => {
   await templatesPage.smsSaveButton().click();
   await expect(templatesPage.whatsappGatewayError()).toBeVisible();
   await templatesPage.smsResetButton().click();
-  await expect(templatesPage.smsResetAlert()).toBeVisible();
+  await expect(templatesPage.whatsappResetAlert()).toBeVisible();
   await expect(templatesPage.smsApiKeyTextareaByValue(testdata.WhatsAPP_SenderID)).toBeVisible();
   await templatesPage.closeButton().click();
 });
@@ -380,6 +383,7 @@ test.describe('TemplatesValidations', () => {
   await templatesPage.whatsappDeleteIcon(testdata.Edited_WhatsAPP_Gateway, 'Bearer', testdata.WhatsAPP_SenderID).click();
   await expect(templatesPage.whatsappDeleteConfirmText()).toBeVisible();
   await templatesPage.smsDeleteButton().click();
+  await loginPage.ContainsSuccessAlert(`WhatsApp Gateway deleted`);
   await expect(templatesPage.whatsappGatewayRowInvisibility(testdata.Edited_WhatsAPP_Gateway, 'Bearer', testdata.WhatsAPP_SenderID)).not.toBeVisible();
 });
   

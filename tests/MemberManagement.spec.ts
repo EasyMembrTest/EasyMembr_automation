@@ -401,7 +401,8 @@ test('DownloadExportSheet_RefundHistory', async ({ page, context }) => {
   const expectedFileName = 'Refund_data.xlsx';
   const [download] = await Promise.all([
     page.waitForEvent('download'),
-    membersPage.refundExportButton().click()
+    //membersPage.refundExportButton().click()
+    page.locator('(//button[text()="Export"])[1]').click()
   ]);
   // 3. Save the downloaded file
   const filePath = path.join(downloadDir, expectedFileName);

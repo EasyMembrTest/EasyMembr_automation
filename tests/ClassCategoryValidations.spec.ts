@@ -62,6 +62,7 @@ test.describe('ClassCategoryValidations', () => {
     await classesPage.categoryNameInput().click();
     await classesPage.categoryNameInput().fill(classcategoryName);
     await classesPage.createCategoryButton().click();
+    await loginPage.ContainsSuccessAlert(`Category "${classcategoryName}"created`);
     await classesPage.trainerSummaryFirstInput().click();
     await classesPage.trainerSummaryFirstInput().fill(classcategoryName);
     await expect(classesPage.categoryRow(classcategoryName)).toBeVisible();
@@ -92,6 +93,7 @@ test.describe('ClassCategoryValidations', () => {
     await classesPage.categoryNameInput().fill(' ');
     await classesPage.categoryNameInput().fill(EditclasscategoryName);
     await classesPage.createCategoryButton().click();
+    await loginPage.SuccessAlert(`Category "${data.classcategoryName}" updated sucessfully to (${EditclasscategoryName})`);
     await classesPage.trainerSummaryFirstInput().click();
     await classesPage.trainerSummaryFirstInput().fill(EditclasscategoryName);
     await expect(classesPage.categoryRow(EditclasscategoryName)).toBeVisible();
@@ -114,6 +116,7 @@ test.describe('ClassCategoryValidations', () => {
     await classesPage.categoryDeleteIcon(data.EditclasscategoryName).click();
     await expect(classesPage.deleteClassCategoryHeader()).toBeVisible();
     await classesPage.Modal_DeleteButton().click();
+    await loginPage.ContainsSuccessAlert(`Category Category deleted`);
     await classesPage.trainerSummaryFirstInput().click();
     await classesPage.trainerSummaryFirstInput().fill(data.EditclasscategoryName);
     await expect(classesPage.NoresultsFound()).toBeVisible();
