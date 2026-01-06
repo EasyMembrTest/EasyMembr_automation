@@ -172,6 +172,7 @@ test.describe('ScheduleValidations', () => {
     // Book session as member
     await newClassesPage.bookNowButton().click();
     await newClassesPage.registerHereLink().click();
+     await newPage.waitForTimeout(2000);
     await newClassesPage.memberFirstNameInput(1).fill('vamsi');
     await newClassesPage.memberLastNameInput(1).fill('reddy');
     await newClassesPage.memberFirstNameInput(2).fill('shiva');

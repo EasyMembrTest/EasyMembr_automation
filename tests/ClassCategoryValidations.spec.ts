@@ -92,7 +92,7 @@ test.describe('ClassCategoryValidations', () => {
     await classesPage.categoryNameInput().click();
     await classesPage.categoryNameInput().fill(' ');
     await classesPage.categoryNameInput().fill(EditclasscategoryName);
-    await classesPage.createCategoryButton().click();
+    await classesPage.saveClassButton().click();
     await loginPage.SuccessAlert(`Category "${data.classcategoryName}" updated sucessfully to (${EditclasscategoryName})`);
     await classesPage.trainerSummaryFirstInput().click();
     await classesPage.trainerSummaryFirstInput().fill(EditclasscategoryName);

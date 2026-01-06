@@ -1,0 +1,23 @@
+1.Pull the project from github : https://github.com/EasyMembrTest/EasyMembr_automation.git
+2.After importing a project ,playwright should be installed in your local through terminal as below :
+  npm install
+  npx playwright install
+3.Generate a new spec file through prompt.
+4.Run the spec file below command 
+  npx playwright test tests/sample.spec.ts
+  
+=================================================================================================================================  
+  
+Sample Prompt:
+1.Go to URl https://portal.zencruz.com/login
+2.Enter pavan@mailinator.com in //input[@placeholder='Email / Mobile Number.']
+3.Enter test@1234 in //input[@placeholder='Password']
+4.Click on button[type='submit']
+
+Create a new methods like page object model approach in  sample.ts file in pageobjects with  methods also and methods should be called in create a new test named  sampleone  in tests/sample.spec.ts and Generate script in sample.spec.ts
+
+
+=================================================================================================================================
+For writing Locators Example: //input[@placeholder='Email / Mobile Number.']
+
+1.We need to add SelectorsHub chrome extension

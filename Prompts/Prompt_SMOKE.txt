@@ -1,0 +1,2848 @@
+Generate the script for below steps and Continue in Login.spec.ts in tests folder
+
+1.Enter Age as 25
+2.Enter Mobile number as 9874563212
+3.Enter Email as automation@gmail.com
+4.Select blood group as O+ and Enter Height as 165 and weight as 65
+5.ENter City as Hyderabad and Enter Country as India.
+6.Enter the Address as Gachibowli
+7.Select Refferal dropdown as Direct
+
+# The above steps the static data can be taken from testdata.ts file
+
+Generate the script for below steps in separate test name as AddPlanToMember_PointOfSale in  Login.spec.ts in tests folder
+1.Click on Point of Sale.
+2.Search the Raghu Plan in Search Field
+3.Click on Searched Results as Raghu
+4.Click on <button type="button" class="mt-2 p-0 button-link"><img src="/static/media/add.f6b223ee2fa68d43e2be4e741da16aaa.svg" width="20px" alt="Add"></button> 
+5.Enter TestUser7172 in search field.
+6.Click on Done button
+7.Verify the text TestUser7172 present in (//strong[text()='Member(s) Details:']/..//p)[1]
+8.Click on Contiue button <button type="submit" class="btn btn-primary ms-2 w-50 text-nowrap">Continue</button>
+9.Click on Cash in payment Information page
+10.Verify the visibility of alert Transaction created successfully
+11.Vreify the visibility of Payment Successful
+12.Click on dismiss button <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+13.CLick on Members Management
+14.Enter TestUser7172 in search field placeholder="search here..."
+15.Click on Apply button button[type="submit"].btn-primary
+16.Verify the Search results should be 1 row
+17.Verify the first member row contains TestUser7172,mobile,Gender,Age,raghu,New,20 Day(s),Off,Not Submitted,Active,Renew should be visible
+
+# The above steps the static data can be taken from testdata.ts file
+
+
+Generate the script for below steps in separate test name as CheckIN_CheckOUT_Member in  Login.spec.ts in tests folder
+
+1.Verify the visibility of ((//h5[@class='card-title '])[1]/../..//button[@class='button-link link-color'])[1] and store the text to checkincount variable
+1.Click on Check-In/Check-out.
+2.Enter the TestUser7172 in Search by Member Name field
+3.Verify the TestUser7172 is visible
+4.click on checkinbutton
+5.Select Trainer as shiva shiva
+6.Click on Check-In button.
+7.Verify the value Check-Out for the TestUser7172
+8.Click on Dashboard
+9.Verify that checkincount variable count should be increase to 1[Example before 3 after it should be 4]
+10.click on ((//h5[@class='card-title '])[1]/../..//button[@class='button-link link-color'])[1]
+11.Enter the TestUser7172 in Search by Member Name field
+12.Verify the TestUser7172 is visible
+13.Click on button that value is Check-Out
+14.Clikc on text Check-Out button
+15.Verify the value Check-In for the TestUser7172
+
+
+Generate the script for below steps and continuation in CreatePlan.spec.ts
+1.CLick on Point of Sale.
+2.Search the randomPlanName in Search Plan/Addon
+3.Verify the visibility of  randomPlanName
+
+# create seperate methods for page elements and add in CreatePlanPage.ts and that mehtods should be called in CreatePlan.spec.ts
+
+
+
+
+Read the Login.spec.ts and create a page object model and create separate methods for page elements and use those methods in pageobjects folder>>>LoginAddMember.spec.ts and create a testdata.json ,the data shouldbe called from testdata.json to Login.spec.ts
+
+
+TestCase:Vreify Check-In/CheckOut details in reports.
+
+1.Click on Reports.
+2.Click on //li[@class='nav-item']/a[text()='Check-In']
+2.Search the TestUser2689 in Search by Name 
+3.click on Apply button //button[text()='Apply']
+4.Verify the TestUser2689 is visible //div[@class='datatable reports']//tbody/tr[1]/td[contains(text(),'TestUser2689')]
+
+Generate script like page object model approach and create a new test named VerifyCheckIN_CheckOUTDetails_Reports in AddMember.spec.ts
+
+
+TestCase:Pause the member for 2 days and check the Member status
+
+1.Click on Members Management.
+2.Search the TestUser2689 in search here...
+3.click on Apply button //button[text()='Apply']
+4.Verify the TestUser2689 is visble. //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[contains(text(),'TestUser2689')]
+5.click on TestUser2689 //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[contains(text(),'TestUser2689')]
+6.Verify the TestUser2689 is visible //h4[@class='m-2 ms-4 title'][text()='TestUser2689']
+7.Click on //div[@class='datatable sno plansTable']//tbody/tr/td[text()='raghu']/../td/div//i[@class='fas fa-edit']
+8.Verify the Edit Membership Details is visble
+9.Click on the text Pause
+10.Select Days //select[@id='emailReminder'] in the drop down 
+11.Enter the value 2 in //input[@type='number']
+12.Click on button Save
+13.Verify the //div[@class='datatable sno plansTable']//tbody/tr/td[text()='raghu']/../td/div[text()='paused'] is visble
+14.Click on Members Management.
+15.Search the TestUser2689 in search here...
+16.click on Apply button //button[text()='Apply']
+17.Verify the //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[contains(text(),'TestUser2689')]/../td/div[text()='pause'] is visble
+
+Generate script like page object model approach and create a new test named Verify_PauseMember in AddMember.spec.ts
+
+
+TestCase:checkin the paused Member and Verify the Member status as Active
+
+1.Click on Check-In/Check-Out
+2.Search the TestUser2689 in Search by Member Name
+3.Verify the TestUser2689 is visble
+4.click on //span[contains(text(),'TestUser2689')]/../../..//input[@value='Check-In']
+5.Verify the text TestUser2689 is visible
+6.verify the danger text //span[@class='text-danger mt-3'] contains Plan Paused
+7.Select  //span[text()="Trainer: "]/..//select as shiva shiva
+8.click on //button[text()="Check-In"]
+9.verify the //span[contains(text(),'TestUser2689')]/../../..//input[@value='Check-Out'] is visble
+10.click one //span[contains(text(),'TestUser2689')]/../../..//input[@value='Check-Out'] 
+11.click on //button[text()="Check-Out"]
+12.Click on Members Management.
+13.Search the TestUser2689 in search here...
+14.click on Apply button //button[text()='Apply']
+15.Verify the //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[contains(text(),'TestUser2689')]/../td[9]/div[text()='Active'] is visble
+
+Generate script like page object model approach and create a new test named CheckIn_PausedMember_VerifyActiveStatus in AddMember.spec.ts
+
+
+TestCase:Checkin the Member,Staff and verify the count in dashboard
+1.Click on Dashboard.
+2.Verify the visibility of (//h5[contains(text(),'Staff Attendance')]/../..//small)[1]/..//button[@class='button-link link-color'] and then get text and store in staffpresentcount variable
+3.Click on  Staff Roles & Attendance
+4.Verify the visibility of Add Staff and click on Add Staff
+5.Enter 9876541235 in placeholder="Enter phone number" field
+6.Generate random five digit string and store in StaffFirstName Variable and Enter StaffFirstName in <div class="col-sm-12 col-md-4 pt-4"><label>First Name<span class="text-danger">*</span></label><input class="gym-input user-pdng" type="text" name="Name" value=""></div> in FirstName field.
+7.Enter the text User in <div class="col-sm-12 col-md-4 pt-4"><label>Last Name<span class="text-danger">*</span></label><input class="gym-input user-pdng" type="text" name="Name" value=""></div> in LastName Field
+8.Enter StaffFirstName value in username field.
+9.Enter test@1234 in password field
+10.Select gender as Male in dropdown.
+11.Enter 25 in <div class="col-sm-12 col-md-4 pt-4"><label>Age</label><input class="gym-input user-pdng" type="text" name="Name" value=""></div> Age field
+12.Enter StaffFirstName+mailinator.com in name="Email" field
+13.Select Role as Satff in <select name="role" id="role" class="gym-input user-pdng"><option value="admin" default="">Admin</option><option value="staff">Staff</option><option value="accountant">Accountant</option></select>
+14.Click on Add button.
+15.Search the StaffFirstName+mailinator.com in search by member
+16.Verify the //div[@class='datatable sno staffDatatable']//tbody/tr is count should be 1
+17.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='StaffFirstName User']
+18.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='StaffFirstName User']/../td//button[text()='Check-In']
+19.click on //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='StaffFirstName User']/../td//button[text()='Check-In']
+20.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='StaffFirstName User']/../td//button[text()='Check-Out']
+21.Click on Dashboard.
+22..Verify the visibility of (//h5[contains(text(),'Staff Attendance')]/../..//small)[1]/..//button[@class='button-link link-color'] and  then get text and store in newstaffpresentcount variable
+23.Assertion that expect staffpresentcount=newstaffpresentcount+1
+24.click on (//h5[contains(text(),'Staff Attendance')]/../..//small)[1]/..//button[@class='button-link link-color']
+25.Search the StaffFirstName+mailinator.com in search by member
+26.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='StaffFirstName User']/../td//button[text()='Check-Out'] and click on element.
+27.Verify the visbility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='StaffFirstName User']/../td//button[text()='Check-In']
+
+Generate script like page object model approach and create a new test named CreateStaff_CheckInStaff_VerifyCountInDashboards in AddMember.spec.ts
+
+
+
+TestCase:Verify the Activities performed in Activities Section
+1.CLick on Activities //a[@id='logEvent']
+2.Enter StaffFirstName in Search Here...
+3.Click on Apply button //button[text()='Apply']
+4.Verify the visibility of text Staff Check-Out Successful (StaffFirstName User)
+
+Generate script like page object model approach and create a new test named VerifyStaffCheckOut_ActivitiesSection in AddMember.spec.ts
+
+
+TestCase:Pay Half amount for the plan and verify the Due amount in Transactions Section,Dashboard
+1.Verify the visibility of (//img[@class='paymt-rec'])[1]/..//button and then get text and store in paymentreceived variable
+2.Verify the visibility of (//img[@class='paymt-rec'])[2]/..//button and then get text and store in paymentpending variable
+3.Click on Point of Sale
+4.Search the shiva Search Plan/Addon field
+5.Click on the Search results shiva
+6.Click on //button[@class="mt-2 p-0 button-link"]
+7.Enter the randomFirstName in //input[@placeholder="Search"]
+8.Verify the randomFirstName is visibile and click on randomFirstName
+9.click on Done button
+10.Verify the visibility of contains randomFirstName in the locator(//strong[text()="Member(s) Details:"]/..//p)[1]
+11.Click on button[type="submit"].btn.btn-primary.ms-2.w-50.text-nowrap
+12.Click on //div[text()='Multiple']
+13.Enter 500 in field (//input[@class='splitinput w-50'])[1]
+14.Verify the visibility of (//span[text()=' Balance due amount']/..//span)[2][text()='500']
+15.CLick on //button[text()='Done'].
+16.Verify the visibility of alert Transaction created successfully
+17.Verify the visibility of Payment Successful
+18.Click on dismiss button (//button[@class="btn-close"])[2]
+19.Click on Dashboard //a[text()=' Dashboard']
+20.Verify the visibility of (//img[@class='paymt-rec'])[1]/..//button and then get text and store in newpaymentreceived variable
+21.Verify the visibility of (//img[@class='paymt-rec'])[2]/..//button and then get text and store in newpaymentpending variable
+22.assertion that expect newpaymentreceived=paymentreceived+500
+23.assertion that expect newpaymentpending=paymentpending+500
+24.Click on Transactions //a[text()=' Transactions']
+25.Search randomFirstNamethe search here...
+26.Click on //button[text()='Apply']
+27.Verify the visibility of //div[@class='TransactionsTablesno']//tbody/tr/td[contains(text(),'randomFirstName')]/../td/div[text()='shiva']/../../td[8]
+28.Assertion for //div[@class='TransactionsTable sno']//tbody/tr/td[contains(text(),'TestUser9266')]/../td/div[text()='shiva']/../../td[8] text is ₹1,000 and //div[@class='TransactionsTable sno']//tbody/tr/td[contains(text(),'TestUser9266')]/../td/div[text()='shiva']/../../td[10] text is ₹500 and //div[@class='TransactionsTable sno']//tbody/tr/td[contains(text(),'TestUser9266')]/../td/div[text()='shiva']/../../td[11] text is ₹500
+
+
+Generate script like page object model approach and create a new test named PayHalfAmountOfPlan_VerifyDueAmountInTranscationSectionandDashboard in AddMember.spec.ts
+
+
+TestCase:Delete Member from Management.
+1.Click on Members Management.//a[text()=' Members Management']
+2.Search the randomFirstName in search here...
+3.Click on Apply button
+4.Verify the visbility of 
+//div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[contains(text(),'TestUser8343')]/../td[16]/span[2]/img anc click on it.
+5.Click on Windows Alert Ok button.
+6.Click on Dashboard //a[text()=' Dashboard']
+7..Click on Members Management.//a[text()=' Members Management']
+8.Search the randomFirstName in search here...
+9..Click on Apply button
+10.Verify the visbility of //p[text()=' No Data Found']
+11.Click on //a[text()=' Staff Roles & Attendance']
+12.Search the staffname in search by member
+13.Verify the visibility of
+ //div[@class='datatable sno staffDatatable']//tbody/tr/td[contains(text(),'Staffkgezkd')]/../td[7]//button/img[@alt='Delete'] and click on it.
+14.Click on Windows Alert Ok button.
+15.Click on Dashboard //a[text()=' Dashboard']
+16.Click on //a[text()=' Staff Roles & Attendance']
+17.Search the staffname in search by member
+18.Verify the visibility of //td[text()='No matching results found']
+
+Generate script like page object model approach and create a afterall method in AddMember.spec.ts
+
+
+
+
+
+
+
+TestCase:Create a plan through Import Sheet.
+Generate the script for below steps and Create ImportSheet.spec.ts in tests folder and save the script in it.
+
+1.Click on Plans,Slots & Addons.
+2.click on Import button.
+3.Upload a file in input field the file is in C:\Users\Vamsi.D\Downloads\Sample_Plan_Data (1).xlsx
+4.Verify the visibility of Sample_Plan_Data (1).xlsx
+5.Click on upload button
+6.Click on Staff Roles & Attendance Tab.
+7.Click on Plans,Slots & Addons.
+8.Enter Quarter in Search Field. 
+
+
+TestCase:Edit Business Details,Payment Methods,Tax Settings,Digital Wavier,Bussiness Hours in Business Details Tab.
+
+1.Click on //a[text()=' Business Details']
+2.click on //label[text()='Business Details ']/..//i[@class='fas fa-edit']
+3.Click on input field Busniess Name and clear the value in it and enter automation in the input field.
+4.Click on input field First Name and clear the value in it and enter vamsi in the input field.
+5.Click on input field Last Name and clear the value in it and enter test in the input field.
+6.select the value Andhra Pradesh in (//label[text()='State:'])[2]/..//select 
+7.click on input field id=business_email and clear the value in it and enter automation@mailinator.com in the input field.
+8.click on input field class=PhoneInputInput and clear the value in it and enter 9874563212 in the input field.
+9.click on input field id="city" and clear the value in it and enter Vijayawada in the input field. 
+10.click on input field name="shortcode" and clear the value in it and enter test in the input field. 
+11.Select the value DD/MM/YYYY in (//label[text()='Preferred Date Format:'])[2]/..//select
+12.click on input field id=members_capacity and clear the value in it and enter 50 in the input field.
+13.click on input field //input[@id='address'] and clear the value in it and enter Vijayawada in the input field.
+14.click on input field //input[@type='number'] and clear the value in it and enter 2 in the input field.
+15.click on save button //button[text()='Save']
+16.click on //a[text()=' Dashboard']
+17.Click on //a[text()=' Business Details']
+18.assertion for expect //label[text()='automation'] is visibile
+19.assertion for expect //label[text()='vamsi'] is visibile
+20.assertion for expect //label[text()='test'] is visibile
+21.assertion for expect //label[text()='automation@mailinator.com'] is visibile
+22.assertion for expect //label[text()='+919874563212'] is visibile
+23.assertion for expect (//label[text()='Vijayawada'])[1] is visibile
+24.assertion for expect //label[text()='Andhra Pradesh'] is visibile
+25.assertion for expect //label[text()='test'] is visibile
+26.assertion for expect //label[text()='DD/MM/YYYY'] is visibile
+27.assertion for expect //label[text()='50'] is visibile
+28.assertion for expect //label[text()='2'] is visibile
+
+Generate script like page object model approach in a BussinessDetailsTabPage.ts in pageobjects folder.Create a BussinessDetails.spec.ts in tests folder with test named EditBussinessDetails.The methods related to it could be call from BussinessDetailsTabPage.ts
+
+
+TestCase:Edit Business Details,Payment Methods,Tax Settings,Digital Wavier,Bussiness Hours in Business Details Tab.
+
+1.Click on //a[text()=' Business Details']
+2.click on //label[text()='Payment Methods']/..//i[@class='fas fa-edit']
+3.Verify the visibility of //input[@value='GiftCards']/../..//button/img.if it is visibile click on //input[@value='GiftCards']/../..//button/img
+4.click on (//button[text()='Save'])[1]
+5.Verify the visibility of alert Profile saved successfully
+6.click on //label[text()='Payment Methods']/..//i[@class='fas fa-edit']
+7.Verify the invisibility of //input[@value='GiftCards']/../..//button/img
+8.click on //label[text()='Add New Payment Method']/..//i
+9.Click on //input[@class='payment_methods_input me-3'] and enter the GiftCards in //input[@class='payment_methods_input me-3']
+10.click on //input[@value='GiftCards']/../..//button/img/../../..//input[@type='checkbox']
+10.click on (//button[text()='Save'])[1]
+11.Verify the visibility of alert Profile saved successfully
+12.verify the visibility of //label[text()='GiftCards']
+13.Click on //a[text()=' Point of Sale']
+14.Search Raghu in Search Plan/Addon
+15.click on search results Raghu
+16.click on addplanbutton //button[@class="mt-2 p-0 button-link"]
+17.click on First user (//div[@class='row usercar-prev'])[1]
+18.Click on Done button
+19.Click on Continue button button[type="submit"].btn.btn-primary.ms-2.w-50.text-nowrap
+20.Verify the visibility of Payment Information
+21.Verify the visibility of //div[text()='GiftCards']
+22.Click on dismiss button (//button[@class="btn-close"])
+
+Generate script like page object model approach and create a new test named EditPaymentDetails in BussinessDetails.spec.ts
+
+
+TestCase:Edit Tax Settings in Business Details Tab.
+
+1.Click on //a[text()=' Business Details']
+2.click on //label[text()='Tax Settings']/..//i[@class='fas fa-edit']
+3.click on //label[text()='Add Tax Settings']/..//i
+4.Take the size of element //input[@class='payment_methods_input me-2'] and Click on (//input[@class='payment_methods_input me-2'])[size]
+5.Enter GST in (//input[@class='payment_methods_input me-2'])[size]
+6.Enter 20 in (//input[@class='payment_methods_input '])[size]
+7.Click (//input[@class='payment_methods_input ']/../..//input[@type='checkbox'])[size]
+8.click on (//button[text()="Save"])[1]
+9.VErify the visibility of alert Profile saved successfully
+10.Verify the visibility of //span[@class='payment-span chip']/..//span[text()='20']
+11.Click on //a[text()=' Point of Sale']
+12.Search Raghu in Search Plan/Addon
+13..click on search results Raghu
+14.Verify the visibility of //span[text()='20']
+15.Click on //a[text()=' Business Details']
+16.click on //label[text()='Tax Settings']/..//i[@class='fas fa-edit']
+17.click on //input[@value='20']/../..//button/img
+18.click on (//button[text()="Save"])[1]
+19.VErify the visibility of alert Profile saved successfully
+20.Click on //a[text()=" Plans, Slots & Addons"]
+21.click on //a[text()=' Business Details']
+20 Verify the invisibility of //span[@class='payment-span chip']/..//span[text()='20']
+
+Generate script like page object model approach and create a new test named EditTaxSettings in BussinessDetails.spec.ts
+
+
+TestCase:Edit Digital Wavier in Business Details Tab.
+
+1.Click on //a[text()=' Business Details']
+2.click on //label[text()=' Digital Waiver ']/..//i[@class='fas fa-edit']
+3.Verify the visibility of Digital Waiver Form
+4.Click on input field //label[text()='Title: ']/..//input and clear the value in it and enter automation_Digital in the input field.
+5.Click on //label[text()='Consent checkbox text']/..//textarea and clear the value in it and enter test_Digital in the input field.
+6.click on //div[@class='ql-editor']/p and clear the value in it and enter Need to Accept Terms in the input field.
+7.Click on Mandatory Radio Button (//label[text()='Email']/..//input)[1]
+8.Click Save button
+9.Click on Dashboard //a[text()=' Dashboard']
+10.Click on //a[text()=' Business Details']
+11.assertion for expect //label[text()='automation_Digital'] is visibile
+12.assertion for expect //div[text()='test_Digital'] is visibile
+13.assertion for expect //p[text()='Need to Accept Terms'] is visibile
+14.assertion for expect //span[text()='Email: ']/../span[text()='Mandatory'] is visibile
+15.Verify the visibility of //button[text()=' Show QR Code'] and click on it.
+16.Verify the visibility of //h5[text()='automation_Digital']
+17.Verify the visibility of svg[role="img"][viewBox="0 0 29 29"]
+18.Verify the visibility of //button[text()='Copy Link'] and click on it and verify the alert message as Link copied to clipboard!
+19.Verify the visibility of //button[text()='Regenerate Link'] and click on it and Verify the visibility of //strong[text()='Regenerating']
+20.Click on (//button[text()='Regenerate Link'])[2]
+21.click on (//button[text()='Close'])
+
+Generate script like page object model approach and create a new test named EditDigitalWaiver in BussinessDetails.spec.ts
+
+
+
+
+TestCase:Edit BussinessHours in Business Details Tab.
+
+1.Click on //a[text()=' Business Details']
+2.click on //label[text()='Business Hours ']/..//i[@class='fas fa-edit']
+3.Verify the visibility of //h5[text()='Business Hours']
+4.Select the 7 AM in (//select[@class='slotdrop mx-1'])[1]
+5.Select the 9 AM in (//select[@class='slotdrop mx-1'])[2]
+6.Verify the visibility of (//i[@class='fas fa-plus'])[1]/.. and click on it.
+7.Verify the visibility of (//label[text()='Sunday']/../..//li[@class='Business_Details_data'])[2]
+8.Select the 1 PM in ((//label[text()='Sunday']/../..//li[@class='Business_Details_data'])[2]//select)[1]
+9.Select the 5 PM in ((//label[text()='Sunday']/../..//li[@class='Business_Details_data'])[2]//select)[2]
+10.Verify the visibility of //label[text()='Monday']/..//span[@class='slider round'] and click on it.
+11.Click on Save button
+12.Verify the visbility of alert Profile saved successfully
+13.Click on Dashboard //a[text()=' Dashboard']
+14..Click on //a[text()=' Business Details']
+15.Verify the visibility of (//label[text()='Sunday:']/..//span/label)[1][text()='7 AM']
+16.Verify the visibility of (//label[text()='Sunday:']/..//span/label)[2][text()='5 PM']
+17.Verify the invisibility of //label[text()='Monday:']
+//Back to Orignal Settings.
+18.click on //label[text()='Business Hours ']/..//i[@class='fas fa-edit']
+19.Verify the visibility of (//label[text()='Sunday']/../..//li[@class='Business_Details_data'])[2]//button and click on it.
+20.Wait 2 Seconds
+21.Verify the invisibility of (//label[text()='Sunday']/../..//li[@class='Business_Details_data'])[2]//button
+22.Verify the visibility of //label[text()='Monday']/..//span[@class='slider round'] and click on it.
+23.Select the 1 AM in (//select[@class='slotdrop mx-1'])[1]
+24.Select the 3 AM in (//select[@class='slotdrop mx-1'])[2]
+25.Wait 2 Seconds
+26.Click on Save button
+27.Verify the visbility of alert Profile saved successfully
+28.Click on Dashboard //a[text()=' Dashboard']
+29.Click on //a[text()=' Business Details']
+30.Verify the visibility of (//label[text()='Sunday:']/..//span/label)[1][text()='1 AM']
+31.Verify the visibility of (//label[text()='Sunday:']/..//span/label)[2][text()='3 PM']
+32.verify the visibility of //label[text()='Monday:']
+
+Generate script like page object model approach and create a new test named EditBussinessHours in BussinessDetails.spec.ts
+
+
+TestCase:Create a Member through ImportSheet in Members Managemenr Tab.
+
+const filePath = 'D:/EasyMembr_TestData/CreateMember.xlsx';
+1.Click on //a[text()=' Members Management']
+2.Click on ImportButton (//button[@type="submit"][text()="Import"])[1]
+3.const fileInput = await page.locator('input[type="file"]');
+  await fileInput.setInputFiles(filePath);
+4.await expect(page.getByText('CreateMember.xlsx')).toBeVisible();
+5. await page.locator('//button[text()="Upload"]').click();
+6.Verify the visibility of alert Member(s) Imported Sucessfully
+7.Click on //a[text()=' Business Details']
+8.Click on //a[text()=' Members Management']
+9.Search the honey automation in search here...
+10.Click on //button[text()='Apply']
+11.Verify the visibility of //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Honey Automation']/../td[text()='Male']/../td[text()='25']/../td[6][text()='No Plan Associated']/../td[text()='09/12/2025']/../td/div[text()='Active'] and click on it.
+12.Verify the visibility of //h6[text()='Honey']
+13.Verify the visibility of //p[text()='+919876543210'] and Verify the visibility of //p[text()='honey@gmail.com']
+14.Verify the visibility of //p[text()='185']
+15.Verify the visibility of //p[text()='O+'] and Verify the visbility of //p[text()='1-9-7, Hitechcity']
+16.Verify the visbility of //p[text()='India']
+17.Verify the visibility of //p[text()='Hyderabad']
+18.verify the visibility of //div[@class='datatable sno plansTable']//tbody/tr/td[text()='No matching results found'].
+
+
+Generate script like page object model approach in a MembersManagementTabPage.ts in pageobjects folder.Create a MemberManagement.spec.ts in tests folder with test named CreateMember_ImportSheet.The methods related to it could be call from MembersManagementTabPage.ts
+
+
+TestCase:Edit the Member in Members Managemenr Tab.
+1.Click on //a[text()=' Members Management']
+2.Search the honey automation in search here...
+3.Click on //button[text()='Apply']
+4.Verify the visibility of //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Honey Automation']/../td[text()='Male']/../td[text()='25']/../td[6][text()='No Plan Associated']/../td[text()='09/12/2025']/../td/div[text()='Active'] and click on it.
+5.Click on Edit button //i[@class='far fa-edit']
+6.Verify the visibility of //input[@value='Honey']
+7.Click on //input[@placeholder='First Name'] and clear the value in it and enter Haritha in the input field.
+8.Click on //input[@placeholder='Last Name'] and clear the value in it and enter test in the input field.
+9.Select Female in //select[@id='gender']
+10.Click on (//input[@name='Age'])[1] and clear the value in it and enter 27 in the input field.
+11.Click on //input[@placeholder='Enter phone number'] and clear the value in it. and enter the value 9874563212 in the input field
+12.Click on //input[@placeholder='Your E-mail Id'] and clear the value in it. and enter the value haritha@gmail.com in the input field
+13.Select the bloodgroup as B+ in //label[text()='Blood Group']/..//select
+14.Click on (//input[@name='Age'])[2] and clear the value in it. and enter 190 in the Height Field
+15.Click on (//input[@type='number'])[3] and clear the value in it and enter 60 in the weight field.
+16.Click on //input[@placeholder='Your City'] and clear the value in it and enter the value Vizag in the City Field.
+17.Click on //input[@placeholder='Your Country'] and clear the value in it and enter the value US in the Country Field.
+18.click on //textarea[@placeholder='Your Address'] and clear the value in it and enter the value RKBeach in the Addres Field.
+19.Click on Save Button
+20.Verify the visibility of //label[text()='DND: ']/..//span and click on it.
+21.Click on Dashboard //a[text()=' Dashboard']
+22.Click on //a[text()=' Members Management']
+23.Search the Haritha test in search here...
+24.Click on //button[text()='Apply']
+25.Verify the visibility of //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Haritha test']/../td[text()='Female']/../td[text()='27']/../td[6][text()='No Plan Associated']/../td[text()='09/12/2025']/../td/div[text()='Active']/../../td[text()='On'] and click on it.
+26.Verify the visibility of //h6[text()='Haritha']
+13.Verify the visibility of //p[text()='+919874563212'] and Verify the visibility of //p[text()='haritha@gmail.com']
+14.Verify the visibility of //p[text()='190']
+15.Verify the visibility of //p[text()='B+'] and Verify the visbility of //p[text()='RKBeach']
+16.Verify the visbility of //p[text()='US']
+17.Verify the visibility of //p[text()='Vizag']
+
+Generate script like page object model approach and create a new test named EditMember_MembersManagement in MemberManagement.spec.ts
+
+
+TestCase:Download a Export Sheet in Members Managemenr Tab.
+
+1.Click on //a[text()=' Members Management']
+2.click on Export button.
+3.set a download file path as D:\EasyMembr_Downloads and after clicing a export a file should be downloaded named MemberTableData
+4.read the file and validate the Haritha test is present in Name header colum
+5.delete the file
+
+Generate script like page object model approach and create a new test named DownloadExportSheet_MembersManagement in MemberManagement.spec.ts
+
+
+
+TestCase:Check-In the Inactive Member in Check-In/Check-Out Tab and Verify the Membership Overdue's Count in Dashboard.
+
+1.Click on //a[text()=' Members Management']
+2.Click on //a[text()=' Point of Sale']
+3.Search haritha in Search Plan/Addon
+4.Click on Searched result haritha
+5.Click on addmember button //button[@class="mt-2 p-0 button-link"]
+6.click on //input[@placeholder="Search"] and enter the Haritha test in it.
+7.click on Searched result Haritha test
+8.Click on Done button
+9.await expect(loginPage.memberDetailsText()).toContainText(Haritha test);
+10.Click on (//div[@class='react-datepicker__input-container'])[1]/input and wait 2 seconds
+11.click on //button[@class='react-datepicker__navigation react-datepicker__navigation--previous'] and wait 2 seconds.
+12.Click on //div[text()='14'] anc wait 2 seconds and click on //li[text()='14:00']
+13.Click on (//div[@class='react-datepicker__input-container'])[2]/input and wait 2 seconds
+14.lick on //button[@class='react-datepicker__navigation react-datepicker__navigation--previous'] and wait 2 seconds.
+15.Click on //div[text()='14'] anc wait 2 seconds
+16.click on Continue button button[type="submit"].btn.btn-primary.ms-2.w-50.text-nowrap
+17.Click on Cash button //div[text()='Cash']
+18.Verify the visibility of alert Transaction created successfully
+19.Verify the visibility of Payment Successful
+20.Click on dismiss button (//button[@class="btn-close"])[2] and wait 2 seconds
+21.Click on Dashboard //a[text()=' Dashboard']
+22.click on //button[text()='Today']
+23.Verify the visibility of //h5[text()='Overdue CheckIn(s)']/../..//small[text()='Female ']/..//button and get the text in it then store it varibaled InitialOverDueCheckInCount.
+24.Click on //a[text()=' Check-In/Check-Out']
+25.Click on //a[text()='Inactive Members']
+26.CLick on Search by Member Name and enter the Haritha test in it
+27.Verify the visibility of //span[@class='text-danger'][text()='Expired']
+28.Click on //input[@class='ExpiredCheckin']
+29.Verify the visibility of //div[text()='Haritha test']
+30.click on //button[text()='Check-In']
+31.Click on //input[@value='Check-Out']
+32.click on //button[text()='Check-Out']
+33.Click on Dashboard //a[text()=' Dashboard']
+34.click on //button[text()='Today']
+35.Verify the visibility of //h5[text()='Overdue CheckIn(s)']/../..//small[text()='Female ']/..//button and get the text in it then store it varibaled FinalOverDueCheckInCount.
+36.Assertion for FinalOverDueCheckInCount=InitialOverDueCheckInCount+1
+37.click on //h5[text()='Overdue CheckIn(s)']/../..//small[text()='Female ']/..//button and verify the visibility of //div[@class='datatable SuscriptionHistoryDataTable']//tbody/tr/td[text()='Haritha test']/../td[text()='Inactive']
+38.click on //button[text()='Close']
+
+
+Create a methods like page object model approach in continuation of MembersManagementTabPage.ts file with duplicate methods also and methods should be called in create a new test named CheckIn_InActiveMember_VerifyMembership_OverdueCount_Dashboard in MemberManagement.spec.ts and Generate script in MemberManagement.spec.ts
+
+Generate script like page object model approach and create a new test named CheckIn_InActiveMember_VerifyMembership_OverdueCount_Dashboard in MemberManagement.spec.ts
+
+
+TestCase:InActiveMember_To_ActiveMember_VerifyPlansTab_VerifyPaymentsTab_VerifyAttendanceTab_AddRefund_VerifyRefundHistoryInTransaction_RefundTab
+
+1.Click on //a[text()=' Members Management']
+2.Search the Haritha test in search here...
+3.Click on //button[text()='Apply']
+4.Verify the visibility of //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Haritha test']/../td[text()='Female']/../td[text()='27']/../td[6][text()='haritha']/../td/div[text()='Inactive']/../../td[text()='On']/../td/div/span[text()='Renew']
+5.await membersPage.continueButton().click();
+6. await membersPage.cashButton().click();
+7.await expect(membersPage.transactionSuccessAlert()).toBeVisible();
+8.await expect(membersPage.paymentSuccessAlert()).toBeVisible();
+9. await membersPage.dismissButton().click();
+10.await page.waitForTimeout(2000);
+11.Click on Dashboard //a[text()=' Dashboard']
+12.Click on //a[text()=' Members Management']
+13.Search the Haritha test in search here...
+14.Click on //button[text()='Apply']
+15.Verify the visibility of //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Haritha test']/../td[text()='Female']/../td[text()='27']/../td[6][text()='haritha']/../td/div[text()='Active']/../../td[text()='On']/../td/div/span[text()='Renew'] and click on it.
+16.Verify the visibility of //h6[text()='Haritha']
+17.Verify the visibility of //div[@class='datatable sno plansTable']//tbody//tr[1]/td[text()='haritha']/../td/div[text()='Active']
+18.Verify the visibility of //div[@class='datatable sno plansTable']//tbody//tr[2]/td[text()='haritha']/../td/div[text()='Inactive']
+19.Verify the visibility of //a[text()='Payments/Transactions'] and click on it.
+20.Verify the visibility of //div[@class='datatable sno pymentsTable']//tbody/tr and assertion for //div[@class='datatable sno pymentsTable']//tbody/tr is 2
+21.Verify the visibility of //div[@class='datatable sno pymentsTable']//tbody/tr[1]/td[text()='Cash']/../td[text()='₹500'][1]
+22.Verify the visibility of Token //div[@class='datatable sno pymentsTable']//tbody/tr[1]/td[2]/button and click on it and wait 2 seconds.
+23.Verify the visibility of //h5[text()='Transaction Details']
+24.Verify the visibility of //div[text()='Haritha test']
+25.Click on //p[text()='Refund Amount']
+26.Click on RefundAmount Field //input[@placeholder='0/-'] and Clear the value and enter 100 in it.
+27.Click on //textarea[@placeholder='Enter reason for refund'] and Clear the value and enter testautomation in it.
+28.Click on //button[text()='Refund']
+29.Verify the visibility of //a[text()='Attendance'] and click on it.
+30.verify the invisibility of //div[@class='datatable sno']//tbody/tr/td[text()='No matching results found']
+31.Click on //a[text()=' Transactions'] and verify the visibility of //a[text()='Refund'] and click on it.
+32.Verify the visibility of //div[@class='datatable refundsDataTable ']//tbody/tr[1]/td[text()='haritha']/../td[text()='₹100']/../td/div[text()='testautomation']
+
+
+
+Create a methods like page object model approach in continuation of MembersManagementTabPage.ts file with duplicate methods also and methods should be called in create a new test named InActiveMember_To_ActiveMember_VerifyPlansTab_VerifyPaymentsTab_VerifyAttendanceTab_AddRefund_VerifyRefundHistoryInTransaction_RefundTab in MemberManagement.spec.ts and Generate script in MemberManagement.spec.ts
+
+
+TestCase:Download a Export Sheet in Transactions Tab>>>>>Refund.
+
+1.Click on //a[text()=' Transactions'] and verify the visibility of //a[text()='Refund'] and click on it.
+2.Click on //button[text()='Export']
+3.set a download file path as D:\EasyMembr_Downloads and after clicing a export a file should be downloaded named Refund_data.xlsx
+4.read the file and validate the Haritha test is present in Member(s) header colum and ₹100 is present in Amount (Incl.tax) header cloumn
+5.delete the file
+
+
+Create a methods like page object model approach in continuation of MembersManagementTabPage.ts file with duplicate methods also and methods should be called in create a new test named DownloadExportSheet_RefundHistory in MemberManagement.spec.ts and Generate script in MemberManagement.spec.ts
+
+
+TestCase:SuspendMember_VerifyStatusInCheckIN_CheckOutTab.
+
+1.Click on //a[text()=' Members Management']
+2.Search the Haritha test in search here...
+3.Click on //button[text()='Apply']
+4.Verify the visibility of //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Haritha test']/../td[text()='Female']/../td[text()='27']/../td[6][text()='haritha']/../td/div[text()='Active']/../../td[text()='On'] and click on it.
+5.Verify the visibility of //h6[text()='Haritha']
+6.Verify the visibility of //button[text()='suspend'] and click on it.
+7.Verify the visbility of //b[text()='Haritha test']
+8.Click on Reason field //textarea[@id='textAreaExample'] and enter irresponsible in it.
+9.Click on //button[text()='Suspend']
+10.verify the visibility of Member Suspended
+11.Verify the visibility of //button[text()='Activate']
+12.click on //a[text()=' Check-In/Check-Out']
+13.Click on Search by Member Name and clear the value in it and enter the Haritha test in it.
+14.Verify the visibility of //span[@class='checkIn-Head'][text()='Haritha test']/../..//label[text()='Member Suspended']
+
+Create a methods like page object model approach in continuation of MembersManagementTabPage.ts file with duplicate methods also and methods should be called in create a new test named SuspendMember_VerifyStatusInCheckIN_CheckOutTab in MemberManagement.spec.ts and Generate script in MemberManagement.spec.ts
+
+TestCase:Activate the Suspend Member in MemberManagement
+
+1.Click on //a[text()=' Members Management']
+2.Search the Haritha test in search here...
+3.Click on //button[text()='Apply']
+4.Verify the visibility of //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Haritha test']/../td[text()='Female']/../td[text()='27']/../td[6][text()='haritha']/../td/div[text()='suspend']/../../td[text()='On'] and click on it.
+5..Verify the visibility of //h6[text()='Haritha']
+6.Verify the visibility of //button[text()='Activate'] and click on it.
+7.Verify the visbility of //b[text()='Haritha test']
+8.Click on (//button[text()='Activate'])[2]
+9.Verify the visibility of //button[text()='suspend']
+10.Verify the invisibility of //button[text()='Activate']
+11.Click on //a[text()=' Members Management']
+12.Search the Haritha test in search here...
+13.Click on //button[text()='Apply']
+14.Verify the visibility of //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Haritha test']/../td[text()='Female']/../td[text()='27']/../td[6][text()='haritha']/../td/div[text()='Active']/../../td[text()='On'] and click on it.
+
+Create a methods like page object model approach in continuation of MembersManagementTabPage.ts file with duplicate methods also and methods should be called in create a new test named Activate_SuspendMember_VerifyStatusInMemberManagement in MemberManagement.spec.ts and Generate script in MemberManagement.spec.ts
+
+=====================================================================
+TesCase:Create a Staff with Role as Admin in Staff Roles & Attendance Tab
+
+1.Click on //a[text()=' Staff Roles & Attendance']
+2.Click on //span[text()='Add Staff']
+3. await loginPage.staffPhoneInput().click();
+  await loginPage.staffPhoneInput().fill(testdata.mobile);
+  // 6. Generate random staff first name
+   let StaffFirstName = `Staff${Array.from({length: 6}, () => String.fromCharCode(97 + Math.floor(Math.random() * 26))).join('')}`;
+  console.log('StaffFirstName:', StaffFirstName);
+  await loginPage.staffFirstNameInput().click();
+  await loginPage.staffFirstNameInput().fill(StaffFirstName);
+  // 7. Enter last name
+    await loginPage.staffLastNameInput().click();
+  await loginPage.staffLastNameInput().fill('User');
+  // 8. Enter username
+    await loginPage.staffUsernameInput().click();
+  await loginPage.staffUsernameInput().fill(StaffFirstName);
+   await loginPage.staffPasswordInput().click();
+  await loginPage.staffPasswordInput().fill(testdata.StaffPassword);
+  // 10. Select gender
+  await loginPage.staffGenderSelect().selectOption({ label: testdata.gender });
+  // 11. Enter age
+    await loginPage.staffAgeInput().click();
+  await loginPage.staffAgeInput().fill(testdata.age);
+  // 12. Enter email
+   await loginPage.staffEmailInput().click();
+  await loginPage.staffEmailInput().fill(`${StaffFirstName}@mailinator.com`);
+  // 13. Select role as Staff
+  await loginPage.staffRoleSelect().selectOption({ label: 'Admin' });
+  // 14. Click Add button
+  await loginPage.staffAddButton().click();
+  // 15. Search staff by email
+   await loginPage.staffSearchInput().click();
+  await loginPage.staffSearchInput().fill(`${StaffFirstName}@mailinator.com`);
+  // 16. Verify staff table row count is 1
+  const staffRows = await loginPage.staffTableRows().count();
+  expect(staffRows).toBe(1);
+  // 17. Verify staff name cell is visible
+  await expect(loginPage.staffTableNameCell(`${StaffFirstName} User`)).toBeVisible();
+4.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='${StaffFirstName} User']/../td[text()='+91${testdata.mobile}']/../td[text()='${StaffFirstName}@mailinator.com']/../td/label[text()='admin']
+5.click on //a[text()=' Check-In/Check-Out']
+6.click on (//input[@class='checkinbutton'])[1]
+7.Select the ${StaffFirstName} User in //span[text()='Trainer: ']/..//select
+
+
+Generate script like page object model approach in a Staff_Roles_AttendanceTab.ts in pageobjects folder.Create a Staff_Roles_Attendance.spec.ts in tests folder with test named CreateStaffAsAdmin_VerifyCreatedStaff_WhileCheckIN_TrainerDropDown.The methods related to it could be call from Staff_Roles_AttendanceTab.ts Some methods call from loginPage.ts
+
+
+TesCase:Edit the Staff Information in Staff Roles & Attendance Tab
+
+1.Click on //a[text()=' Staff Roles & Attendance']
+2. await loginPage.staffSearchInput().click();
+  await loginPage.staffSearchInput().fill(`${StaffFirstName}@mailinator.com`);
+  // 16. Verify staff table row count is 1
+  const staffRows = await loginPage.staffTableRows().count();
+  expect(staffRows).toBe(1);
+3.  await expect(staffTab.staffTableRow_Accountant(`${AccountantStaffFirstName} User`, testdata.mobile, `${AccountantStaffFirstName}@mailinator.com`)).toBeVisible();
+4.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='${StaffFirstName} User']/../td[text()='+91${testdata.mobile}']/../td[text()='${StaffFirstName}@mailinator.com']/../td/label[text()='accountant']/../../td/button/img and click on it.
+5.await loginPage.staffPhoneInput().click();
+  await loginPage.staffPhoneInput().clear();
+  await loginPage.staffPhoneInput().fill(+919874563214);
+   // 6. Generate random staff first name
+   let EditedStaffFirstName = `Staff${Array.from({length: 6}, () => String.fromCharCode(97 + Math.floor(Math.random() * 26))).join('')}`;
+  console.log('EditedStaffFirstName:', EditedStaffFirstName);
+  await loginPage.staffFirstNameInput().click();
+   await loginPage.staffFirstNameInput().clear()
+  await loginPage.staffFirstNameInput().fill(EditedStaffFirstName);
+  // 7. Enter last name
+    await loginPage.staffLastNameInput().click();
+	wait loginPage.staffLastNameInput().clear();
+  await loginPage.staffLastNameInput().fill('User');
+  // 8. Enter username
+    await loginPage.staffUsernameInput().click();
+	 await loginPage.staffUsernameInput().clear()
+  await loginPage.staffUsernameInput().fill(EditedStaffFirstName);
+   await loginPage.staffPasswordInput().click();
+    await loginPage.staffPasswordInput().clear()
+  await loginPage.staffPasswordInput().fill(testdata.StaffPassword);
+  // 10. Select gender
+  await loginPage.staffGenderSelect().selectOption({ label: Female });
+  // 11. Enter age
+    await loginPage.staffAgeInput().click();
+	await loginPage.staffAgeInput().clear()
+  await loginPage.staffAgeInput().fill(testdata.age);
+  // 12. Enter email
+   await loginPage.staffEmailInput().click();
+   await loginPage.staffEmailInput().clear()
+  await loginPage.staffEmailInput().fill(`${EditedStaffFirstName}@mailinator.com`);
+  // 13. Select role as Staff
+  await loginPage.staffRoleSelect().selectOption({ label: 'Admin' });
+  // 14. Click Add button
+  await loginPage.staffAddButton().click();
+  
+    // 15. Search staff by email
+   await loginPage.staffSearchInput().click();
+  await loginPage.staffSearchInput().fill(`${EditedStaffFirstName}@mailinator.com`);
+  // 16. Verify staff table row count is 1
+  const staffRows = await loginPage.staffTableRows().count();
+  expect(staffRows).toBe(1);
+  // 17. Verify staff name cell is visible
+  await expect(loginPage.staffTableNameCell(`${EditedStaffFirstName} User`)).toBeVisible();
+6.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='${EditedStaffFirstName} User']/../td[text()='+919874563214']/../td[text()='${EditedStaffFirstName}@mailinator.com']/../td/label[text()='admin']
+7.click on //a[text()=' Check-In/Check-Out']
+8.click on (//input[@class='checkinbutton'])[1]
+9.Select the ${EditedStaffFirstName} User in //span[text()='Trainer: ']/..//select
+  
+Create a methods like page object model approach in continuation of Staff_Roles_AttendanceTab.ts file with duplicate methods also and methods should be called in create a new test named EditStaffInfo__VerifyEditedStaff_WhileCheckIN_TrainerDropDown in Staff_Roles_Attendance.spec.ts and Generate script in Staff_Roles_Attendance.spec.ts
+
+
+TesCase:CheckInStaff_VerifyAttendance
+
+1..Click on //a[text()=' Staff Roles & Attendance']
+2.await loginPage.staffSearchInput().click();
+  await loginPage.staffSearchInput().fill(`${EditAdminStaffFirstName}@mailinator.com`);
+  // 16. Verify staff table row count is 1
+  const staffRows = await loginPage.staffTableRows().count();
+  expect(staffRows).toBe(1);
+3.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='${EditAdminStaffFirstName} User']/../td//button[text()='View Attendance'] and click on it.
+4.Verify the visibility of //h5[text()='Staff Information']
+5.Verify the visibility of //span[@class='checkIn-Head'][text()='${EditAdminStaffFirstName} User']
+4.Verify the invisibility of //div[@class='FixedtableHeader table-flow sno']//tbody/tr/td
+5.Click on //button[@class='btn-close'] and wait 2 seconds
+6.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='${EditAdminStaffFirstName} User']/../td//button[text()='Check-In'] and click on it and wait 5 seconds
+7.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='${EditAdminStaffFirstName}   User']/../td//button[text()='Check-Out']  and click on it  wait 2 seconds
+8.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='${EditAdminStaffFirstName}  User']/../td//button[text()='View Attendance'] and click on it.
+9.Verify the visibility of //h5[text()='Staff Information']
+10.Verify the visibility of //span[@class='checkIn-Head'][text()='${EditAdminStaffFirstName} User']
+11.Verify the visibility of //div[@class='FixedtableHeader table-flow sno']//tbody/tr/td
+
+Create a methods like page object model approach in continuation of Staff_Roles_AttendanceTab.ts file with duplicate methods also and methods should be called in create a new test named CheckInStaff_VerifyAttendance in Staff_Roles_Attendance.spec.ts and Generate script in Staff_Roles_Attendance.spec.ts
+
+
+TesCase:DeleteStaff
+
+1.Click on //a[text()=' Staff Roles & Attendance']
+2.await loginPage.staffSearchInput().click();
+  await loginPage.staffSearchInput().fill(`${EditAdminStaffFirstName}@mailinator.com`);
+3.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='${EditAdminStaffFirstName}  User']/../td//button/img[@alt='Delete'].
+4. page.once('dialog', async dialog => {
+  expect(dialog.message()).toBe("Are you sure want to delete this Staff Member?");
+  await dialog.accept();
+ });
+5.Click //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='${EditAdminStaffFirstName} User']/../td//button/img[@alt='Delete'].
+6. await page.waitForTimeout(2000);
+7. await loginPage.dashboardTab().click();
+  await loginPage.staffRolesAttendanceTab().click();
+   await loginPage.staffSearchInput().click();
+  await loginPage.staffSearchInput().fill(`${EditAdminStaffFirstName}@mailinator.com`);
+  await expect(loginPage.noMatchingResultsText()).toBeVisible();
+  
+8..Click on //a[text()=' Staff Roles & Attendance']
+9.await loginPage.staffSearchInput().click();
+  await loginPage.staffSearchInput().fill(`${AccountantStaffFirstName}@mailinator.com`);
+10.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='${AccountantStaffFirstName}  User']/../td//button/img[@alt='Delete'].
+11. page.once('dialog', async dialog => {
+  expect(dialog.message()).toBe("Are you sure want to delete this Staff Member?");
+  await dialog.accept();
+ });
+12.Click //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='${AccountantStaffFirstName} User']/../td//button/img[@alt='Delete'].
+13. await page.waitForTimeout(2000);
+14. await loginPage.dashboardTab().click();
+  await loginPage.staffRolesAttendanceTab().click();
+   await loginPage.staffSearchInput().click();
+  await loginPage.staffSearchInput().fill(`${AccountantStaffFirstName}@mailinator.com`);
+  await expect(loginPage.noMatchingResultsText()).toBeVisible();
+  
+  
+
+Create a methods like page object model approach in continuation of Staff_Roles_AttendanceTab.ts file with duplicate methods also and methods should be called in create a new test named DeleteStaff in Staff_Roles_Attendance.spec.ts and Generate script in Staff_Roles_Attendance.spec.ts
+
+=========================================================================================
+
+Testcase:Create a Plan with a Session Limit,PlanType as Recuuring from Plans,Slots & Addons and Verify the Created Plan in POS Tab.
+
+1.await planPage.plansLink().click();
+  await expect(planPage.createPlanLink()).toBeVisible();
+  await planPage.createPlanLink().click();
+  await expect(planPage.planNameInput()).toBeVisible();
+  const randomPlanName = `${testdata.planName}${Math.floor(Math.random() * 10000)}`;
+  await planPage.planNameInput().click();
+  await planPage.planNameInput().fill(randomPlanName);
+  await planPage.validityInput().click();
+  await planPage.validityInput().fill(testdata.validity);
+2.Click on //label[text()='Session Limit']/..//input
+3.Click on (//input[@id='validity'])[2] and enter the 10 in (//input[@id='validity'])[2]
+4.Click on Session Sharing Limit and enter the 1 in Session Sharing Limit
+5.Click on //input[@name='sunday'] and click on //input[@name='saturday']
+6.Click on Allowed slots plus button //span[text()='Allowed Slots:']/..//img
+7.Click on placeholder="Slot Name" and enter the Midnoon in placeholder="Slot Name"
+8.Select 12 in (//select[@class='slotdrop'])[1]
+9.click on Save button ans wait 2 seconds.
+10.Verify the visibility of //div[@class='allowedslot-box']//span[text()='Midnoon']/..//span[text()='12']
+11.Click on Uncheck //span[text()='afternoon']/../..//input
+12.Select PlanType as Recuring //select[@name='membershiptypes']
+13.await planPage.discountDropdown().selectOption({ value: '2' });
+  await planPage.priceInput().click();
+  await planPage.priceInput().fill(testdata.price);
+14.Click on //label[text()='Enable/Disable Plan:']/..//span[@class='slider round'] 
+15.Click on //label[text()='Force Trainer at Check-in: ']/..//span[@class='slider round']
+16.Click on //label[text()='Description: ']/..//textarea and enter  ThisPlan is Recurring
+  await planPage.saveButton().click();
+  await expect(planPage.planSavedAlert()).toBeVisible();
+17.Verify the visibility of Slot saved successfully
+   await planPage.searchInput().click();
+  await planPage.searchInput().fill(randomPlanName);
+  await page.waitForTimeout(2000);
+   await expect(planPage.planRow(randomPlanName)).toBeVisible();
+  const rows = await planPage.tableRows().count();
+  expect(rows).toBe(1);
+  //9. Verify the first member row contains all required details
+  await expect(planPage.secondCell()).toHaveText(randomPlanName);
+  await expect(planPage.validityCell(randomPlanName)).toContainText(testdata.validity);
+  await expect(planPage.discountCell()).toHaveText('10');
+  await expect(planPage.daysCell(randomPlanName)).toContainText('Mon, Tue, Wed, Thu, Fri, ');
+  await expect(planPage.slotsCell(randomPlanName)).toContainText('Midnoon, evening, morning');
+  await expect(planPage.priceCell(randomPlanName)).toContainText(testdata.price);
+18.assertion for Session //div[@class="datatable sno PlansDataTable"]//table/tbody/tr/td[2][text()='randomPlanName']/../td[4] is 10
+19.assertion for Plan Type	 //div[@class="datatable sno PlansDataTable"]//table/tbody/tr/td[2][text()='randomPlanName']/../td[8] is Recurring
+20.assertion for Enable/Disable	 //div[@class="datatable sno PlansDataTable"]//table/tbody/tr/td[2][text()='randomPlanName']/../td[11] is Disabled
+21.assertion for Force Trainer cell //div[@class="datatable sno PlansDataTable"]//table/tbody/tr/td[2][text()='randomPlanName']/../td[12] is Enabled
+   await planPage.pointOfSaleButton().click();
+    await planPage.searchPlanInput().fill(randomPlanName);
+	await expect(planPage.planNameInPOS(randomPlanName)).not.toBeVisible
+
+
+Create a methods like page object model approach in continuation of CreatePlanPage.ts file with duplicate methods also and methods should be called in create a new test named CreatePlan_WithSessionLimit_TypeAsRecurring in CreatePlan.spec.ts and Generate script in CreatePlan.spec.ts
+
+
+TestCase: Verify Filter Dropdowns in Plans,Slots & Addons>>>>>>Plans
+
+1.await planPage.plansLink().click();
+  await expect(planPage.createPlanLink()).toBeVisible();
+2.Select the Disable (//select[@id='emailReminder'])[1] ans wait 2 seconds
+3.Verify the visibility of //div[@class='datatable sno PlansDataTable']//tbody/tr/td[text()='randomPlanName_Recurring']/../td[text()='Midnoon, evening, morning']
+4.Verify the list of elements //div[@class='datatable sno PlansDataTable']//tbody/tr/td[11] and store the values by iterating row in array.
+assertion for array contains Disabled,if Enabled is there fail the assertion.
+5.Select the All (//select[@id='emailReminder'])[1] and wait 5 seconds.
+6.Select the Recuring (//select[@id='emailReminder'])[2] ans wait 2 seconds
+7.Verify the visibility of //div[@class='datatable sno PlansDataTable']//tbody/tr/td[text()='randomPlanName_Recurring']/../td[text()='Midnoon, evening, morning']
+8.Verify the list of elements //div[@class='datatable sno PlansDataTable']//tbody/tr/td[8] and store the values by iterating row in array.
+assertion for array contains only Recurring,if One-time is there fail the assertion.
+
+
+Create a methods like page object model approach in continuation of CreatePlanPage.ts file with duplicate methods also and methods should be called in create a new test named VerifyFilterDropDowns_Plans in CreatePlan.spec.ts and Generate script in CreatePlan.spec.ts
+
+
+
+TestCase:DeleteSlot
+
+1.await planPage.plansLink().click();
+  await expect(planPage.createPlanLink()).toBeVisible();
+2.Click on //a[text()='Slots']
+3.Click on //input[@class='form-control discountsDataTableSearch'] and Clear the value and enter SlotName in it.
+4.Assert //div[@class='datatable sno mt-2']//tbody/tr is 1
+   page.once('dialog', async dialog => {
+  expect(dialog.message()).toBe("Are you sure want to delete this Slot?");
+  await dialog.accept();
+  });
+5.Click on Delete button //div[@class='datatable sno mt-2']//tbody/tr/td[text()='SlotName']/..//td//i[@class='fas fa-trash fs-6 ps-2']
+6.verify the visibility of alert Slot deleted successfully
+7.Click on //a[text()=' Point of Sale']
+8.await planPage.plansLink().click();
+9.Click on //a[text()='Slots']
+10.Click on //input[@class='form-control discountsDataTableSearch'] and Clear the value and enter SlotName in it.
+11.Verify the visibility of //td[text()='No matching results found']
+
+Create a methods like page object model approach in continuation of CreatePlanPage.ts file with duplicate methods also and methods should be called in create a new test named DeleteSlot in CreatePlan.spec.ts and Generate script in CreatePlan.spec.ts
+
+TestCase:Create a Plan through Import Sheet  and Verify the Created Plan in POS Tab.
+
+const filePath = 'D:/EasyMembr_TestData/Sample_Plan_Data.xlsx';
+1. await page.locator('//a[text()=" Plans, Slots & Addons"]').click();
+  await page.locator('(//button[@type="submit"][text()="Import"])[1]').click();
+  const fileInput = await page.locator('input[type="file"]');
+  await fileInput.setInputFiles(filePath);
+  await expect(page.getByText('Sample_Plan_Data (1).xlsx')).toBeVisible();
+  await page.locator('//button[text()="Upload"]').click();
+  Verify the visibility of alert Plan(s) Imported successfully!
+  await page.locator('//a[text()=" Staff Roles & Attendance"]').click();
+  await page.locator('//a[text()="Plans,Slots & Addons"]').click();
+  await planPage.searchInput().click();
+  await planPage.searchInput().fill('Quarter');
+2. const rows = await planPage.tableRows().count();
+   expect(rows).toBe(1);
+  await expect(planPage.secondCell()).toHaveText(Quarter);
+  await expect(planPage.validityCell(Quarter)).toContainText('20 Days');
+  await expect(planPage.discountCell()).toHaveText('15');
+  await expect(planPage.daysCell(Quarter)).toContainText('Mon, Tue, ');
+  await expect(planPage.slotsCell(Quarter)).toContainText(`morning`);
+  await expect(planPage.priceCell(Quarter)).toContainText(5000);
+  // 18. Session assertion
+  await expect(planPage.planRowSessionCell(Quarter)).toHaveText('20');
+  // 19. Plan Type assertion
+  await expect(planPage.planRowTypeCell(Quarter)).toHaveText('Recurring');
+  // 20. Enable/Disable assertion
+  await expect(planPage.planRowEnableCell(Quarter)).toHaveText('Enabled');
+  // 21. Force Trainer assertion
+  await expect(planPage.planRowForceTrainerCell(Quarter)).toHaveText('Disabled');
+  Assert //div[@class="datatable sno PlansDataTable"]//table/tbody/tr/td[2][text()='Quarter']/../td[10] is Included
+  // POS flow
+  await planPage.pointOfSaleButton().click();
+  await planPage.searchPlan_POSInput().click();
+  await planPage.searchPlan_POSInput().fill(Quarter);
+  await expect(planPage.planNameInPOS(Quarter)).toBeVisible();
+  
+Create a methods like page object model approach in continuation of CreatePlanPage.ts file with duplicate methods also and methods should be called in create a new test named CreatePlan_ImportSheet in CreatePlan.spec.ts and Generate script in CreatePlan.spec.ts
+
+
+TestCase:Edit a Plan from Plans,Slots & Addons  and Verify the Edited Plan in POS Tab.
+
+1.await planPage.dashboardTab().click();
+   await planPage.plansSlotsAddonsNoSpaceLink().click();
+  await planPage.searchInput().click();
+  await planPage.searchInput().fill(Quarter);
+   const rows = await planPage.tableRows().count();
+  expect(rows).toBe(1);
+  await expect(planPage.secondCell()).toHaveText(Quarter);
+2.Click on //div[@class="datatable sno PlansDataTable"]//table/tbody/tr/td[2][text()='Quarter']/../td[3]/../td//i[@class='fas fa-edit fs-6 ps-2']
+3.Verify the visibility of //input[@placeholder='Plan Name'][@value='Quarter'] and click on it and clear the value and enter testautomation in it.
+4.Click on (//input[@name="validity"])[1] and clear the value and enter 30
+5. await planPage.sessionLimitInput().click();
+6.await planPage.sundayCheckbox().click();
+7.await planPage.uncheckAfternoonInput().click();
+8. await planPage.planTypeSelect().selectOption({ value: '1' });
+9.await planPage.discountDropdown().selectOption({ value: '2' });
+  await planPage.priceInput().click();
+  await planPage.priceInput().fill(1000);
+10.await planPage.forceTrainerSlider().click();
+11.await planPage.saveButton().click();
+   await expect(planPage.planSavedAlert()).toBeVisible();
+   await planPage.searchInput().click();
+  await planPage.searchInput().fill(Quarter);
+  Verify the visibility fo //td[text()='No matching results found']
+  await planPage.dashboardTab().click();
+   await planPage.plansSlotsAddonsNoSpaceLink().click();
+    await planPage.searchInput().click();
+  await planPage.searchInput().fill(automationplan);
+  await page.waitForTimeout(2000);
+  await expect(planPage.planRow(automationplan)).toBeVisible();
+  const rows = await planPage.tableRows().count();
+  expect(rows).toBe(1);
+  await expect(planPage.secondCell()).toHaveText(automationplan);
+   await expect(planPage.validityCell(automationplan)).toContainText(30 Days);
+   assert //div[@class="datatable sno PlansDataTable"]//table/tbody/tr/td[2][text()='automationplan']/../td[4] is --
+    await expect(planPage.discountCell()).toHaveText('10');
+	 await expect(planPage.daysCell(automationplan)).toContainText('Mon, Tue, Sun, ');
+  await expect(planPage.slotsCell(automationplan)).toContainText(`morning, afternoon`);
+  await expect(planPage.priceCell(automationplan)).toContainText(1000);
+  await expect(planPage.planRowTypeCell(automationplan)).toHaveText('One-time');
+   await expect(planPage.planRowEnableCell(automationplan)).toHaveText('Disabled');
+    await expect(planPage.planRowForceTrainerCell(automationplan)).toHaveText('Enabled');
+	 await planPage.pointOfSaleButton().click();
+  await planPage.searchPlan_POSInput().click();
+  await planPage.searchPlan_POSInput().fill(automationplan);
+  await expect(planPage.planNameInPOS(automationplan)).toBeVisible();
+
+
+Create a methods like page object model approach in continuation of CreatePlanPage.ts file with duplicate methods also and methods should be called in create a new test named EditPlan in CreatePlan.spec.ts and Generate script in CreatePlan.spec.ts
+
+
+TestCase:Delete a Plan from Plans,Slots & Addons  and Verify the Deleted Plan in POS Tab.
+
+1.await planPage.dashboardTab().click();
+   await planPage.plansSlotsAddonsNoSpaceLink().click();
+  await planPage.searchInput().click();
+  await planPage.searchInput().fill(TestPlan1229);
+   const rows = await planPage.tableRows().count();
+  expect(rows).toBe(1);
+  await expect(planPage.secondCell()).toHaveText(TestPlan1229);
+  page.once('dialog', async dialog => {
+    expect(dialog.message()).toBe('Are you sure want to delete this Plan?');
+    await dialog.accept();
+  });
+2.Click on //div[@class="datatable sno PlansDataTable"]//table/tbody/tr/td[2][text()='TestPlan1229']/../td[3]/../td//i[@class='fas fa-trash fs-6 ps-2']
+3.Verify the visibility of Alert Plan deleted successfully
+4.await planPage.dashboardTab().click();
+   await planPage.plansSlotsAddonsNoSpaceLink().click();
+  await planPage.searchInput().click();
+  await planPage.searchInput().fill(TestPlan1229);
+   await expect(planPage.noMatchingResultsCell()).toBeVisible();
+    // POS flow
+  await planPage.pointOfSaleButton().click();
+  await planPage.searchPlan_POSInput().click();
+  await planPage.searchPlan_POSInput().fill(TestPlan1229);
+  await expect(planPage.planNameInPOS(TestPlan1229)).not.toBeVisible();
+  
+  
+Create a methods like page object model approach in continuation of CreatePlanPage.ts file with duplicate methods also and methods should be called in create a new test named DeletePlan in CreatePlan.spec.ts and Generate script in CreatePlan.spec.ts
+
+
+========================================================================================
+TestCase:Create a Slot by Clicking Create Slot in Plans,Slots & Addons.
+
+1.Click on //a[text()=' Plans, Slots & Addons']
+2.click on //span[text()='Create Slot']
+3.Verify the visibility of //h5[text()='Create/Edit Slot']
+4.Click on //input[@name='slotname'] and clear the value and enter dance
+5.Select the 12 in (//select[@class='slotdrop'])[1]
+6.Click on //button[text()='Save']
+7.Verify the visibility of alert Slot saved successfully
+8.await planPage.dashboardTab().click();
+9.Click on //a[text()=' Plans, Slots & Addons']
+10.Click on //a[text()='Slots']
+11.Click on //input[@class='form-control discountsDataTableSearch'] and clear the value in it.and enter the dance and wait 2 seconds
+12.Verify the visibility of //div[@class='datatable sno mt-2']//tbody/tr/td[text()='dance']/../td[text()='12:00 AM To 1:00 AM']
+13.Click on //span[text()='Create Plan'] and wait 2 seconds
+14.Verify the visibility of //div[@class='allowedslot-box']/..//span[text()='dance']
+15.verify the visibility of //button[@class='ripple ripple-surface btn-close'] and click on //button[@class='ripple ripple-surface btn-close'] wait 2 seconds
+
+
+Create a methods like page object model approach in continuation of SlotsPage.ts file with duplicate methods also and methods should be called in create a new test named CreateSlot in CreateSlotValidations.spec.ts and Generate script in CreateSlotValidations.spec.ts
+
+
+Testcase:Create a Slot through Import Sheet.
+
+const filePath = 'D:/EasyMembr_TestData/Sample_Slots.xlsx';
+1. await slotsPage.plansSlotsAddonsLink().click();
+2. await slotsPage.DeleteExistingSlot(testdata.RandomSlotName,page);
+3. await slotsPage.slotsTabLink().click();
+4.  await planPage.importButton().click();
+  const fileInput = planPage.fileInput();
+  await fileInput.setInputFiles(filePath);
+  await expect(planPage.uploadedFileVisible(Sample_Slots.xlsx)).toBeVisible();
+  await planPage.uploadButton().click();
+5.verify the visibility of alert Slot(s) Imported successfully!
+7.await slotsPage.dashboardTab().click();
+8. await slotsPage.plansSlotsAddonsLink().click();
+    await slotsPage.slotsTabLink().click();
+    await slotsPage.slotSearchInput().click();
+    await slotsPage.slotSearchInput().fill('');
+    await slotsPage.slotSearchInput().fill(testdata.RandomSlotName);
+    await page.waitForTimeout(2000);
+	 await expect(slotsPage.slotRowByNameAndTime(testdata.RandomSlotName, '12:00 AM To 1:00 AM')).toBeVisible();
+	  await slotsPage.createPlanButton().click();
+    await page.waitForTimeout(2000);
+    // 14. Verify allowed slot box for dance
+    await expect(slotsPage.allowedSlotBoxByName(testdata.RandomSlotName)).toBeVisible();
+    // 15. Close button
+    await expect(slotsPage.closeButton()).toBeVisible();
+    await slotsPage.closeButton().click();
+    await page.waitForTimeout(2000);
+	
+Create a methods like page object model approach in continuation of SlotsPage.ts file with duplicate methods also and methods should be called in create a new test named CreateSlot_ImportSheet in CreateSlotValidations.spec.ts and Generate script in CreateSlotValidations.spec.ts
+
+
+Testcase:Edit a Slot from Plans,Slots & Addons.
+
+1. await slotsPage.dashboardTab().click();
+2. await slotsPage.plansSlotsAddonsLink().click();
+await slotsPage.slotsTabLink().click();
+    await slotsPage.slotSearchInput().click();
+    await slotsPage.slotSearchInput().fill('');
+    await slotsPage.slotSearchInput().fill(testdata.RandomSlotName);
+    await page.waitForTimeout(2000);
+3.Verify the visibiliy of //div[@class='datatable sno mt-2']//tbody/tr/td[text()='zumba']/../td[text()='5:30 PM To 6:00 PM']/../td/i[@class='fas fa-edit fs-6 ps-2'] and click on it.
+4.verify the visibility of //input[@name='slotname'][@value='${testdata.RandomSlotName}'] and click on it and clear the value
+5.Click on //input[@name='slotname'] and enter the Yoga in it.
+6.Select 00 in (//select[@class='slotdrop'])[2] 
+7.await slotsPage.saveSlotButton().click();
+8.await slotsPage.dashboardTab().click();
+9. await slotsPage.plansSlotsAddonsLink().click();
+10.await slotsPage.slotsTabLink().click();
+ await slotsPage.slotSearchInput().click();
+    await slotsPage.slotSearchInput().fill('');
+    await slotsPage.slotSearchInput().fill(testdata.RandomSlotName);
+    await page.waitForTimeout(2000);
+11.Verify the visibility of //td[text()='No matching results found']
+12.await slotsPage.dashboardTab().click();
+ await slotsPage.plansSlotsAddonsLink().click();
+await slotsPage.slotsTabLink().click();
+    await slotsPage.slotSearchInput().click();
+    await slotsPage.slotSearchInput().fill('');
+    await slotsPage.slotSearchInput().fill(Yoga);
+    await page.waitForTimeout(2000);
+13.Verify the visibility of //div[@class='datatable sno mt-2']//tbody/tr/td[text()='Yoga']/../td[text()='5:00 PM To 6:00 PM']
+14.await slotsPage.createPlanButton().click();
+    await page.waitForTimeout(2000);
+    // 14. Verify allowed slot box for dance
+    await expect(slotsPage.allowedSlotBoxByName(Yoga)).toBeVisible();
+    // 15. Close button
+    await expect(slotsPage.closeButton()).toBeVisible();
+    await slotsPage.closeButton().click();
+    await page.waitForTimeout(2000);
+
+
+Create a methods like page object model approach in continuation of SlotsPage.ts file with duplicate methods also and methods should be called in create a new test named EditSlot_VerifyInCreatePlanPage in CreateSlotValidations.spec.ts and Generate script in CreateSlotValidations.spec.ts
+
+
+
+Testcase:Delete a Slot from Plans,Slots & Addons.
+
+1.  await slotsPage.DeleteExistingSlot(testdata.EditImportSlotName,page);
+2.await slotsPage.dashboardTab().click();
+ await slotsPage.plansSlotsAddonsLink().click();
+await slotsPage.slotsTabLink().click();
+    await slotsPage.slotSearchInput().click();
+    await slotsPage.slotSearchInput().fill('');
+    await slotsPage.slotSearchInput().fill(Yoga);
+    await page.waitForTimeout(2000);
+	await expect(slotsPage.noMatchingResultsCell()).toBeVisible();
+	await slotsPage.createPlanButton().click();
+    await page.waitForTimeout(2000);
+3.Verify the invisibility of //div[@class='allowedslot-box']/..//span[text()='Yoga']
+ await expect(slotsPage.closeButton()).toBeVisible();
+    await slotsPage.closeButton().click();
+    await page.waitForTimeout(2000);
+	
+Create a methods like page object model approach in continuation of SlotsPage.ts file with duplicate methods also and methods should be called in create a new test named DeleteSlot_VerifyInCreatePlanPage in CreateSlotValidations.spec.ts and Generate script in CreateSlotValidations.spec.ts
+
+===========================================================
+
+TesCase: Create a Addon from Plans,Slots & Addons and Verify the Created Addons in Point of Sale Tab.
+
+1.await slotsPage.dashboardTab().click();
+2. await slotsPage.plansSlotsAddonsLink().click(); and wait 3 seconds in a single method
+3.Click on //a[text()='Addons'] 
+4.Click on //span[text()='Create Addons']
+5.Click on //input[@id='product_name'] and clear the value in it and enter Protein
+6.Click on placeholder="Enter Price" and clear the value in it and enter 2000
+7.Click on //input[@name='tax'] uncheck the IncludeTax
+8.Click on //textarea[@name='description'] and clear the value in it and enter MuscleGrowth
+9.Click on Save button.
+10.verify the visibility of alert as Addon saved successfully
+11.await slotsPage.dashboardTab().click();
+12.await slotsPage.plansSlotsAddonsLink().click(); and wait 2 seconds
+13.Click on //a[text()='Addons'] 
+14.Click on search here... and clear the value and enter Protein and wait 2 seconds
+15.Verify the visibility of //div[@class='datatable sno addOnsDataTable']//tbody/tr and count is equal to 1
+16.verify the visibility of //div[@class='datatable sno addOnsDataTable']//tbody/tr/td[text()='Protein']/../td[text()='₹2000']/../td[text()='Excluded']
+17.await planPage.pointOfSaleButton().click();
+18.await planPage.searchPlan_POSInput().click();
+19.await planPage.searchPlan_POSInput().fill(Protein); and wait 2 seconds
+20.Verify the visbility of //span[text()='Addon']/../../div[text()='Protein'] and click on it.
+21.Click on MembersAddbutton (//img[@alt='Add'])[1] and wait 2 seconds
+22.Click on placeholder="Search" and clear thevalue ans enter shiva shiva
+23.Click on //h6[text()='shiva']
+24.Click on Done button
+
+//Discount Validation
+
+25.verify the visibility of //div[@class='d-flex align-items-center fw-bold'][text()='2000']
+26.Click on //input[@type='number'] and clear the value in it and enter 100
+27.Verify the visibility of //span[@class='ms-1 text-success']/strong[text()='1000.00']
+
+//Billing Details Edits
+28.Verify the visibility of //input[@value='shiva shiva'] 
+29.click on //button[text()='EDIT']
+30.Verify the visibility of //li[text()='shiva shiva']
+31.Click on //button[text()='Add Name from the system'] and wait 2 seconds
+32.Click on FirstMember in List (//div[@class='row usercar-prev'])[1]//h6 
+32.Get text from (//div[@class='row usercar-prev'])[1]//h6  and store in variable FirstMemberName.
+33.Click on Done Button
+34.Verify the visibility of //li[contains(text(),'Lucky')]
+35.Click on //button[text()='Add New Billing Name']
+36.Click on //input[@name='name'] and clear the value and enter vamsi
+37.Click on //input[@name='mobile'] and clear the value and enter 6547893215
+38.Click on //input[@name='email'] and clear the value and enter vamsi@gmail.com
+39.Click on //button[text()='Save']
+40.Verify visibility of //input[@value='vamsi'] and visbility of //input[@value='6547893215'] and visibility of //input[@value='vamsi@gmail.com']
+
+41.Click on Continue button
+42.Click on //div[text()='Multiple'] and wait 4 seconds
+43.Scroll on  Balance due amount and click on (//input[@class='splitinput w-50'])[1] and  await page.keyboard.type('2000'); and wait 5 seconds 
+   Gettext from //span[text()=' Balance due amount']/..//span[2] and store it variable balanceamount
+44.Scroll on Balance due amount and click on (//input[@class='splitinput w-50'])[2] and await page.keyboard.type(${balanceamount}); and wait 5 seconds
+45.Click on //button[text()='Done']
+46.Verify the visibility of Alert Transaction created successfully
+47.verify the visibility of //div[text()='Payment Successful']
+48.Select shiva shiva in dropdown //label[text()='Select Trainer: ']/..//select
+49.Click on //input[@value='Check-In'] and wait 5 seconds
+50.verify the visibility of //input[@value='Check-Out'] and click on it.
+51.Click on (//button[@aria-label='Close'])[2]
+
+//Validation In MemberManagement
+52.Click on //a[text()=' Members Management']
+53.Click on search here... and enter shiva shiva
+54.Click on //button[text()='Apply']
+55.Verify the visibility of //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='shiva shiva']/../td[text()='Protein'] 
+ and click on //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='shiva shiva']/../td[text()='Protein']
+
+//Vreify in Members>>>Addons Section
+56.Click on //a[text()='Addons'] and verify visibility of //div[@class='datatable sno addOnTable']//tbody/tr and count should be 1.
+57.Verify the visibility of //div[@class='datatable sno addOnTable']//tbody/tr/td[text()='Protein']
+
+
+Create a methods like page object model approach in AddOnsPage.ts file with duplicate methods also and methods should be called in create a new test named CreateAddONS_VerifyInPOS_AddMemberToAddONSByMultiplePayments_DiscountValidation_EditBillingDetails_VerifyInMemberManagement_Member_ADDONSSection in CreateADDONSValidations.spec.ts and Generate script in CreateADDONSValidations.spec.ts
+
+
+TestCase: Create a Addons through Import Sheet and Verify the Created Addons in Point of Sale Tab.
+
+const filePath = 'D:/EasyMembr_TestData/Sample_Addon_Data.xlsx';
+1. await addOnsPage.clickDashboard();
+2. await addOnsPage.clickPlansSlotsAddonsAndWait();
+3. await addOnsPage.clickAddonsTab();
+4.Click on (//button[@type="submit"][text()="Import"])[2]
+5.Upload file filePath in input[type="file"] 
+6.Verify the visibility of Sample_Addon_Data.xlsx
+7.Click on //button[text()="Upload"]
+8.Verify the visibility of Addon(s) Imported successfully!
+9.await addOnsPage.clickDashboard();
+10. await addOnsPage.clickPlansSlotsAddonsAndWaitAgain();
+11.await addOnsPage.clickAddonsTabAgain();
+12.await addOnsPage.searchAddons(Gloves);
+13. const rows = await addOnsPage.getAddonsTableRows();
+  expect(await rows.count()).toBe(1);
+14.Verify the visibility of //div[@class='datatable sno addOnsDataTable']//tbody/tr/td[text()='Gloves']/../td[text()='₹500']/../td[text()='Included']/../td[text()='Disabled']
+15.await addOnsPage.clickPointOfSale();
+16.await addOnsPage.searchAddonInPOS(testdata.AddOnName);
+17.Verify the invisibility of //span[text()='Addon']/../../div[text()='Gloves']
+
+
+
+Create a methods like page object model approach in continuaiton of AddOnsPage.ts file  and methods should be called in create a new test named CreateAddONSWithDisabled_ImportSheet_VerifyInvisibilityINPOS in CreateADDONSValidations.spec.ts and Generate script in CreateADDONSValidations.spec.ts
+
+
+TestCase: Verify Filter Dropdowns in Plans,Slots & Addons>>>>>>Addons.
+
+1.await addOnsPage.clickDashboard();
+2. await addOnsPage.clickPlansSlotsAddonsAndWait();
+3. await addOnsPage.clickAddonsTab();
+4.Select Disable in FilterDropdown //select[@name='emailReminder'] and wait 5 seconds
+5. get the textcontent from //div[@class='datatable sno addOnsDataTable']//tbody/tr/td[6] one by one row and store in list.Now assert the if list contains Enabled assertion fails.the list contains only Disabled and print in the list in console
+6.Verify the visibility of //div[@class='datatable sno addOnsDataTable']//tbody/tr/td[6][text()='Disabled']/../td[text()='Gloves']
+
+
+Create a methods like page object model approach in  AddOnsPage.ts file  and That methods should be called in create a new test named VerifyFilterDropDown in CreateADDONSValidations.spec.ts and Generate script in CreateADDONSValidations.spec.ts
+
+
+TestCase: Edit a Addons and Verify the Edited Addons in Point of Sale Tab.
+
+1.await addOnsPage.clickDashboard();
+2.await addOnsPage.clickPlansSlotsAddonsAndWait();
+3.await addOnsPage.clickAddonsTab();
+4.await addOnsPage.searchAddons(testdata.ImportAddOnName); and wait 3 seconds
+5. const rows = await addOnsPage.getAddonsTableRows();
+  expect(await rows.count()).toBe(1);
+6. await addOnsPage.verifyAddonsTableRowAll(testdata.ImportAddOnName, '₹500', 'Included', 'Disabled');
+7.Click on EditButton //div[@class='datatable sno addOnsDataTable']//tbody/tr/td[6][text()='Disabled']/../td[text()='Gloves']/../td[7]/i
+8.Verify the visibility of //input[@value='Gloves'] and click on it and clear the value in it.
+9.Click on //input[@id='product_name'] and clear it and enter the value Preworkout
+10.Select the text Monthly //select[@id='rentbasis'] in the Validay drpdown 
+11.Click on //input[@name='price'] and clear the value and enter 1000 in it.
+11.Click on EnableSlider //label[text()='Enable/Disable Addon: ']/..//span
+12.verify the visibility of //textarea[text()='PU material for grip with padded palm and thumb'] and click on it and clear the value.
+13.Click on //textarea[@placeholder='Describe about this Addon here...'] and enter ForStrength
+14.Click on Save button
+15.verify the visibility of  Addon saved successfully
+16.  await addOnsPage.clickDashboard();
+17. await addOnsPage.clickPlansSlotsAddonsAndWaitAgain();
+18. await addOnsPage.clickAddonsTabAgain();
+   await addOnsPage.searchAddons(Gloves);
+   Verify the visibility of //td[text()='No matching results found']
+   await addOnsPage.clickDashboard();
+  await addOnsPage.clickPlansSlotsAddonsAndWaitAgain();
+  await addOnsPage.clickAddonsTabAgain();
+19.await addOnsPage.searchAddons(Preworkout);
+20. const rows = await addOnsPage.getAddonsTableRows();
+  expect(await rows.count()).toBe(1);
+21. await addOnsPage.verifyAddonsTableRowAll(Preworkout, '₹1000', 'Included', 'Enabled');
+22. await addOnsPage.clickPointOfSale();
+23. await addOnsPage.searchAddonInPOS(testdata.ImportAddOnName);
+24. await expect(this.page.locator(`//span[text()='Addon']/../../div[text()='Preworkout']`)).toBeVisible();
+
+
+Create a methods like page object model approach in AddOnsPage.ts file  and That methods should be called in create a new test named EditAddONS_VerifyVisibilityINPOS  of CreateADDONSValidations.spec.ts and Generate script in CreateADDONSValidations.spec.ts
+
+TestCase: Delete a Addons and Verify the Deleted Addons in Point of Sale Tab.
+
+1.await addOnsPage.clickDashboard();
+2.await addOnsPage.clickPlansSlotsAddonsAndWait();
+3.await addOnsPage.clickAddonsTabAgain();
+4.await addOnsPage.searchAddons(Preworkout); and wait 3 seconds
+5.const rows = await addOnsPage.getAddonsTableRows();
+  expect(await rows.count()).toBe(1);
+6. page.once('dialog', async dialog => {
+         expect(dialog.message()).toBe('Are you sure want to delete this Addon?');
+         await dialog.accept();
+7.Click on //div[@class='datatable sno addOnsDataTable']//tbody/tr/td[6][text()='Enabled']/../td[text()='Preworkout']/../td[8]/i
+8.verify the visibility of alert Addon deleted successfully
+9.await addOnsPage.clickDashboard();
+10.await addOnsPage.clickPlansSlotsAddonsAndWait();
+11.await addOnsPage.clickAddonsTabAgain();
+12.await addOnsPage.searchAddons(Preworkout); and wait 3 seconds
+13. await addOnsPage.verifyNoMatchingResults();
+
+Create a methods like page object model approach in AddOnsPage.ts file  and That methods should be called in create a new test named DeleteAddONS  of CreateADDONSValidations.spec.ts and Generate script in CreateADDONSValidations.spec.ts
+
+
+TestCase: Download a Export Sheet in Transactions Tab.
+
+ const downloadDir = 'D:/EasyMembr_Downloads';
+ const expectedFileName = 'Transactions_Data.xlsx';
+1.Click on //a[text()=' Transactions']
+2.Select Today in dropdown //select[@id='shr'] and click on  wait 2 seconds
+2.Click on (//button[text()='Export'])[1]
+3.set a download file path as D:\EasyMembr_Downloads and after clicing a export a file should be downloaded named Transactions_Data
+4.read the file and validate the Shiva Shiva is present and Validate the Protein is present and validate the 2380 is present in first row exclude the header row. and print the first row in console which matched condition.
+5.delete the file.
+
+
+Generate script like page object model approach and create a new test named DownloadExportSheet_Transactions in CreateADDONSValidations.spec.ts
+
+================================================================================
+TestCase: Apply all filters in Members Management Tab.
+
+1.Click on //a[text()= Members Management']
+2.Click on //span[text()='All Plans/Addons']/..//i and wait 2 seconds
+3.Scroll to //label[text()='automation (Plan)'] and verify the visibility and click //label[text()='automation (Plan)']/../input.
+4.Select Plans in //label[text()='Membership Type']/..//select and wait 2 seconds
+5.Select One-Time in //label[text()='Plan Type']/..//select and wait 2 seconds
+6.Select Male in //label[text()='Gender']/..//select  and wait 2 seconds
+7.Select Active in  //label[text()='Status']/..//select and wait 2 seconds
+8.Select New in //label[text()='Transaction Type']/..//select and wait 2 seconds
+
+9.Click on (//div[@class='react-datepicker__input-container'])[1] and wait 2 seconds 
+10.Until on //div[text()='September 2025'] is visibile,click on //span[text()='Previous Month'] and wait 2 seconds 
+10.Click on //div[@aria-label='Choose Wednesday, September 17th, 2025']  and wait 2 seconds 
+11.Until this visibility of //div[text()='September 2026'] is visibile,Click on //span[text()='Next Month']  with gap of 1 seconds
+12.Click on //div[@aria-label='Choose Wednesday, September 16th, 2026'] and wait 2 seconds 
+
+13.Click on (//div[@class='react-datepicker__input-container'])[2] and wait 2 seconds
+14.Until on //div[text()='September 2025']is visibile,click on //span[text()='Previous Month'] and wait 2 seconds 
+15.Click on //div[@aria-label='Choose Tuesday, September 16th, 2025'] and wait 2 seconds 
+16.Until on //div[text()='September 2025'] is visibile,click on //span[text()='Next Month'] and wait 2 seconds 
+17.Click on //div[@aria-label='Choose Wednesday, September 17th, 2025'] and wait 2 seconds
+
+18.Click on (//div[@class='react-datepicker__input-container'])[3] and wait 2 seconds
+19.Until on //div[text()='September 2025']is visibile,click on //span[text()='Previous Month'] and wait 2 seconds 
+20.Click on //div[@aria-label='Choose Tuesday, September 16th, 2025'] and wait 2 seconds 
+21.Until on //div[text()='September 2025'] is visibile,click on //span[text()='Next Month'] and wait 2 seconds 
+22.Click on //div[@aria-label='Choose Wednesday, September 17th, 2025'] and wait 2 seconds
+
+23.Click on //label[text()='Age Range']/..//input[@placeholder='From'] and enter the value 20
+24.click on //label[text()='Age Range']/..//input[@placeholder='To'] and enter the value 25
+25.Click on //button[text()='Apply']
+26.verify the visibility of //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Vamsi Automation']/../td[text()='09/17/2025']/../td[text()='automation']
+
+Create a methods like page object model approach in MembersFiltersPage.ts file with  methods  and methods should be called in create a new test named ApplyFilters_MemberManagement in ApplyFilters_MemberManagement.spec.ts and Generate script in ApplyFilters_MemberManagement.spec.ts
+
+
+====================================================================
+TestCase:Edit Profile Settings in Manage Account Tab.
+
+1. Click on "Manage Account".
+2. Click on the edit icon for Profile Settings: 
+   //label[text()='Profile Settings']/..//i[@class='fas fa-pencil-alt fs-6 me-2']
+3. In the input field with id="firs_name", clear and enter "VamsiQA".
+4. In the input field with id="last_name", clear and enter "Automation".
+5. In the input field with id="age", clear and enter "26".
+6. In the input field with placeholder="Number", clear and enter "9874563210".
+7. Click on "Save" button.
+8. Verify that an alert with text "Profile saved successfully" is visible.
+9. Click on link //a[text()='Dashboard'].
+10. Click on "Manage Account" again.
+11. Assert that //label[text()='VamsiQA'] is visible.
+12. Assert that //label[text()='Automation'] is visible.
+13. Assert that //label[text()='26'] is visible.
+14. Assert that //label[text()='Male'] is visible.
+15. Assert that //label[text()='9874563210'] is visible.
+16. Assert that //p[text()='VamsiQA Automation'] is visibile.
+
+Create a methods like page object model approach in ManageAccount.ts file with  methods  and methods should be called in create a new test named EditProfileSettings in ManageAccountValidations.spec.ts and Generate script in ManageAccountValidations.spec.ts
+
+
+TestCase:View Subscription History in Manage Account Tab.
+
+const downloadDir = 'D:/EasyMembr_Downloads';
+const expectedFileName = 'subscriptionPlans.xlsx';
+1.Click on "Manage Account".
+2.Click on Subscription
+3.Get the text from (//div[@class='Business__Details__data mt-2'])[1]/label[2] and store it PlanName Variable
+4.Get the text from (//div[@class='Business__Details__data mt-1'])[2]/label[2] and store it Duration Variable
+5.Click on View History
+6.Verify the visibility of //div[@class='datatable SuscriptionHistoryDataTable']//tbody/tr[1]/td[text()='${PlanName}']/../td[text()='${Duration} months']
+7.set a download file path as D:\EasyMembr_Downloads and if the file already exists in the path delete the file.and Click on download button,a file should be downloaded named subscriptionPlans
+8.Read the file and validate the ${PlanName} is found and ${Duration} is found.
+9.delete the file.
+
+Create a methods like page object model approach in ManageAccount.ts file with  methods  and methods should be called in create a new test named ViewSubscriptionHistory_DownloadHistory in ManageAccountValidations.spec.ts and Generate script in ManageAccountValidations.spec.ts
+
+
+TestCase:View Gyms Details in Manage Account Tab.
+
+1.Click on "Manage Account".
+2.Click on //a[text()='Gyms']
+3.Click on button Add gyms
+4.In the input Field placeholder="Busniess Name" ,Clear and enter FitnessCenter
+5.In the input Field placeholder="Email",Clear and enter automation@gmail.com
+6.In the input Field placeholder="Enter phone number" ,Clear and enter 9873214569
+7.Select India in the Country DropDown //select[@name='rcrs-country'] 
+8.Select Andhra Pradesh in the State DropDown (//select[@class='gym-input'])[2]
+9.In the input Field placeholder="City" ,Clear and enter Bhimavaram
+10.In the input Field placeholder="First Name" ,Clear and enter Vamsi
+11.In the input Field placeholder="Last Name" ,Clear and enter automation
+12.In the input Field placeholder="Address" ,Clear and enter 1-37
+13.Click on Save button
+14.Verify the alert as Gym does not exist with the provided credentials.
+
+Create a methods like page object model approach in ManageAccount.ts file with  methods  and methods should be called in create a new test named VerifyAlertWhileAddingGYM in ManageAccountValidations.spec.ts and Generate script in ManageAccountValidations.spec.ts
+
+=================================================================================
+TestCase:Create a Transactions through Import Sheet.
+const filePath = 'D:/EasyMembr_TestData/Transaction_Data.xlsx';
+1.Click on //a[text()=' Members Management']
+2.In the input field placeholder="search here...",Clear and enter Shiva Test
+3.Click on Apply button and wait 2 seconds
+4.Verify the visibility of //p[text()=' No Data Found']
+5.Click on //a[text()=' Transactions']
+6.Click on //button[text()='Import']
+7.const fileInput = this.page.locator('input[type="file"]');
+8.await fileInput.setInputFiles(filePath);
+9.await expect(this.page.getByText(Transaction_Data.xlsx)).toBeVisible();
+10.await this.page.locator('//button[text()="Upload"]').click();
+11.Verify the visibility of alert text contains Imported successfully!
+12.if visibility of //button[@class='ripple ripple-surface btn-close'] ,then click  on //button[@class='ripple ripple-surface btn-close']
+13.In the input field (//input[@placeholder='search here...'])[1],Clear and enter Shiva Test
+14.Click on Apply button and wait 2 seconds.
+15.Assert //div[@class='TransactionsTable sno']//tbody/tr size should be 1
+16.Verify the visibility of  //div[@class='TransactionsTable sno']//tbody/tr/td[text()='Shiva Test']/../td[11][text()='₹1000']/../td/div[text()='raghu']/../../td/span[contains(text(),'09/17/2025')]/../../td[20]/i[@class='fas fa-trash']
+17.Verify the visibility of //div[text()='Total Amount Received: ']/..//b[text()='1,000']
+18.Click on Clear button and wait 2 seconds
+19.Assert //div[@class='TransactionsTable sno']//tbody/tr size should be greater than 1.
+20.Click on //a[text()=' Members Management']
+21.In the input field placeholder="search here...",Clear and enter Shiva Test
+22.Click on Apply button
+23.Verify the visibility of //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Shiva Test']/../td[text()='+917896541235']/../td[text()='raghu']/../td/div[text()='Active']/../../td[text()='09/17/2025']
+24.Click on //a[text()=' Transactions']
+25.In the input field (//input[@placeholder='search here...'])[1],Clear and enter Shiva Test
+25.Click on Apply button and wait 2 seconds.
+26.Click on //div[@class='TransactionsTable sno']//tbody/tr/td[text()='Shiva Test']/../td[11][text()='₹1000']/../td/div[text()='raghu']/../../td/span[contains(text(),'09/17/2025')]/../../td[20]/i[@class='fas fa-trash']
+27.Click on Confirm Delete button //button[text()='Delete']
+28.Verify the visibility of //p[text()=' No Data Found']
+29.Verify the visibility of (//div[text()='Total Amount Received: ']/..//b[text()='0'])[1]
+30.Click on Clear button and wait 2 seconds
+31.Click on //a[text()=' Members Management']
+32.In the input field placeholder="search here...",Clear and enter Shiva Test
+33.Click on Apply button
+34. await page.waitForTimeout(3000);
+  page.once('dialog', async dialog => {
+  expect(dialog.message()).toBe("Are you sure want to delete this Member?");
+  await dialog.accept();
+  });
+35.Click on //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='Shiva Test']/../td[text()='+917896541235']/../td[text()='No Plan Associated']/../td/div[text()='Active']/../../td/span/img[@alt='Delete']
+36.Click on //a[text()=' Dashboard']
+37.Click on //a[text()=' Members Management']
+38.In the input field placeholder="search here...",Clear and enter Shiva Test
+39.Click on Apply button
+40. await page.waitForTimeout(3000);
+41.Verify the visibility of //p[text()=' No Data Found']
+
+
+Create a methods like page object model approach in TransactionsPage.ts file with  methods  and methods should be called in create a new test named CreateTransaction_ImportSheet in TransactionsValidations.spec.ts and Generate script in TransactionsValidations.spec.ts
+
+=================================================================================================
+Testcase:Add NewMember while assigning a plan
+
+let randomFirstName: string;
+randomFirstName = `${testdata.firstNamePrefix}${Math.floor(Math.random() * 10000)}`;
+1.await loginPage.pointOfSaleButton(testdata.pointOfSaleText).click();
+2.await loginPage.planSearchInput(testdata.planSearchPlaceholder).fill(testdata.planNameSetup1);
+3.await loginPage.searchedPlanResult(testdata.planNameSetup).click();
+4.await loginPage.addSvgButton().click();
+5.Click on //button[text()='Add New Member']
+6.await loginPage.addMemberButton(testdata.addMemberText).click();
+  await loginPage.firstNameInput().click();
+  await loginPage.firstNameInput().fill(randomFirstName);
+  await loginPage.lastNameInput().click();
+  await loginPage.lastNameInput().fill(testdata.lastName);
+  await loginPage.genderSelect().selectOption({ label: testdata.gender });
+  await loginPage.ageInput().click();
+  await loginPage.ageInput().fill(testdata.age);
+  await loginPage.mobileInput().click();
+  await loginPage.mobileInput().fill(testdata.mobile);
+  await loginPage.memberEmailInput().click();
+  await loginPage.memberEmailInput().fill(testdata.memberEmail);
+  await loginPage.bloodGroupSelect().selectOption({ label: testdata.bloodGroup });
+  await loginPage.heightInput().click();
+  await loginPage.heightInput().fill(testdata.height);
+  await loginPage.weightInput().click();
+  await loginPage.weightInput().fill(testdata.weight);
+  await loginPage.cityInput().click();
+  await loginPage.cityInput().fill(testdata.city);
+  await loginPage.countryInput().click();
+  await loginPage.countryInput().fill(testdata.country);
+  await loginPage.addressInput().click();
+  await loginPage.addressInput().fill(testdata.address);
+  await loginPage.referralSelect().selectOption({ label: testdata.referral });
+7.Cick on //input[@placeholder='Search Member'] and enter the vamsi automation
+8.Verify the visibility of //div[text()='Vamsi Automation'] and clikc on it.
+9.await loginPage.addButton(testdata.addButtonSelector).click();
+10.verify the visibility of //div[@class='chip'][text()='${randomFirstName}']
+11.await loginPage.doneButton(testdata.doneButtonText).click();
+12.verify the visibility of //input[@value='randomFirstName + ' ' + testdata.lastName']
+13.Verify value of //p[text()='Address']/..//input should not to be empty.
+   await loginPage.continueButton().click();
+  await loginPage.cashPaymentButton(testdata.cashPaymentText).click();
+  await expect(loginPage.transactionSuccessText(testdata.transactionSuccessText)).toBeVisible();
+  await expect(loginPage.paymentSuccessText(testdata.paymentSuccessText)).toBeVisible();
+  await loginPage.dismissButton().click();
+  await page.waitForTimeout(2000);
+  await loginPage.membersManagement(testdata.membersManagementText).click();
+  await loginPage.memberSearchInputTable().click();
+  await loginPage.memberSearchInputTable().fill(randomFirstName);
+  await loginPage.applyButtonTable().click();
+  await page.waitForTimeout(2000);
+  const rows = await loginPage.memberTableRows().count();
+  expect(rows).toBe(1);
+  await expect(loginPage.memberTableCell(2)).toHaveText(randomFirstName + ' ' + testdata.lastName);
+  await expect(loginPage.memberTableCell(6)).toHaveText(testdata.planNameSetup1);
+14.await loginPage.dashboardText('Dashboard').click(); and click on //a[text()='Expiring This Week']
+15.Click on Pagenation arrow (//span[@class='select-arrow '])[1] and wait 2 seconds click //span[@class='select-option-text'][text()='All'] wait 2 seconds
+16.Click on Name Header for sorting (//th[@class='fixed-cell'])[1]  and wait 2 seconds
+17.Verify the visibility of //td[text()='randomFirstName + ' ' + testdata.lastName']/../td[text()='testdata.planNameSetup1']
+
+Generate a Script in under test named AddMember_WhileAssigningPlan in CreateMember_validations.spec.ts and use the existing loginpage.ts methods and then create a new neccesary methods in end of  MembersManagementTabPage.ts without disturbing the existing methods in MembersManagementTabPage.ts
+
+Testcase: In CheckIN/CheckOUT,Log Time for Member and Verify in Activities Section
+1.Click on //a[text()=' Reports'] 
+2.Click on //a[text()='Trainer Summary']
+3.Get the current date in the format of 09/19/2025 and store in a variable currentdate.
+4.if the visibility of //td[text()='${currentdate}']/../td[6]/button get the text from it and store in variable TotalCheckinCount else it is not visibile store 0 in TotalCheckinCount.
+5. await page.click('text=Check-In/Check-out');
+  await loginPage.checkInOutSearchInput().click();
+  await loginPage.checkInOutSearchInput().fill(randomFirstName);
+  await expect(loginPage.searchedPlanResult(randomFirstName)).toBeVisible();
+6.Click on //span[@data-mdb-target='#logtime']
+7.await loginPage.trainerSelect().selectOption({ label: 'shiva shiva' });
+8.Click on //div[text()='randomFirstName + ' ' + testdata.lastName']/../../../../..//button[text()='Log Time']
+9.Click on //a[text()=' Activities']
+10.Select Today in dropdown //select[@id='shr']
+11. await loginPage.applyButtonTable().click(); and wait 2 seconds
+12Verify the visibility of //td[text()='Member Log Time Successfull (randomFirstName + ' ' + testdata.lastName)']
+13.Click on //a[text()=' Reports'] 
+14.Click on //a[text()='Trainer Summary']
+15.Verify the visibility of  //td[text()='${currentdate}']/../td[6]/button get the text from it and store in variable FinalTotalCheckinCount
+16.Aseert FinalTotalCheckinCount=TotalCheckinCount+1
+
+
+Generate a Script in under test named AddMember_WhileAssigningPlan in CreateMember_validations.spec.ts and use the existing loginpage.ts methods and then create a new neccesary methods in end of  MembersManagementTabPage.ts without disturbing the existing methods in MembersManagementTabPage.ts
+
+
+Testcase: Resume the paused member in member_management
+
+1. await loginPage.pointOfSaleButton(testdata.pointOfSaleText).click();
+2.await loginPage.planSearchInput(testdata.planSearchPlaceholder).fill(testdata.planNameSetup);
+  3.await loginPage.searchedPlanResult(testdata.planNameSetup).click();
+  4.await loginPage.addSvgButton().click();
+ 5 await loginPage.memberSearchInputPOS().click();
+ 6 await loginPage.memberSearchInputPOS().fill(randomFirstName);
+ 7 await loginPage.searchedPlanResult(randomFirstName).click();
+ 8 await loginPage.doneButton(testdata.doneButtonText).click();
+ 9 await expect(loginPage.memberDetailsText()).toContainText(randomFirstName);
+10  await loginPage.continueButton().click();
+11  await loginPage.cashPaymentButton(testdata.cashPaymentText).click();
+ 12 await expect(loginPage.transactionSuccessText(testdata.transactionSuccessText)).toBeVisible();
+ 13 await expect(loginPage.paymentSuccessText(testdata.paymentSuccessText)).toBeVisible();
+14  await loginPage.dismissButton().click();
+15. await page.waitForTimeout(2000);
+16.await loginPage.membersManagement(testdata.membersManagementText).click();
+17.await loginPage.membersSearchInput().click();
+18. await loginPage.membersSearchInput().fill(randomFirstName);
+19.await loginPage.membersApplyButton().click();
+20. await page.waitForTimeout(2000);
+21.const rows = await loginPage.memberTableRows().count();
+  expect(rows).toBe(1);
+22. await expect(loginPage.membersTableRow(randomFirstName)).toBeVisible();
+23.await expect(loginPage.memberTableCell(2)).toHaveText(randomFirstName + ' ' + testdata.lastName);
+24.await expect(loginPage.memberTableCell(6)).toHaveText(testdata.planNameSetup);
+25. await loginPage.membersTableRowCell(randomFirstName).click();
+26. await expect(loginPage.memberDetailsTitle(randomFirstName)).toBeVisible();
+27.  await loginPage.editMembershipIcon(testdata.planNameSetup).click();
+28. await expect(loginPage.editMembershipDetailsText()).toBeVisible();
+29.Verify the visibility of //div[text()='${randomFirstName} Tester']
+30. await loginPage.pauseText().click();
+31. await loginPage.daysDropdown().selectOption({ label: 'Days' });
+32. await loginPage.daysInput().fill(testdata.Pausedays);
+33. await loginPage.saveButton().click();
+34. await expect(loginPage.pausedStatus(testdata.planNameSetup1)).toBeVisible();
+35. await loginPage.membersManagement(testdata.membersManagementText).click();
+36. await loginPage.membersSearchInput().fill(randomFirstName);
+ 37 await loginPage.membersApplyButton().click();
+  38.await expect(loginPage.pauseStatusInTable(randomFirstName)).toBeVisible();
+  39.await loginPage.membersTableRowCell(randomFirstName).click();
+40.await expect(loginPage.memberDetailsTitle(randomFirstName)).toBeVisible();
+41.await loginPage.editMembershipIcon(testdata.planNameSetup).click();
+42.Verify the visibility of //div[text()='${randomFirstName} Tester']
+43.Click on //button[text()='Resume']
+44.Verify the visibility fo //div[@class='datatable sno plansTable']//tbody/tr/td[text()='testdata.planNameSetup']/../td/div[text()='Active']
+
+
+Generate a Script in under test named ResumePausedMember_VerifyStatus_As_Active in CreateMember_validations.spec.ts and use the existing loginpage.ts methods and then create a new neccesary methods in end of  MembersManagementTabPage.ts without disturbing the existing methods in MembersManagementTabPage.ts
+
+Testcase: AddMember to a Session Plan and Verify in Reports_Session and Reports_SessionSummary
+
+const tempFile = path.join(__dirname, 'temp.json');
+const data = JSON.parse(fs.readFileSync(tempFile, 'utf-8'));
+1. await loginPage.pointOfSaleButton(testdata.pointOfSaleText).click();
+2.await loginPage.planSearchInput(testdata.planSearchPlaceholder).fill(testdata.planNameSetup);
+  3.await loginPage.searchedPlanResult(testdata.planNameSetup).click();
+  4.await loginPage.addSvgButton().click();
+ 5 await loginPage.memberSearchInputPOS().click();
+ 6 await loginPage.memberSearchInputPOS().fill(randomFirstName);
+ 7 await loginPage.searchedPlanResult(randomFirstName).click();
+ 8 await loginPage.doneButton(testdata.doneButtonText).click();
+ 9 await expect(loginPage.memberDetailsText()).toContainText(randomFirstName);
+10  await loginPage.continueButton().click();
+11  await loginPage.cashPaymentButton(testdata.cashPaymentText).click();
+ 12 await expect(loginPage.transactionSuccessText(testdata.transactionSuccessText)).toBeVisible();
+ 13 await expect(loginPage.paymentSuccessText(testdata.paymentSuccessText)).toBeVisible();
+14  await loginPage.dismissButton().click();
+15. await page.waitForTimeout(2000);
+16.await loginPage.membersManagement(testdata.membersManagementText).click();
+17.await loginPage.membersSearchInput().click();
+18. await loginPage.membersSearchInput().fill(randomFirstName);
+19.await loginPage.membersApplyButton().click();
+20. await page.waitForTimeout(2000);
+21.const rows = await loginPage.memberTableRows().count();
+  expect(rows).toBe(1);
+22. await expect(loginPage.membersTableRow(randomFirstName)).toBeVisible();
+23.await expect(loginPage.memberTableCell(2)).toHaveText(randomFirstName + ' ' + testdata.lastName);
+24.await expect(loginPage.memberTableCell(6)).toHaveText(testdata.planNameSetup);
+25. await loginPage.membersTableRowCell(randomFirstName).click();
+26.await membersTab.reportsTab().click();
+27.Click on //a[text()='Session']
+28.Click on search here... enter randomFirstName
+29.Click on //button[text()='Apply'] and wait 2 seconds.
+30.verify the visibility of //div[@class='summeryReportsDatatable']//tbody/tr/td[text()='randomFirstName + ' ' + testdata.lastName']/../td[6][text()='0']/../td[7][text()='2']
+31.await page.click('text=Check-In/Check-out');
+32.await loginPage.checkInOutSearchInput().click();
+      await loginPage.checkInOutSearchInput().fill(data.randomFirstName);
+      await expect(loginPage.searchedPlanResult(data.randomFirstName)).toBeVisible();
+      await page.waitForTimeout(4000);
+33.Click on //input[@class='checkinbutton']
+34.Verify the visibility of //button[text()=' Sessions'] and click on it.
+35.Verify the visibility of //span[text()='Session(s) Remaining: ']/span[text()='2']
+36.Click on Second Member (//a[@class='ml20 pd_0'])[2] 
+37.Click on Done button and wait 2 seconds.
+38.verify the visibility of //i[@class='fa fa-times text-danger']
+39.Verify the visibility of //button[text()=' Sessions'] and click on it.
+40.Verify the visibility of //span[text()='Session(s) Remaining: ']/span[text()='2']
+41.Click on third Member (//a[@class='ml20 pd_0'])[3] 
+42.page.once('dialog', async dialog => {
+  expect(dialog.message()).toBe("You can only add 0 more member(s). You have exceeded your sharing limit!");
+  await dialog.accept();
+  });
+  await page.click("//span[@class='ml20']/img[@alt='Delete']");
+  await page.waitForTimeout(2000);
+43.Click on Done button and wait 2 seconds.
+44.Click on close button //button[@class='ripple ripple-surface btn-close']
+45.Click on //i[@class='fa fa-times text-danger'] and wait 2 seconds.
+46.Click on //button[text()='Check-In'] and wait 5 seconds.
+47.Click on //input[@class='checkinbuttonout']
+48.click on //button[text()='Check-Out']
+49. await membersTab.reportsTab().click();
+50.Click on //a[text()='Session']
+51.Click on search here... enter randomFirstName
+52.Click on //button[text()='Apply'] and wait 2 seconds.
+53.verify the visibility of //div[@class='summeryReportsDatatable']//tbody/tr/td[text()='randomFirstName + ' ' + testdata.lastName']/../td[6][text()='1']/../td[7][text()='1']
+54.await membersTab.sessionSummaryTab().click();
+55.await page.waitForTimeout(4000);
+56.let SessionSummaryCount = 0;
+       if (await membersTab.trainerSummaryDateCell(data.currentdate).isVisible()) {
+              if (await membersTab.sessionSummaryDateCell(data.currentdate).isVisible()) {
+          FinalSessionSummaryCount = parseInt(await membersTab.sessionSummaryDateCell(data.currentdate).innerText(), 10);
+        }
+        }
+        console.log('FinalSessionSummaryCount:', FinalSessionSummaryCount);
+        expect(FinalSessionSummaryCount).toBe(data.SessionSummaryCount + 1);
+		
+		
+		
+Generate a Script in under test named 'AddMember to a Session Plan and Verify in Reports_Session and Reports_SessionSummary' in CreateMember_validations.spec.ts and use the existing loginpage.ts methods and membersTab.ts methods  and then create a new neccesary methods in end of  MembersManagementTabPage.ts without disturbing the existing methods in MembersManagementTabPage.ts.Generate script 
+
+
+
+Testcase:WhatsApp Validations in member_management
+1.await loginPage.membersManagement(testdata.membersManagementText).click();
+2.Click on //button[@class='ms-2 btnheight btn btn-primary whatsapp']
+3.Click on CampaignName field placeholder="Enter here" and enter the test in it.
+4.Click on placeholder="Search by template name" and enter welcome
+5.Click on WelcomeCheckBox //label[text()='welcome']/../input
+6.Click on //button[text()='Send Message']
+7.Select ApplicationVariables dropdown //select[@class='form-select p-1 px-2'] as option value is customvalue
+8.Click on CustomValue field placeholder="Enter custom value" and enter Team
+10.Click on //button[text()='Send']
+11.Verify the visibility of //span[text()='+917981769388']
+12.Click on (//button[text()='Send'])[2]
+13.verify the visibility of alert Message sent successfully!
+14.await membersTab.reportsTab().click();
+15.Click on //a[text()='WhatsApp Campaign History'] and wait 5 seconds.
+16.Click on CampaignSearch field placeholder="Search by Campaign Name"
+17.Select the Day dropdown //select[@name='shrs'] as Today
+17.Click on //button[text()='Apply'] and wait 2 seconds.
+18.assert //div[@class='datatable whatsapptable']//tbody/tr should be 1
+19.Verify the visibility of //div[@class='datatable whatsapptable']//tbody/tr/td[2][text()='test']/../td/div[text()='Thank for reaching out to Crag Studio Sport Climbing  . How may I help you?']
+
+
+Generate a Script in under test named 'WhatsappMembersManagement_VerifyReports_WhatsappCampaignHistory in CreateMember_validations.spec.ts and use the existing loginpage.ts methods and membersTab.ts methods  and then create a new neccesary methods in end of  MembersManagementTabPage.ts without disturbing the existing methods in MembersManagementTabPage.ts.Generate script 
+
+
+TestCase:Create a Satff through Import Sheet
+
+const filePath = 'D:/EasyMembr_TestData/Sample_Staff_Data.xlsx';
+
+ const membersPage = new MembersManagementTabPage(page);
+  const loginPage = new LoginPage(page);
+  const staffTab = new StaffRolesAttendanceTab(page);
+1. await staffTab.staffRolesAttendanceTab().click();
+2. await membersPage.importButton().click();
+ await membersPage.fileInput().setInputFiles(filePath);
+  await expect(membersPage.uploadedFileText('Sample_Staff_Data.xlsx')).toBeVisible();
+   await membersPage.uploadButton().click();
+3.Verify the visibility of alert Staff(s) Imported Successfully!
+4. await loginPage.staffSearchInput().click();
+  await loginPage.staffSearchInput().fill(testdata.staffemail);
+  const staffRows = await loginPage.staffTableRows().count();
+  expect(staffRows).toBe(1);
+5.Verify the visibility of //div[@class='datatable sno staffDatatable']//tbody/tr/td[text()='Vamsi Automation']/../td[text()='+919876543210']/../td[text()='vamsiautomation@gmail.com']/../td/label[text()='staff']
+
+Generate a Script in under test named 'CreateStaff_ImportSheet' in Staff_Roles_Attendance.spec.ts and use the existing LoginPage.ts methods and MembersManagementTabPage.ts methods,Staff_Roles_AttendanceTab.ts   and then create a new neccesary methods in end of  Staff_Roles_AttendanceTab.ts without disturbing the existing methods in Staff_Roles_AttendanceTab.ts.Generate script  in Staff_Roles_Attendance.spec.ts
+
+
+TestCase:
+Submit the Member Wavier Form in member_management
+
+const File=D:\EasyMembr_TestData\03.png
+1. await businessPage.businessDetailsTab().click();
+ await expect(businessPage.showQRCodeButton()).toBeVisible();
+  await businessPage.showQRCodeButton().click();
+  await expect(businessPage.copyLinkButton()).toBeVisible();
+  await businessPage.copyLinkButton().click();
+  await expect(businessPage.copyLinkAlert()).toBeVisible();
+   await page.waitForTimeout(3000);
+  await businessPage.closeButton().click();
+2.Navigate to url by using ctrl+V and wait 2 seconds
+3.Click on (//input[@placeholder='First Name'])[1] and enter Manikanta
+4.Click on (//input[@placeholder='Last Name'])[1] and enter Bandi
+5.Click on (//input[@placeholder='First Name'])[2] and enter shiva
+6.Click on (//input[@placeholder='Last Name'])[2] and enter saturday
+7.Click on //div[@class='form-outline datepicker']/input and wait 2 seconds 
+8.Click on //button[@class='datepicker-view-change-button'] and wait 2 seconds 
+9.Click on //div[text()='1998'] and wait 2 seconds and Click on //div[text()='Jan'] click on //button[text()='Ok']
+10.Click on (//input[@class='PhoneInputInput'])[1] and enter 9876543210
+11.Click on (//input[@placeholder='example@gmail.com'])[1] and enter automation@gmail.com
+12.Click on (//input[@placeholder='Address'])[1] and enter Gachibowli
+13.Click on (//input[@placeholder='Area'])[1] and enter Gachibowli
+14.Click on (//input[@placeholder='City'])[1] and enter Hyderabad
+15.Click on (//input[@placeholder='First Name'])[3] and enter vamsi
+16.click on (//input[@placeholder='Last Name'])[3] and enter reddy
+17.click on (//input[@class='PhoneInputInput'])[2] and enter 9876543211
+18.Click on //input[@placeholder='Relationship'] and Enter Friend
+19.Click on //div[text()='Gym Membership Form']/..//input and wait 2 seconds.
+20.Mouse pointer to  <canvas width="352" style="touch-action: none;" height="120"></canvas> and click and scroll for participant signature.
+21.Verify the visibilityof //button[text()='Clear']
+22.Browse the File from windows system //span[@class='browse_btn'] the file path is File
+23.Verify the visibility of //button[text()='Change Your Photo']
+24.Click on //button[text()='Submit']
+25.Verify the visibility of //h5[text()='Form is submitted successfully!!']
+26.Verify the visibility of  //button[text()='Download']
+27.Navigate back
+28.await loginPage.membersManagement(testdata.membersManagementText).click();
+  await loginPage.memberSearchInputTable().click();
+  await loginPage.memberSearchInputTable().fill(Manikanta);
+  await loginPage.applyButtonTable().click();
+  await page.waitForTimeout(2000);
+  const rows = await loginPage.memberTableRows().count();
+  expect(rows).toBe(1);
+   await expect(loginPage.memberTableCell(2)).toHaveText(manikanta bandi);
+29.verify the visibility of //table[@class="table table-hover table-sm"]/tbody/tr/td[text()='manikanta bandi']/../td[14]//div[text()='Submitted']
+
+
+
+Generate a Script in under test named 'CreateMember_WavierForm' in CreateMember_validations.spec.ts and use the existing LoginPage.ts methods and BussinessDetailsTabPage.ts methods  and then create a new neccesary methods in end of  MembersManagementTabPage.ts without disturbing the existing methods in MembersManagementTabPage.ts.Generate script
+
+
+//table[@class="table table-hover table-sm"]/tbody/tr/td[text()='Manikanta Bandi']/../td[14]//div[text()='Submitted']/../../../td[16]/span[1]
+
+
+
+Testcase: Whatsapp notification history
+
+1.await membersTab.reportsTab().click();
+2.await membersTab.WhatsappNotificationSummaryTab.click();
+3.await page.waitForTimeout(4000);
+4.Click on //div[@class='datatable whatsapptable']//tbody/tr[2]/td[text()='09/25/2025']/../td[text()='MEMBER_ADDED_OWNER_ALERT']/../td[5]
+5.Verify the visibility of //div[@class='datatable whatsapptable']//tbody/tr/td[text()='chintu one']
+6.Click on //button[@class='ripple ripple-surface btn-close']
+7.Click on //div[@class='datatable whatsapptable']//tbody/tr[1]/td[text()='09/25/2025']/../td[text()='MEMBER_ADDED_MEMBER_ALERT']/../td[5]
+8.Verify the visibility of //div[@class='datatable whatsapptable']//tbody/tr/td[text()='chintu one']
+9.Click on //button[@class='ripple ripple-surface btn-close']
+
+
+Generate a Script in under test named 'AfterCreatingMember_VerifyinWhatsappNotificationHistory_DownloadExportSheet_WhatsappNotificationHistory' in CreateMember_validations.spec.ts and use the existing  MembersManagementTabPage.ts and then create a new neccesary methods in end of  MembersManagementTabPage.ts without disturbing the existing methods in MembersManagementTabPage.ts.Generate script
+
+TestCase:SMS History
+
+1.await loginPage.membersManagement(testdata.membersManagementText).click();
+  await loginPage.memberSearchInputTable().click();
+  await loginPage.memberSearchInputTable().fill(randomFirstName);
+  await loginPage.applyButtonTable().click();
+  await page.waitForTimeout(2000);
+  const rows = await loginPage.memberTableRows().count();
+  expect(rows).toBe(1);
+  await expect(loginPage.memberTableCell(2)).toHaveText(randomFirstName + ' ' + testdata.lastName);
+  await expect(loginPage.memberTableCell(6)).toHaveText(testdata.planNameSetup1);
+2.Click the //div[@class='datatable cursorPointer mmManager_Table']//tbody/tr/td[text()='randomFirstName + ' ' + testdata.lastName']
+3. await expect(membersPage.memberNameHeaderHaritha(randomFirstName)).toBeVisible();
+  await expect(membersPage.suspendButton()).toBeVisible();
+  await membersPage.suspendButton().click();
+4. await expect(membersPage.memberSuspendedName(randomFirstName)).toBeVisible();
+  // 8. Enter reason
+  await membersPage.suspendReasonTextarea().fill(testdata.SuspendReason);
+  // 9. Click Suspend
+  await membersPage.suspendConfirmButton().click();
+  // 10. Verify Member Suspended alert
+  await expect(membersPage.memberSuspendedAlert()).toBeVisible();
+5. await membersTab.reportsTab().click();
+   await membersTab.SMSHistoryTab().click();
+     await page.waitForTimeout(4000); 
+6.Click on placeholder="search here..." and enter randomFirstName + ' ' + testdata.lastName in it
+7.await loginPage.reportsApplyButton().click();
+  await page.waitForTimeout(2000);
+8.Verify the visibility of //div[@class='datatable sno SMSHistortDataTable']//tbody/tr/td[contains(text(),'randomFirstName + ' ' + testdata.lastName')]/../td[text()='MEMBERSHIP_SUSPENDED_ALERT']/../td/span[text()='09/25/2025']
+
+
+Generate a Script in under test named 'SuspendMember_VerifyinSMSHistory' in CreateMember_validations.spec.ts and use the existing  MembersManagementTabPage.ts and  then create a new neccesary methods in end of  MembersManagementTabPage.ts without disturbing the existing methods in MembersManagementTabPage.ts.Generate script
+
+Testcase:Verify ActiveMembers Count in Dashboard
+1. await loginPage.dashboardText('Dashboard').click();
+2.Click on //button[text()='Today'] and wait 2 seconds
+3.Verify the visibility of (//h5[text()='Active Members']/../../div[2]//button)[1] and get text from it and Store a value in variable named IntialActiveMembersCount.
+4.await loginPage.pointOfSaleButton(testdata.pointOfSaleText).click();
+  await loginPage.planSearchInput(testdata.planSearchPlaceholder).fill(testdata.planNameSetup);
+  await loginPage.searchedPlanResult(testdata.planNameSetup).click();
+  await loginPage.addSvgButton().click();
+  await loginPage.memberSearchInputPOS().click();
+  await loginPage.memberSearchInputPOS().fill(`${data.WavierMemberFirstName} ${testdata.WavierMemberLastName}`);
+  await loginPage.searchedPlanResult(`${data.WavierMemberFirstName} ${testdata.WavierMemberLastName}`).click();
+  await loginPage.doneButton(testdata.doneButtonText).click();
+  await expect(loginPage.memberDetailsText()).toContainText(`${data.WavierMemberFirstName}`);
+  await loginPage.continueButton().click();
+  await loginPage.cashPaymentButton(testdata.cashPaymentText).click();
+  await expect(loginPage.transactionSuccessText(testdata.transactionSuccessText)).toBeVisible();
+  await expect(loginPage.paymentSuccessText(testdata.paymentSuccessText)).toBeVisible();
+  await loginPage.dismissButton().click();
+  await page.waitForTimeout(2000);
+  await loginPage.membersManagement(testdata.membersManagementText).click();
+  await loginPage.memberSearchInputTable().click();
+  await loginPage.memberSearchInputTable().fill(`${data.WavierMemberFirstName} ${testdata.WavierMemberLastName}`);
+  await loginPage.applyButtonTable().click();
+  await page.waitForTimeout(2000);
+  const rows = await loginPage.memberTableRows().count();
+  expect(rows).toBe(1);
+  await expect(loginPage.memberTableCell(2)).toHaveText(`${data.WavierMemberFirstName} ${testdata.WavierMemberLastName}`);
+  await expect(loginPage.memberTableCell(6)).toHaveText(testdata.planNameSetup);
+5. await loginPage.dashboardText('Dashboard').click();
+Click on //button[text()='Today'] and wait 2 seconds
+Verify the visibility of (//h5[text()='Active Members']/../../div[2]//button)[1] and get text from it and Store a value in variable named FinalActiveMembersCount.
+6.Assert FinalActiveMembersCount=IntialActiveMembersCount+1
+
+
+Generate a Script in under test named 'AddMemberToRecuringPlan_VerifyCountinDashboardActiveMembers' in CreateMember_validations.spec.ts and use the existing  LoginPage.ts and  then create a new neccesary methods in end of  MembersManagementTabPage.ts without disturbing the existing methods in MembersManagementTabPage.ts.Generate script
+
+
+TestCase:Edit Member SMSTemplate_MEMBERSHIP_EXPIRY_ALERT
+
+1.Click on //a[text()=' Templates & Reminders ']
+2.Click on //a[text()='Member']
+3.if (//td[text()='MEMBERSHIP_EXPIRY_ALERT']/..//i[@class='fas fa-check text-success fs-5'])[1] is visible 
+  click on (//td[text()='MEMBERSHIP_EXPIRY_ALERT']/..//../../../td[5]//i[@class='fas fa-edit fs-5'])[1]
+  click on //h6[text()='SMS Template']/..//span[@class='slider round']
+  click on //button[text()='Save']
+  Verify the visibility of (//td[text()='MEMBERSHIP_EXPIRY_ALERT']/..//i[@class='fas fa-times text-danger fs-5'])[1]
+4.else 
+  click on //td[text()='MEMBERSHIP_EXPIRY_ALERT']/..//../../../td[5]//i[@class='fas fa-edit fs-5']
+  click on //h6[text()='SMS Template']/..//span[@class='slider round']
+  click on //button[text()='Preview']
+  click on (//input[@placeholder='Enter value'])[1] and enter Vamsi and wait 2 seconds
+  verify the visibility of //p[@class='p-3 mb-0'] and gettext from it and verify gettext contains Vamsi
+  Click on //button[@class='ripple ripple-surface btn-close']
+  click on //button[text()='Save']
+  Verify the visibility of (//td[text()='MEMBERSHIP_EXPIRY_ALERT']/..//i[@class='fas fa-check text-success fs-5'])[1]
+  
+Create a methods like page object model approach in  TemplatesPage.ts file with duplicate methods also and methods should be called in create a new test named  Edit_Member_SMSTemplate_MEMBERSHIP_EXPIRY_ALERT in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts
+
+
+TestCase:Edit Member WhatsappTemplate_MEMBERSHIP_EXPIRY_ALERT
+
+1.await templatesPage.templatesAndRemindersTab().click();
+  await templatesPage.memberTab().click();
+2.if //td[text()='MEMBERSHIP_EXPIRY_ALERT']/../td[3]//i[@class='fas fa-check text-success fs-5'] is visibile{
+   console.log('MEMBERSHIP_EXPIRY_ALERT is enabled, disabling it now.');
+   click on (//td[text()='MEMBERSHIP_EXPIRY_ALERT']/..//../../../td[5]//i[@class='fas fa-edit fs-5'])[1]
+   click on //h6[text()='WhatsApp Template']/..//span[@class='slider round']
+    click on //button[text()='Save']
+   Verify the visibility of //td[text()='MEMBERSHIP_EXPIRY_ALERT']/../td[3]//i[@class='fas fa-times text-danger fs-5']
+   }
+3. click on (//td[text()='MEMBERSHIP_EXPIRY_ALERT']/..//../../../td[5]//i[@class='fas fa-edit fs-5'])[1] 
+    click on //h6[text()='WhatsApp Template']/..//span[@class='slider round']
+	
+4.	if //input[@value='membership_expiry_alert_member'] is visibile {
+	click on //input[@value='membership_expiry_alert_member']
+	click on //input[@placeholder='Search...'] and enter expiring_soon
+	click on //span[text()='expiring_soon']
+	Verify the visibility of //input[@value='expiring_soon']
+	Assert (//textarea)[2] gettext should not be empty
+   Select Bussiness Name((//div[@class='card p-3 border border-1 border-secondary mt-4 shadow-0'])[2]//select)[1]
+   Select Member Name ((//div[@class='card p-3 border border-1 border-secondary mt-4 shadow-0'])[2]//select)[2]
+   Select Start Date ((//div[@class='card p-3 border border-1 border-secondary mt-4 shadow-0'])[2]//select)[3]
+   click on //button[text()='Save']
+  Verify the visibility of //td[text()='MEMBERSHIP_EXPIRY_ALERT']/../td[3]//i[@class='fas fa-check text-success fs-5']
+  }
+5.  if //input[@value='expiring_soon'] is visibile{
+  click on //input[@value='expiring_soon']
+  click on //input[@placeholder='Search...'] and enter membership_expiry_alert_member
+	click on //span[text()='membership_expiry_alert_member']
+	Verify the visibility of //input[@value='membership_expiry_alert_member']
+	Assert (//textarea)[2] gettext should not be empty
+	Select Bussiness Name((//div[@class='card p-3 border border-1 border-secondary mt-4 shadow-0'])[2]//select)[1]
+   Select Member Name ((//div[@class='card p-3 border border-1 border-secondary mt-4 shadow-0'])[2]//select)[2]
+   Select Start Date ((//div[@class='card p-3 border border-1 border-secondary mt-4 shadow-0'])[2]//select)[3]
+   click on //button[text()='Save']
+  Verify the visibility of //td[text()='MEMBERSHIP_EXPIRY_ALERT']/../td[3]//i[@class='fas fa-check text-success fs-5']
+  }
+  
+6.if //td[text()='MEMBERSHIP_EXPIRY_ALERT']/../td[3]//i[@class='fas fa-check text-success fs-5'] is visibile{
+   console.log('After Setup Completion - MEMBERSHIP_EXPIRY_ALERT is enabled, disabling it now.');  
+   click on (//td[text()='MEMBERSHIP_EXPIRY_ALERT']/..//../../../td[5]//i[@class='fas fa-edit fs-5'])[1]
+   click on //h6[text()='WhatsApp Template']/..//span[@class='slider round']
+    click on //button[text()='Save']
+   Verify the visibility of //td[text()='MEMBERSHIP_EXPIRY_ALERT']/../td[3]//i[@class='fas fa-times text-danger fs-5']
+   }
+
+
+Create a methods like page object model approach in  TemplatesPage.ts file with duplicate methods also and methods should be called in create a new test named  Edit_Member_WhatsappTemplate_MEMBERSHIP_EXPIRY_ALERT in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts
+
+
+TestCase:Edit Owner SMS Template
+
+1.await templatesPage.templatesAndRemindersTab().click();
+2.Click on //a[text()='Owner']
+3.if //td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/../td[2]//i[@class='fas fa-check text-success fs-5'] is visibile{
+  click on (//td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/..//../../../td[5]//i[@class='fas fa-edit fs-5'])[1]
+  await templatesPage.smsTemplateSlider().click();
+  await templatesPage.saveButton().click();
+  Click on //a[text()='Owner']
+  Verify the visibility of //td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/../td[2]//i[@class='fas fa-times text-danger fs-5']
+  }
+4. click on (//td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/..//../../../td[5]//i[@class='fas fa-edit fs-5'])[1]
+   await templatesPage.smsTemplateSlider().click();
+   await templatesPage.previewButton().click();
+      await templatesPage.previewInput().fill('Vamsi');
+      await page.waitForTimeout(2000);
+      const previewText = await templatesPage.previewText().innerText();
+      expect(previewText).toContain('Vamsi');
+      await templatesPage.closeButton().click();
+      await templatesPage.saveButton().click();
+	  Click on //a[text()='Owner']
+	  Verify the visibility of //td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/../td[2]//i[@class='fas fa-check text-success fs-5']
+
+5. if //td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/../td[2]//i[@class='fas fa-check text-success fs-5'] is visible {
+    
+   click on (//td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/..//../../../td[5]//i[@class='fas fa-edit fs-5'])[1]
+  await templatesPage.smsTemplateSlider().click();
+  await templatesPage.saveButton().click();
+  Click on //a[text()='Owner']
+   Verify the visibility of //td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/../td[2]//i[@class='fas fa-times text-danger fs-5']
+  }
+  
+Create a methods like page object model approach in  TemplatesPage.ts file with duplicate methods also and methods should be called in create a new test named  Edit_Owner_SMSTemplate_MEMBERSHIP_SUSPENDED_OWNER_ALERT in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts   
+  
+	
+	
+   
+Alert: Membership of %%|member^{"inputtype" : "text", "maxlength" : "60"}%% for %%|membership^{"inputtype" : "text", "maxlength" : "40"}%% has been suspended on %%|tdate^{"inputtype" : "text", "maxlength" : "10"}%% at %%|gymname^{"inputtype" : "text", "maxlength" : "40"}%%.%nPowered By,%nGym Admin Online
+
+
+
+TestCase:Edit Owner WhatsApp Template
+1.await templatesPage.templatesAndRemindersTab().click();
+2. await templatesPage.ownerTab().click();
+3.if  //td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/../td[3]//i[@class='fas fa-check text-success fs-5'] is visibile{
+
+   await templatesPage.membershipSuspendedOwnerAlertEditIcon().click();
+    await templatesPage.whatsappTemplateSlider().click();
+	 await templatesPage.saveButton().click();
+	 await templatesPage.ownerTab().click();
+	 Verify the visibility of //td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/../td[3]//i[@class='fas fa-times text-danger fs-5']
+}
+4. await templatesPage.membershipSuspendedOwnerAlertEditIcon().click();
+    await templatesPage.whatsappTemplateSlider().click();
+
+5.if visibility of //input[@value='membership_suspended_alert_owner']{
+  click on //input[@value='membership_suspended_alert_owner']
+   await templatesPage.templateSearchInput().click();
+        await templatesPage.templateSearchInput().fill('membership_suspended_alert_member');
+        await templatesPage.templateSearchResult('membership_suspended_alert_member').click();
+        await expect(templatesPage.templateRadioByValue('membership_suspended_alert_member')).toBeVisible();
+        const text = await templatesPage.templateTextArea().inputValue();
+        expect(text).not.toBe('');
+		 await templatesPage.businessNameSelect().selectOption({ label: "Member Name" });
+		  await templatesPage.memberNameSelect().selectOption({ label: "Membership Name" });
+		  await templatesPage.saveButton().click();
+		   await templatesPage.ownerTab().click();
+		   Verify the visbility of //td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/../td[3]//i[@class='fas fa-check text-success fs-5']
+ }
+ 
+6.if visibility of //input[@value='membership_suspended_alert_member']{
+  click on //input[@value='membership_suspended_alert_member']
+   await templatesPage.templateSearchInput().click();
+        await templatesPage.templateSearchInput().fill('membership_suspended_alert_owner');
+        await templatesPage.templateSearchResult('membership_suspended_alert_owner').click();
+        await expect(templatesPage.templateRadioByValue('membership_suspended_alert_owner')).toBeVisible();
+        const text = await templatesPage.templateTextArea().inputValue();
+        expect(text).not.toBe('');
+		select Membership Name ((//div[@class='card p-3 border border-1 border-secondary mt-4 shadow-0'])[2]//select)[1] 
+		select Start Date ((//div[@class='card p-3 border border-1 border-secondary mt-4 shadow-0'])[2]//select)[2]
+		select Start Date ((//div[@class='card p-3 border border-1 border-secondary mt-4 shadow-0'])[2]//select)[3]
+		select Member Name ((//div[@class='card p-3 border border-1 border-secondary mt-4 shadow-0'])[2]//select)[4]
+		select Bussiness Name ((//div[@class='card p-3 border border-1 border-secondary mt-4 shadow-0'])[2]//select)[5]
+		 await templatesPage.saveButton().click();
+		   await templatesPage.ownerTab().click();
+		   Verify the visbility of //td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/../td[3]//i[@class='fas fa-check text-success fs-5']
+ }
+     
+7.	 if  //td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/../td[3]//i[@class='fas fa-check text-success fs-5'] is visibile{
+
+   await templatesPage.membershipSuspendedOwnerAlertEditIcon().click();
+    await templatesPage.whatsappTemplateSlider().click();
+	 await templatesPage.saveButton().click();
+	 await templatesPage.ownerTab().click();
+	 Verify the visibility of //td[text()='MEMBERSHIP_SUSPENDED_OWNER_ALERT']/../td[3]//i[@class='fas fa-times text-danger fs-5']
+}
+		
+  
+Create a methods like page object model approach in  TemplatesPage.ts file with duplicate methods also and methods should be called in create a new test named  Edit_Owner_WhatsAppTemplate_MEMBERSHIP_SUSPENDED_OWNER_ALERT in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts 
+
+
+TestCase:Edit Notification Frequency
+
+1.await templatesPage.templatesAndRemindersTab().click();
+2.Click on //a[text()='Notification Frequency']
+3.Click on //div[@class='notificationFrequencyDatatable']//tbody/tr/td[text()='Membership Expiry']/../td[2]//input and clear and enter 0,1,2,3,4
+4.Click on //div[@class='notificationFrequencyDatatable']//tbody/tr/td[text()='Membership Expiry']/../td[2]//button[text()='Copy to All']
+5.verify the visibility of //div[@class='notificationFrequencyDatatable']//tbody/tr/td[text()='Membership Expiry']/../td[3]//input[@value='0,1,2,3,4']
+6..verify the visibility of //div[@class='notificationFrequencyDatatable']//tbody/tr/td[text()='Membership Expiry']/../td[4]//input[@value='0,1,2,3,4']
+7.  await templatesPage.saveButton().click();
+8.Verify the visibility of alert Template saved successfully
+9.Click on //a[text()=' Dashboard']
+9.await templatesPage.templatesAndRemindersTab().click();
+10.Click on //a[text()='Notification Frequency']
+11.verify the visibility of //div[@class='notificationFrequencyDatatable']//tbody/tr/td[text()='Membership Expiry']/../td[3]//input[@value='0,1,2,3,4']
+
+Create a methods like page object model approach in  TemplatesPage.ts file with  methods also and methods should be called in create a new test named  Edit_MemberShip_Expiry_Notification_Frequency in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts 
+
+TestCase:AddSMSGateWay_SMSSettings
+
+1.await templatesPage.templatesAndRemindersTab().click();\
+2.Click on //a[text()='SMS Settings']
+3.Click on (//button[text()='Add'])[1]
+4.Click on //input[@placeholder='Name'] and enter test in SMSGatewayName Field.
+5.Click on //input[@placeholder='Sender ID'] and enter GYM in SenderID Field.
+6.Click on //textarea[@id='textAreaExample'] and enter NzM0NjUwNTAzMDUwNzI0ZTc1NTU1NDU0NjI1MTYxNTE=
+7.Click on (//button[text()='Add'])[2]
+8.Verify the visibility of Gateway added successfully
+9.verify the visibility of //div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='test']/../td[text()='NzM0NjUwNTAzMDUwNzI0ZTc1NTU1NDU0NjI1MTYxNTE=']/../td[text()='Gym']/../td[text()='Disable']/../td[7]/div/i[1]
+
+
+Create a methods like page object model approach in  TemplatesPage.ts file with  methods also and methods should be called in create a new test named  AddSMSGateWay_SMSSettings in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts 
+
+
+TestCase:EditSMSGateWay_SMSSettings
+
+1.await templatesPage.templatesAndRemindersTab().click();
+2. await templatesPage.smsSettingsTab().click();
+3.await templatesPage.smsGatewayRow(testdata.SMS_Gateway, testdata.SMS_APIKey, testdata.SMS_SenderID, 'Disable').click
+  Verify the visibility of //h5[text()=' Edit SMS Gateway']
+    await templatesPage.smsGatewayNameInput().fill('')
+4. await templatesPage.smsGatewayNameInput().fill("automation");
+await templatesPage.smsSenderIdInput().fill('')
+    await templatesPage.smsSenderIdInput().fill("Trainer");
+	  await templatesPage.smsApiKeyTextarea().fill('')
+    await templatesPage.smsApiKeyTextarea().fill("BzM0NjUwNTAzMDUwNzI0ZTc1NTU1NDU0NjI1MTYxNTE=");
+5.Click on Primary //span[@class='slider round']
+6.Click on (//button[text()='Save'])[1]
+7..Verify the visibility of Gateway added successfully
+8.verify the visibility of //div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='automation']/../td[text()='BzM0NjUwNTAzMDUwNzI0ZTc1NTU1NDU0NjI1MTYxNTE=']/../td[text()='Trainer']/../td[text()='Enable']/../td[7]/div/i[1]
+
+
+Create a methods like page object model approach in  TemplatesPage.ts file with  methods also and methods should be called in create a new test named  EditSMSGateWay_SMSSettings in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts 
+
+TestCase:DeleteSMSGateWay_SMSSettings
+
+1.await templatesPage.templatesAndRemindersTab().click();
+2. await templatesPage.smsSettingsTab().click();
+3.templatesPage.smsGatewayRow(testdata.EditedSMS_Gateway, testdata.EditedSMS_APIKey, testdata.EditedSMS_SenderID, 'Enable').click()
+4.Click on //button[text()='Reset']
+5.Verify the visibility of Reset Done successfully
+6.Verify the visbility of //textarea[text()='NzM0NjUwNTAzMDUwNzI0ZTc1NTU1NDU0NjI1MTYxNTE=']
+7.Click on //button[text()='Close'] and wait 2 seconds
+8.Verify the visibility of //div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='automation']/../td[text()='BzM0NjUwNTAzMDUwNzI0ZTc1NTU1NDU0NjI1MTYxNTE=']/../td[text()='Trainer']/../td[text()='Enable']/../td[7]/div/i[2] and click 
+9.Verify the visibility of //strong[text()='Are you sure you want to delete this SMS Gateway??']
+10.Click on //button[text()='Delete']
+11.Verify the invisibility of //div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='automation']/../td[text()='BzM0NjUwNTAzMDUwNzI0ZTc1NTU1NDU0NjI1MTYxNTE=']/../td[text()='Trainer']/../td[text()='Enable']/../td[7]/div/i[2]
+12.Click on //div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='Disable']/../td[7]/div/i[1]
+13.Click on Primary //span[@class='slider round']
+14.Click on (//button[text()='Save'])[1]
+15.Verify the visibility of Gateway added successfully
+16.verify the visibility of //div[@class='datatable datatable-hover sno Transaction__table']//tbody/tr/td[text()='Enable']/../td[7]/div/i[1]
+
+Create a methods like page object model approach in  TemplatesPage.ts file with  methods also and methods should be called in create a new test named  DeleteSMSGateWay_SMSSettings in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts 
+
+
+TestCase:AddWhatsAppGateWay_WhatsAPPSettings
+
+1.await templatesPage.templatesAndRemindersTab().click();
+2.click on //a[text()='Whatsapp Settings']
+3. await templatesPage.smsAddButton(2).click();
+4.Verify the visibility of //h5[text()=' Add WhatsApp Gateway']
+5. await templatesPage.smsGatewayNameInput().fill(testdata.SMS_Gateway);
+6.Click on (//textarea[@id='textAreaExample'])[1] and enter testdata.SMS_APIKey
+7.click on (//textarea[@id='textAreaExample'])[2] and enter testdata.SMS_SenderID
+8.  await templatesPage.smsAddButton(3).click();
+9. await expect(templatesPage.smsGatewayAddedAlert()).toBeVisible();
+10.Verify the visibility of //div[@class='datatable datatable-hover Transaction__table sno']//tbody/tr/td[text()='test']/../td[contains(text(),'Bearer')]/../td[text()='https://live-mt-server.wati.io/104470']/../td[6]//i[1]
+
+Create a methods like page object model approach in  TemplatesPage.ts file with  methods also and methods should be called in create a new test named  AddWhatsAppGateWay_WhatsAPPSettings in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts 
+
+
+TestCase:EditWhatsAppGateWay_WhatsAPPSettings
+
+1.await templatesPage.templatesAndRemindersTab().click();
+2. await templatesPage.whatsappSettingsTab().click();
+3.templatesPage.whatsappGatewayRow(testdata.WhatsAPP_Gateway, 'Bearer', testdata.WhatsAPP_SenderID).click();
+4.Verify the visbility of //h5[text()=' Edit WhatsApp Gateway']
+5.  await templatesPage.smsGatewayNameInput().fill(testtwo);
+6.if //label[text()='Primary:']/..//input is checked{
+     await templatesPage.smsSaveButton().click();
+	  await expect(templatesPage.smsGatewayAddedAlert()).toBeVisible();
+	  Verify the visbility of //div[@class='datatable datatable-hover Transaction__table sno']//tbody/tr/td[text()='testtwo']/../td[contains(text(),'Bearer')]/../td[text()='https://live-mt-server.wati.io/104470']/../td[text()='Enable']/../td[6]//i[1]
+   }else{
+   
+   Click on //label[text()='Primary:']/..//input/..//span
+   await templatesPage.smsSaveButton().click();
+    await expect(templatesPage.smsGatewayAddedAlert()).toBeVisible();
+	Verify the visbility of //div[@class='datatable datatable-hover Transaction__table sno']//tbody/tr/td[text()='testtwo']/../td[contains(text(),'Bearer')]/../td[text()='https://live-mt-server.wati.io/104470']/../td[text()='Enable']/../td[6]//i[1]
+   }
+   
+Create a methods like page object model approach in  TemplatesPage.ts file with  methods also and methods should be called in create a new test named  EditWhatsAppGateWay_WhatsAPPSettings in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts 
+
+
+TestCase:EditWhatsAppGateWay_SameAPIKey_VerifyErrorAlert
+
+1.  await templatesPage.templatesAndRemindersTab().click();
+  await templatesPage.whatsappSettingsTab().click();
+      await expect(templatesPage.whatsappGatewayAddedIcon(testdata.Edited_WhatsAPP_Gateway, 'Bearer', 'https://live-mt-server.wati.io/104470')).toBeVisible();
+2.templatesPage.whatsappGatewayAddedIcon(testdata.Edited_WhatsAPP_Gateway, 'Bearer', 'https://live-mt-server.wati.io/104470').click();
+await expect(templatesPage.whatsappEditGatewayHeader()).toBeVisible();
+3. await templatesPage.smsGatewayNameInput().fill(testdata.WhatsAPP_Gateway);
+    await templatesPage.whatsappApiKeyTextarea().fill(testdata.WhatsAPP_APIKey);
+    await templatesPage.whatsappSenderIdTextarea().fill(testdata.WhatsAPP_SenderID);
+   await templatesPage.smsSaveButton().click();
+4.Verify the visibility of Please Enter valid Gateway
+5.await templatesPage.smsResetButton().click();
+6.Verify the visibility of Reset Done successfully
+7.Verify the visibility of //textarea[text()='https://live-mt-server.wati.io/104470']
+8.await templatesPage.closeButton().click();
+
+Create a methods like page object model approach in  TemplatesPage.ts file with  methods also and methods should be called in create a new test named  EditWhatsAppGateWay_SameAPIKey_VerifyErrorAlert in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts 
+
+
+TestCase:DeleteWhatsAppGateWay_WhatsAPPSettings
+
+1. await templatesPage.templatesAndRemindersTab().click();
+  await templatesPage.whatsappSettingsTab().click();
+    await expect(templatesPage.whatsappGatewayAddedIcon(testdata.Edited_WhatsAPP_Gateway, 'Bearer', testdata.WhatsAPP_SenderID)).toBeVisible();
+2.Click on //div[@class='datatable datatable-hover Transaction__table sno']//tbody/tr/td[text()=testdata.Edited_WhatsAPP_Gateway]/../td[contains(text(),'Bearer')]/../td[text()='https://live-mt-server.wati.io/104470']/../td[6]//i[2]
+3. await expect(templatesPage.WhatsAPPDeleteConfirmText()).toBeVisible();
+    await templatesPage.smsDeleteButton().click();
+4.Verify the invisibility of //div[@class='datatable datatable-hover Transaction__table sno']//tbody/tr/td[text()=testdata.Edited_WhatsAPP_Gateway]/../td[contains(text(),'Bearer')]/../td[text()='https://live-mt-server.wati.io/104470']/../td[6]//i[2]
+
+Create a methods like page object model approach in  TemplatesPage.ts file with  methods also and methods should be called in create a new test named  DeleteWhatsAppGateWay_WhatsAPPSettings in tests/TemplatesValidations.spec.ts and Generate script in TemplatesValidations.spec.ts 
+
+TestCase:Add Variation Plan in CreatePlan Page and Verify in POS
+
+1. await planPage.plansLink().click();
+2. await expect(planPage.createPlanLink()).toBeVisible();
+3.await planPage.createPlanLink().click();
+4.await expect(planPage.planNameInput()).toBeVisible();
+5. await planPage.planNameInput().click();
+  await planPage.planNameInput().fill(lakshmi);
+  await planPage.validityInput().click();
+  await planPage.validityInput().fill(testdata.validity);
+  await planPage.discountDropdown().selectOption({ value: '2' });
+   await planPage.priceInput().click();
+  await planPage.priceInput().fill(testdata.price);
+6.Click //textarea[@name='description'] and enter VariationPlan
+7.Click on //button[text()='Add Variation Plan']
+8.Verify the visibility of //span[@class='plan-badge'][text()='lakshmi']
+9.Click on //input[@class='plan-input'] and enter lakshmitwo
+10.verify the visibility of //input[@class='gym-input w-40'][@value=testdata.validity]
+11.Verify the visibility of //input[@class='gym-input'][@value=testdata.price]
+12. await planPage.saveButton().click();
+13. await expect(planPage.planSavedAlert()).toBeVisible();
+14. await planPage.searchInput().click();
+  await planPage.searchInput().fill(lakshmi-lakshmitwo);
+  await page.waitForTimeout(2000);
+  await expect(planPage.planRow(lakshmi-lakshmitwo)).toBeVisible();
+
+  const rows = await planPage.tableRows().count();
+  expect(rows).toBe(1);
+  await expect(planPage.secondCell()).toHaveText(lakshmi-lakshmitwo);
+  await expect(planPage.validityCell(lakshmi-lakshmitwo)).toContainText(testdata.validity);
+  await expect(planPage.discountCell()).toHaveText('10');
+  await expect(planPage.daysCell(lakshmi-lakshmitwo)).toContainText('All days');
+  await expect(planPage.slotsCell(lakshmi-lakshmitwo)).toContainText('afternoon, evening, morning');
+  await expect(planPage.priceCell(lakshmi-lakshmitwo)).toContainText(testdata.price);
+    await planPage.pointOfSaleButton().click();
+	 await planPage.searchPlan_POSInput().fill(lakshmi);
+15.Verify the visibility of //div[text()='lakshmi']/..//span[text()='Variation'] and click on it.
+16.Verify the visibility of //select[@class='form-select form-select-sm w-25']/option[text()='lakshmi-lakshmitwo']/..
+
+
+
+Create a methods like page object model approach in  CreatePlanPage.ts file with  methods also and methods should be called in create a new test named  CreateVariationPlan_VerifyinPOS in tests/CreatePlanValidations.spec.ts and Generate script in CreatePlanValidations.spec.ts 
+
+
+
+Hi Ravikiran,
+
+Developed the automation script for the Phase 1 regression cases [36 cases identified], covering all critical and high-impact areas.
+
+Next Plan:
+We plan to automate the Phase 2 regression cases [18 cases identified].
+
+Please find the attached link for the test cases.
+https://docs.google.com/spreadsheets/d/1diGA_YZKHTSdZC-h48ZH4ABPhOfcP5RLAueAEfykyD8/edit?gid=1816006679#gid=1816006679
+
+Could you please review it.
+
+
+Hi bro,
+
+Completed the automation script for the EasyMembr Module.
+Please review the cases from the sheets listed below in the document and let me know if any scenarios are not covered:
+
+Smoke Cases
+Regression Cases (Phase 1)
+Regression Cases (Phase 2)
+
+https://docs.google.com/spreadsheets/d/1diGA_YZKHTSdZC-h48ZH4ABPhOfcP5RLAueAEfykyD8/edit?gid=0#gid=0
+
+Also, please let us know your convenient time on Tuesday to provide the KT for the EasyBook Module.
+
+
+Hi Ravikiran,
+
+We have completed the automation script for the EasyMembr Module (91 cases identified).
+
+Please find the attached link for the test cases.
+https://docs.google.com/spreadsheets/d/1diGA_YZKHTSdZC-h48ZH4ABPhOfcP5RLAueAEfykyD8/edit?gid=1816006679#gid=1816006679
+
+Next Plan:
+We plan to automate another module called EasyBook. On Tuesday, we will be taking the KT for the EasyBook Module. Once the KT is completed,We will update the ETA for automation.
+
+
+Hi Ravikiran,
+
+We have completed the KT on the EasyBook Module and identified 28 cases for automation. We plan to complete them by 18/10.
+
+Please find the attached link for the test cases:
+https://docs.google.com/spreadsheets/d/186dmpAQdFu3ilnvFFDcIeIgrd0sqwxmb5oJTLDv35os/edit?gid=0#gid=0
+
+
+TestCase:Create_ClassCategory_Verify_In _AddNewClass
+
+1.Click on //a[text()='Classes']
+2.Click on //a[text()='Class Categories']
+3.Click on //button[text()='Add New Category']
+4.Verify the visibility of h5[text()='Create Class Category']
+5.Click on //label[text()='Category Name']/../input and clear it and enter the test in it.
+6.Click on //button[text()='Create']
+7.Click on (//div[contains(@class,'trainerSummeryDataTable')]//input)[1] and clear it and enter the test in it.
+8.Verify the visibility of //tbody[@class='datatable-body']/tr[1]/td[text()='test']
+9.Click on //a[text()='Dashboard']
+10.Click on //a[text()='Classes']
+11.Click on //button[text()='Add New Class']
+12.Verify the visibility of (//select[@name='category'])[2]/option[@value='test']/..
+13.Click on //button[@class='ripple ripple-surface btn-close']
+
+
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  Create_ClassCategory_Verify_In _AddNewClass in tests/ClassCategoryValidations.spec.ts and Generate script in ClassCategoryValidations.spec.ts 
+
+
+TestCase:Edit_ClassCategory_Verify_In _AddNewClass
+1.await classesPage.dashboardTab().click();
+2. await classesPage.classesTab().click();
+    await classesPage.classCategoriesTab().click();
+3. await classesPage.trainerSummaryFirstInput().click();
+    await classesPage.trainerSummaryFirstInput().fill(classcategoryName);
+    await expect(classesPage.categoryRow(classcategoryName)).toBeVisible();
+4.Click on //tbody[@class='datatable-body']/tr[1]/td[text()='${name}']/../td[3]/span[1]/i[@class='fas fa-edit fs-6 ps-2']
+5. await classesPage.categoryNameInput().click(); and  await classesPage.categoryNameInput().fill(' ')
+6. await classesPage.categoryNameInput().fill(EditclasscategoryName);
+7.await classesPage.createCategoryButton().click();
+8. await classesPage.trainerSummaryFirstInput().click();
+    await classesPage.trainerSummaryFirstInput().fill(EditclasscategoryName);
+    await expect(classesPage.categoryRow(EditclasscategoryName)).toBeVisible();
+    await classesPage.dashboardTab().click();
+    await classesPage.classesTab().click();
+    await classesPage.addNewClassButton().click();
+    await expect(classesPage.categoryOptionInAddClass(EditclasscategoryName)).toBeVisible();
+    await classesPage.closeButton().click();
+	
+	
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  Edit_ClassCategory_Verify_In _AddNewClass in tests/ClassCategoryValidations.spec.ts and Generate script in ClassCategoryValidations.spec.ts 
+
+
+TestCase:Create Class with Discount and Verify in Schedule and Verify in Dashboard>>Total Classes Count.
+
+1.await classesPage.dashboardTab().click();
+2.Verify the visibility of (//h2[@class='clr-main'])[1] and get the text from it and store in a varaible named InitialClassCount.
+3.await classesPage.classesTab().click();
+4. await classesPage.addNewClassButton().click();
+5.Verify the visibility of //h5[text()='Add Class']
+6.Click on //input[@name='name'] and clear the value and enter the Zumbha in it.
+7.Click on //input[@name='duration'] and clear the value and enter the 30 in it.
+8.Click on //input[@name='slots'] and clear the value and enter the 2 in it.
+9.Click on //input[@name='price'] and clear the value and enter the 1000 in it.
+10.Select the automation in (//select[@name='category'])[2] 
+11.Click on //div[@class='custom-plan-selector']/div
+12.Scroll to //label[text()='raghu']/../input and click on //label[text()='raghu']/../input
+13.Click on //input[@placeholder='Discount'] and enter the 50 in it.
+14.Verify the visibility of //button[text()='Remove']
+15.Verify the visibility of //span[text()='1 selected']
+16.Click on //div[@class='ql-editor ql-blank']
+17.Click on //button[text()='Save']
+18.Click on //input[@placeholder='Search by Class Name'] and clear the value and enter Zumbha
+19.Select  Beginner (//select[@class='form-select form-select-sm'])[1]
+20.Select automation (//select[@class='form-select form-select-sm'])[2]
+21.Click on //button[text()='Apply']
+22.Assert //div[@class='card-body'] Size should be 1
+23.Verify the visibility of //h5[text()='Zumbha']
+24.Verify the visibility of //p[text()='30']
+25.Verify the visibility of //p[text()='automation']
+26.Verify the visibility of //p[text()='2']
+27.Verify the visibility of //p[text()='1000']
+28.Verify the visibility of //div[text()='raghu'][text()='50']
+29.Verify the visibility of //p[text()='Dance']
+30.Verify the visibility of //span[@class='badge badge-primary ms-2'][text()='Beginner']
+31.await classesPage.dashboardTab().click();
+32.Verify the visibility of (//h2[@class='clr-main'])[1] and get the text from it and store in a varaible named FinalClassCount.
+33.Assert FinalClassCount=InitialClassCount+1;
+34.Click on //a[text()='Schedules']
+35.Click on //button[text()='Add New Schedule']
+36.Verify the visibility of //select[@name='classid']/option[text()='Zumbha']/..
+37. await classesPage.closeButton().click();
+
+
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  CreateClass_WithDiscount_VerifyDashboardCount_VerifyINCreateSchedule  in tests/ClassValidations.spec.ts and Generate script in ClassValidations.spec.ts 
+
+
+
+TestCase: Create Trainer
+
+1.Click on //a[text()='Trainers']
+2.Click on //input[@placeholder='Search Users...'] and enter harithaautomation and wait 2 seconds if(//p[text()='No users found.'] is visibile) 
+  console.log("No Existing Trainers to delete")
+  else{ Click on //h5[text()='shiva shiva']/..//i[@class='fa fa-trash fs-6']
+       Click on //button[text()='Delete']
+	   await classesPage.dashboardTab().click();
+	   Click on //a[text()='Trainers']
+	   Click on //input[@placeholder='Search Users...'] and enter harithaautomation and wait 2 seconds
+	   Verify the visibility of //p[text()='No users found.']
+	   }
+2.Click on //button[text()='Add Trainer']
+3.Verify the visibility of //h5[text()='Add New Trainer']
+4.Click on //input[@name='firstname'] and enter haritha
+5.Click on //input[@name='lastname'] and enter automation
+6.Click on //input[@name='username'] and enter harithaautomation
+7.Click on //input[@name='password1'] and enter test@1234
+8.Select Male //select[@name='gender']
+9.Click on //input[@name='age'] and enter 25
+10.Click on //input[@name='email'] and enter harithaautomation@gmail.com
+11.Click on //input[@class='PhoneInputInput'] and enter 9876543218
+12.Select Staff //select[@class='form-select']
+13.Click on //button[text()='Add']
+14.await classesPage.dashboardTab().click();
+15.Click on //a[text()='Trainers']
+16.//input[@placeholder='Search Users...'] and enter harithaautomation and wait 2 seconds
+17.Verify the visibility of //h5[text()='haritha automation']
+18.Verify the visibility of //p[text()='harithaautomation@gmail.com']
+19.Verify the visibility of //p[text()='+919876543218']
+20.Verify the visibility of //p[text()='staff']
+
+
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  CreateTrainer_VerifyINCreateSchedule  in tests/TrainerValidations.spec.ts and Generate script in TrainerValidations.spec.ts
+
+
+
+TestCase: Create Cancellation Policy and Verify in Creating New Schedule Page.
+
+1.Click on //a[text()='Cancelation Policy']
+2.Click on //button[text()='Create Policy']
+3.Verify the visibility of //h5[text()='Cancellation Policy']
+4.Click on //input[@placeholder='Enter Full Name'] and enter test
+5.Click on //i[@class='fas fa-plus']
+6.Click on (//input[@type='number'])[1] and enter 1
+7.Click on (//input[@type='number'])[2] and enter 90
+8.Click on (//input[@type='number'])[3] and enter 2
+9.Click on (//input[@type='number'])[4] and enter 50
+10.Click on (//div[@class='mb- d-flex align-items-center'])[1]//input[@class='form-check-input']
+11.Click on (//div[@class='mb- d-flex align-items-center'])[2]//input[@class='form-check-input']
+12.Click on //div[@data-placeholder='Description'] and enter the automation
+13.Click on //button[text()='Save']
+14.Click on (//div[@class='mt-3 CancelationPolicydatatable']//input)[1] and enter test
+15.Assert //div[@class='mt-3 CancelationPolicydatatable']//tbody/tr should be 1
+16.Verify the visibility of //div[@class='mt-3 CancelationPolicydatatable']//tbody/tr/td[text()='test']/../td//p[text()='automation']/../../../td/ul/li[text()='1'][text()='90']/../li[2][text()='2'][text()='50']
+
+
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  CreateCancellationPolicy_VerifyINCreateSchedule  in tests/CancellationPolicyValidations.spec.ts and Generate script in CancellationPolicyValidations.spec.ts
+
+
+TestCase: Verify_LogsEvents_Activities.
+
+1.//a[text()=' Activities']
+2.Select Today //select[@id='shr']
+3.await classesPage.applyButton().click();
+4.Verify the visibility of //td[text()='Cancellation policy deleted sucessfully(${Editpolicyname})']
+
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  Verify_LogsEvents_Activities  in tests/CancellationPolicyValidations.spec.ts and Generate script in CancellationPolicyValidations.spec.ts
+
+
+TestCase: Create Schedule with OneTime and Verify in Dashboard>>Total Schedules Count.
+
+1. await classesPage.dashboardTab().click(); and wait 3 seconds
+   Verify the visibility of (//h5[@class='clr-main'])[1] and get the text from and store it InitialTotalScheduleCount
+1.await classesPage.schedulesTab().click();
+    await classesPage.addNewScheduleButton().click();
+2.Select automation //select[@name='classid']
+3.Select shiva shiva //select[@name='trainerid']
+  Click on (//div[@class='react-datepicker__input-container'])
+  wait 2 seconds
+  click on (//div[@aria-current='date']/following::div)[1]
+4.Click on //input[@class='form-control timepicker-input'] and enter the 06:30 AM
+5.Click on //input[@name='location'] and enter Hyderabad
+6.Select the First option //select[@name='cancellationpolicyid']
+7.Click on //input[@id='visibledaysbeforeInput'] and enter 2
+8.await classesPage.saveClassButton().click();
+9.Verify the visibility of (//td[contains(@class,'future fc-daygrid-day')])[1]//strong[text()='automation']/../../p[text()='06:30 AM']
+10.await classesPage.dashboardTab().click(); and wait 3 seconds
+11.Verify the visibility of (//h5[@class='clr-main'])[1] and get the text from and store it FinalTotalScheduleCount
+12.Assert FinalTotalScheduleCount=InitialTotalScheduleCount+1
+13.await classesPage.schedulesTab().click();
+14.Click on //a[text()='Card']
+15.Click on //input[@placeholder='Search'] and enter automation
+16.Select Active //select[@class='form-select']
+17.await classesPage.applyButton().click(); and wait 2 seconds.
+18.verify the visibilty of //h5[text()='automation']
+19.Verify the visibility of (//p[text()='06:30 AM'])[2]
+20.Verify the visibility of (//p[text()='Hyderabad'])
+
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  CreateScheduleOneTime_VerifyDashboardCount  in tests/ScheduleValidations.spec.ts and Generate script in ScheduleValidations.spec.ts
+
+
+
+TestCase: Copy the Session link from Calendar and Paste in another browser Login to the MemberDashboard and book the Session and Verify in EasyBook Class Transaction.
+
+1. await classesPage.schedulesTab().click();
+2.await classesPage.scheduleFutureCell(ScheduleClassNameSetup, '06:30 AM').click();
+3.Verify the visibility of //h6[text()='addczndk']
+4.Verify the visibility of //td[text()='Pubilc']
+5.Verify the visibility of //p[text()='No Membership Discounts available']
+6.Verify the visibility of //p[text()='Dance']
+7.Verify the visibility of //td[@class='text-success'][text()='0'][text()='/'][text()='2']
+8.Click on //i[@class='fa-regular fa-copy ']
+9.Verify the visibility of alert Link copied to clipboard!
+10.Click on //button[text()='Close']
+11.Launch a new browser and paste the copied link using the ctrl+v
+12.Verify the visibility of //h3[text()='addczndk']
+13.Click on (//div[text()='Book Now'])[1]
+14.CLick on //a[text()='Register here']
+15.Click on (//input[@placeholder='First Name'])[1] and enter vamsi
+16.Click on (//input[@placeholder='Last Name'])[1] and enter reddy
+17.Click on (//input[@placeholder='First Name'])[2] and enter shiva
+18.Click on (//input[@placeholder='Last Name'])[2] and enter lucky
+19.Click on (//input[@placeholder='Enter phone number'])[1] and enter 9874562138
+20.Click on (//input[@type='checkbox'])
+21.await page.waitForTimeout(2000);
+  // 20. Signature on canvas
+  const canvas = await page.locator('canvas').first();
+  await canvas.click({ position: { x: 50, y: 50 } });
+  await canvas.hover();
+  // 21. Verify Clear button
+  await expect(page.locator("//button[text()='Clear']")).toBeVisible();
+   await page.locator("//button[text()='Submit']").click();
+22.Verify the visibility of //span[text()='vamsi'][text()='reddy']
+23.Verify the visibility of //div[@class='info-card dashboard-upcoming-card']//h5[text()='addczndk']
+24.Click on //div[@class='info-card dashboard-upcoming-card']//h5[text()='addczndk']/../..//span[text()=' Book Now']
+25.verify the visibility of //h5[text()='Book a Class']
+26.verify the visibility of //div[text()='vamsi reddy, +919874562138']
+27.Click on //button[text()='Confirm']
+28.Verify the visibility of //strong[text()='vamsi reddy']
+29.Click on //button[text()='Pay']
+30.Click on //input[@placeholder='Mobile number'] and enter 9874562138
+31.Click on //div[@data-value='netbanking']
+32.Click on (//span[text()='Bank of Baroda - Retail Banking'])[1]
+33.it is opening a chrome window in that Click on //div[@class='success'] 
+34.Verify the visibility  of //p[text()='Your class has been booked successfully.'] until 120 seconds
+35.Click on //button[text()='Home']
+36.Click on //span[text()='Transactions']
+37.Click on //span[text()=' Sessions Transactions']
+38.Verify the visibility of //tbody[@class='datatable-body']/tr/td[text()='addczndk']
+36.Click on //span[text()='Logout']
+37.Close the new browser and switch the old existing browser 
+38.Click on //a[text()='Class Transaction']
+39.Select Today //select[@id='shr'] 
+40.await applyButton().click()
+41.Verify the visibility of //div[text()='vamsi reddy']
+42.await classesPage.schedulesTab().click();
+43.await classesPage.scheduleFutureCell(ScheduleClassNameSetup, '06:30 AM').click();
+3.Verify the visibility of //h6[text()='addczndk']
+Verify the visibility of //td[@class='text-success'][text()='1'][text()='/'][text()='2']
+
+
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  CopytheSessionFromCalendar_LoginMemberBoard_BookSession_VerifyEasyBookClassTransaction  in tests/ScheduleValidations.spec.ts and Generate script in ScheduleValidations.spec.ts
+
+
+TestCase: Create Announcement_VerifyMemberBoard
+
+1.Click on //a[text()='BusinessInfo']
+2.Click on //button[text()='Create Announcement']
+3.Click on //input[@id='announcementTitle'] and enter Holiday
+4.Click on //div[contains(@class,'ql-editor ql-blank')] and enter Diwali
+5.Click on //button[text()='Select Icon']
+6.Click on ((//div[@class='d-flex flex-wrap'])[1]/div)[1]
+7.Verify the visbility of //button[text()='Change Icon']
+page.once('dialog', async dialog => {
+      expect(dialog.message()).toBe("Announcement posted successfully!");
+      await dialog.accept();
+     });
+8.Click on //button[text()='Post Announcement']
+9.Verify the visibility of //p[@class='bussiness-announcement-title'][text()='Holiday']
+10.Click on //i[@class='fas fa-bullhorn m-0 notification-icon']
+11.Verify the visibility of //h5[text()='Holiday']
+
+Create a methods like page object model approach in  sampletwo.ts file in pageobjects with  methods also and methods should be called in create a new test named  Sample_announcement  in tests/sampleannounce.spec.ts and Generate script in sampleannounce.spec.ts
+
+
+TestCase: CheckAvailableSessions_VerifyAddToCartInMembershipPlans_MemberBoard
+
+1.click on //span[text()='Available Sessions']
+2.Select iimmzevx   //select[@name='classType']
+3.Select  shiva shiva  //select[@name='trainer']\
+4.Select  AM //select[@name='time']
+5.Select  30m //select[@name='duration']
+6.Click on //button[text()='Apply']
+7.Verify the visibility of //div[@class='session-card']//h3[text()='iimmzevx']
+8.Click on //button[text()='Clear']
+9.Click on //span[text()='Membership Plans']
+10.click on //span[text()='Available Sessions']
+11.Select iimmzevx   //select[@name='classType']
+12.Select  PM //select[@name='time']
+13.Click on //button[text()='Apply']
+14.Verify the visibility of //p[text()='No available sessions found']
+15.Click on //span[text()='Membership Plans']
+16.Verify the visibility of //h4[@class='plan-name'][text()='raghu']
+17.Verify the invisibility of //h4[@class='plan-name'][text()='haritha']
+18.Click on //h4[@class='plan-name'][text()='raghu']/../..//span[text()='  Add to Cart']
+19.Verify the visbility of //span[text()='Added to Cart']
+20.Click on //div[@class='cart-icon-container me-3']
+21.Verify the visbility of //h4[@class='plan-name'][text()='raghu']/../..//span[text()='  Remove']
+
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  AvailableSessions  in tests/ScheduleValidations.spec.ts and Generate script in ScheduleValidations.spec.ts
+
+
+TestCase: Vreify the booked Session in Activities Log Events.
+
+1.click on //a[text()=' Activities']
+2.Select Today  //select[@id='shr']
+    await classesPage.applyButton().click();
+    await page.waitForTimeout(2000);
+3.Verify the visibility of //td[text()='Class (iimmzevx) booked by (vamsi reddy)']
+
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  VerifyBookedSession_EasybookActivitiesLogEvents  in tests/ScheduleValidations.spec.ts and Generate script in ScheduleValidations.spec.ts
+
+TestCase: Delete Schedule
+
+1.await classesPage.dashboardTab().click();
+    await classesPage.schedulesTab().click();
+2. await classesPage.scheduleFutureCell(data.ScheduleClassNameSetup, '06:30 AM').click();
+    await expect(classesPage.scheduleSessionHeader(data.ScheduleClassNameSetup)).toBeVisible();
+3.Click on //h6[text()='uuymnals']/..//i[@title='Trash']
+4.Click on //button[text()='Delete Only This Event']
+5.await classesPage.dashboardTab().click();
+6.await classesPage.schedulesTab().click();
+7.await expect(classesPage.scheduleFutureCell(data.ScheduleClassNameSetup, '06:30 AM')).not.toBeVisible();
+
+
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  DeleteSchedule  in tests/ScheduleValidations.spec.ts and Generate script in ScheduleValidations.spec.ts
+
+
+TestCase : Create Schedule with Recurrence
+
+1.await page.setViewportSize({ width: 1920, height: 1080 });
+2. await classesPage.schedulesTab().click();
+3.Verify the invisibility of //strong[text()='uuymnals']
+    await classesPage.addNewScheduleButton().click();
+    await classesPage.scheduleClassSelect().selectOption({ label: data.ScheduleClassNameSetup });
+    await classesPage.scheduleTrainerSelect().selectOption({ label: testdata.trainer });
+    await classesPage.datepickerInputContainer().click();
+    await page.waitForTimeout(2000);
+    await classesPage.datepickerNextDay().click();
+    await classesPage.scheduleTimeInput().fill('06:30 AM');
+    await classesPage.scheduleLocationInput().fill('Hyderabad');
+    await classesPage.cancellationPolicySelect().selectOption({ index: 1 });
+    await classesPage.visibleDaysBeforeInput().fill('2');
+3.Click on //input[@name='onetime']/..//span
+4.Select Weekly //select[@name='recurrence']
+5.Click on //div[text()='Mon']
+6.await classesPage.saveClassButton().click();
+7.Assert //strong[text()='uuymnals'] size should be greater than 1.
+
+
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  CreateScheduleRecurrence  in tests/ScheduleValidations.spec.ts and Generate script in ScheduleValidations.spec.ts
+
+
+
+
+TestCase: DeleteRecurrence Schedule
+1.await page.setViewportSize({ width: 1920, height: 1080 });
+2.await classesPage.schedulesTab().click();
+3.Click on (//strong[text()='uuymnals'])[1]
+4.  await classesPage.scheduleTrashIcon(data.ScheduleClassNameSetup).click();
+5.Click on //button[text()='Delete All Recurring Events']
+6. await classesPage.dashboardTab().click();
+    await classesPage.schedulesTab().click();
+7.Verify the invisibility of //strong[text()='uuymnals']
+	
+
+TestCase: Create and Edit Schedule from Calendar
+
+1.await classesPage.schedulesTab().click();
+    await classesPage.addNewScheduleButton().click();
+    await classesPage.scheduleClassSelect().selectOption({ label: ScheduleClassNameSetup });
+    await classesPage.scheduleTrainerSelect().selectOption({ label: testdata.trainer });
+    await classesPage.datepickerInputContainer().click();
+    await page.waitForTimeout(2000);
+    await classesPage.datepickerNextDay().click();
+    await classesPage.scheduleTimeInput().fill('06:30 AM');
+    await classesPage.scheduleLocationInput().fill('Hyderabad');
+    await classesPage.cancellationPolicySelect().selectOption({ index: 1 });
+    await classesPage.visibleDaysBeforeInput().fill('2');
+    await classesPage.saveClassButton().click();
+	await expect(classesPage.scheduleFutureCell(ScheduleClassNameSetup, '06:30 AM')).toBeVisible();
+	await classesPage.scheduleFutureCell(data.ScheduleClassNameSetup, '06:30 AM').click();
+	await classesPage.scheduleEditIcon().click()
+	 await classesPage.scheduleTrainerSelect().selectOption({ label: 'manikamta manikamta' });
+    await classesPage.datepickerInputContainer().click();
+    await page.waitForTimeout(2000);
+2.Click on //div[@aria-selected='true']/following::div[1]
+await classesPage.scheduleTimeInput().fill(' ')
+3.await classesPage.scheduleTimeInput().fill('07:30 AM');
+ await classesPage.scheduleLocationInput().fill('Palakol');
+    await classesPage.cancellationPolicySelect().selectOption({ index: 0 });
+    await classesPage.visibleDaysBeforeInput().fill('3');
+4.Click on //input[@name='isprivate']/../span
+5.await page.updateButton().click()
+6. await page.locator("//button[@class='ripple ripple-surface btn btn-secondary']").click();
+7.await expect(classesPage.scheduleFutureCell(ScheduleClassNameSetup, '06:30 AM')).not.toBeVisible();
+8.Verify the visibility of (//td[contains(@class,'future fc-daygrid-day')])[2]//strong[text()='automation']/../../p[text()='07:30 AM']
+9.click (//td[contains(@class,'future fc-daygrid-day')])[2]//strong[text()='automation']/../../p[text()='07:30 AM']
+10.await expect(classesPage.scheduleSessionHeader(data.ScheduleClassNameSetup)).toBeVisible();
+11.await expect(classesPage.sessionTypeCell('Private')).toBeVisible();
+    await expect(classesPage.noMembershipDiscountsText()).toBeVisible();
+	await expect(classesPage.sessionTypeCell('manikamta manikamta')).toBeVisible();
+	await expect(classesPage.sessionTypeCell('07:30 AM – 08:00 AM')).toBeVisible();
+12.Verify the visibility of //p[text()='No cancellation policy available']
+13.await classesPage.schedulesTab().click();
+    await classesPage.cardTab().click();
+    await classesPage.cardSearchInput().fill(ScheduleClassNameSetup);
+    await classesPage.cardStatusSelect().selectOption({ label: 'Active' });
+    await classesPage.applyButton().click();
+    await page.waitForTimeout(2000);
+    await expect(classesPage.cardClassHeader(ScheduleClassNameSetup)).toBeVisible();
+    await expect(classesPage.cardClassTime('07:30 AM')).toBeVisible();
+    await expect(classesPage.cardClassLocation('Palakol')).toBeVisible();
+	
+	
+Create a methods like page object model approach in  ClassesPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  Create_Edit_ScheduleOneTime  in tests/ScheduleValidations.spec.ts and Generate script in ScheduleValidations.spec.ts
+
+
+TestCase: Edit BussinessInfo>>>>Privacy Policy
+
+1.Click on //a[text()='BusinessInfo']
+2.Click on //label[text()='Privacy Policy:']/..//i[@class='fas fa-edit']
+3.Click on //input[@placeholder='Enter policy title'] and clear the value and enter Sample Privacy Policy for QA Testing
+4.Click on //div[@class='ql-editor'] and clear the value enter the below meesage
+5.click on //button[text()='Save']
+6.Verify the visibility of //label[text()='Sample Privacy Policy for QA Testing']
+7.Verify the visibility of //label[text()='Privacy Policy']/../..//p[text()='Testing']
+
+
+Create a methods like page object model approach in  BussinessInfoPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  BussinessInfo_PrivacyPolicy  in tests/BussinessInfoValidations.spec.ts and Generate script in BussinessInfoValidations.spec.ts
+
+
+
+TestCase: Edit BussinessInfo>>>>Terms and Conditions
+
+1.await bussinessInfoPage.businessInfoTab().click();
+2.Click on //label[text()='Terms and Conditions']/..//i[@class='fas fa-edit']
+3.Click on //input[@placeholder='Enter title'] and Clear the value and enter test
+4.await bussinessInfoPage.saveButton().click();
+    await expect(bussinessInfoPage.policyTitleLabel(privacyTitle)).toBeVisible();
+	
+	
+TestCase :Edit BussinessInfo>>>>Class Bussiness Settings
+
+1.if visibility of //label[text()=' Wavier Form :  ']/..//i[@class='fas fa-check-circle me-2 text-success']{
+   Click on //label[text()=' Class Business Settings ']/..//i[@class='fas fa-edit']
+   Click on //span[@class='slider round']
+   await bussinessInfoPage.saveButton().click();
+   Verify the invisibility of //label[text()=' Wavier Form :  ']/..//i[@class='fas fa-check-circle me-2 text-success']
+   Click on //label[text()=' Class Business Settings ']/..//i[@class='fas fa-edit']
+    Click on //span[@class='slider round']
+    await bussinessInfoPage.saveButton().click();
+	verify the visibility //label[text()=' Wavier Form :  ']/..//i[@class='fas fa-check-circle me-2 text-success']
+  }else{
+    Click on //label[text()=' Class Business Settings ']/..//i[@class='fas fa-edit']
+    Click on //span[@class='slider round']
+    await bussinessInfoPage.saveButton().click();
+	verify the visibility //label[text()=' Wavier Form :  ']/..//i[@class='fas fa-check-circle me-2 text-success']
+  
+  }
+
+Create a methods like page object model approach in  BussinessInfoPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  BussinessInfo_ClassBussinessSettings  in tests/BussinessInfoValidations.spec.ts and Generate script in BussinessInfoValidations.spec.ts
+
+
+TestCase: AddMember_VariationPlan_Reports_PlansSummary_Groups
+
+1.Click on //a[text()=' Reports']
+2.Click on //a[text()='Plan Summary']
+3.Click on //span[text()='All Plans/Addons']
+4.Click on //span[@class='base-plan-text ms-2'][text()='govindha']
+5.Verify the visibility of //label[text()='govindha - weekly (Plan)']
+6.Click on //button[text()='Group']
+7.Verify the visibility of //h5[text()='Grouping']
+8.Verify the visibility of //label[text()='govindha']/../../..//span[text()='Variations']
+9.Click on //label[text()='govindha']/../../..//span[text()='Variations']
+10.Verify the visibility of //label[text()='govindha']/../../../../..//label[text()='weekly']
+11.Click on //label[text()='govindha']/../../../../..//input[@class='form-check-input me-2 ']
+12.Verify the visibility of //div[@class='card-body p-0 GroupingCardHeight']/div[text()='govindha - weekly']
+13.Click on //label[text()='automationgroup']/../input[@class='form-check-input']
+14.Verify the visibility of //div[@class='card-body p-0 GroupingCardHeight']/div[text()='automationgroup']
+15.Click on (//button[text()='Group'])[2]
+16.Click on //label[text()='Enter Group Name']/../input and enter the manikanta
+17.Click on (//button[text()='Save'])[1]
+18.Verify the visibility of //label[text()='manikanta']
+19.Click on  (//button[text()='Save'])[1]
+20.Select the value Group //label[text()=' Plan breakdown: ']/..//select
+21.Click on //span[text()='All Plans/Addons']
+22.Verify the visibility of //label[text()='manikanta']/../input[@class='form-check-input']
+23.Click on //label[text()='manikanta']/../input[@class='form-check-input']
+24.Click on //button[text()='Apply']
+25.Verify the visibility of //td[text()='No matching results found']
+
+
+Create a methods like page object model approach in  CreatePlanPage.ts file in pageobjects with  methods also and methods should be called in create a new test named  AddMember_VariationPlan_Reports_PlansSummary_Groups  in tests/CreatePlanValidations.spec.ts and Generate script in CreatePlanValidations.spec.ts
+
+
+25.Verify the visibility of //th[text()='manikanta']
+
+
+
+
+
+Hi Ravikiran,
+
+Completed the development of the automation suite for the EasyBook module, committed the code to GitHub, and integrated it with Jenkins.
+
+EasyMembr TestCases:
+https://docs.google.com/spreadsheets/d/1diGA_YZKHTSdZC-h48ZH4ABPhOfcP5RLAueAEfykyD8/edit?gid=0#gid=0
+
+EasyBook TestCases:
+https://docs.google.com/spreadsheets/d/186dmpAQdFu3ilnvFFDcIeIgrd0sqwxmb5oJTLDv35os/edit?gid=0#gid=0
+
+Jenkins:
+URL: http://192.168.3.29:8080/login?from=%2F
+Username: EasyMembr
+Password: abc@1234
+
+How to Execute the Suite:
+
+1. Log in to Jenkins.
+2. Click on the EasyMembr_Automation project.
+3. Click on Build with Parameters.
+4. Enter the command:
+    custom-runner.js for EasyMembr
+    easybook.js for EasyBook
+5. Click on Build.
+
+After execution, the reports can be found at: V:\EasyMembrReports
+
+Note:
+We had a one-month GitHub Copilot subscription. GitHub Copilot initially provided a free trial for one month, which has now expired. Please advise if the license should be renewed. Balraj is asking for confirmation regarding the payment to continue the subscription.
+
+
+
+
+
+TestCase:Create_ClassCategory_Verify_In _AddNewClass
+
+1.Click on //a[text()='Classes']
+2.Click on //a[text()='Class Categories']
+3.Click on //button[text()='Add New Category']
+4.Verify the visibility of h5[text()='Create Class Category']
+5.Click on //label[text()='Category Name']/../input and clear it and enter the test in it.
+6.Click on //button[text()='Create']
+7.Click on (//div[contains(@class,'trainerSummeryDataTable')]//input)[1] and clear it and enter the test in it.
+8.Verify the visibility of //tbody[@class='datatable-body']/tr[1]/td[text()='test']
+9.Click on //a[text()='Dashboard']
+10.Click on //a[text()='Classes']
+11.Click on //button[text()='Add New Class']
+12.Verify the visibility of (//select[@name='category'])[2]/option[@value='test']/..
+13.Click on //button[@class='ripple ripple-surface btn-close']
+
+
+TestCase: Login EasyMembr
+
+1.Go to URl https://portal.zencruz.com/login
+2.Enter pavan@mailinator.com in //input[@placeholder='Email / Mobile Number.']
+3.Enter test@1234 in //input[@placeholder='Password']
+4.Click on button[type='submit']
+
+Create a new methods like page object model approach in  sample.ts file in pageobjects with  methods also and methods should be called in create a new test named  sampleone  in tests/sample.spec.ts and Generate script in sample.spec.ts
